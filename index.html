@@ -4,30 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koti Madduluri — Senior Android Engineer</title>
-  <meta name="description" content="Koti Madduluri — Senior Android Engineer in London, UK. Kotlin, Jetpack Compose, KMP/CMP. 10+ years building fintech, payments and EPOS apps." />
+  <meta name="description" content="Koti Madduluri — Senior Android Engineer in London, UK. 10+ years of Kotlin, Jetpack Compose and KMP/CMP across fintech, payments, EPOS and digital banking." />
   <meta name="author" content="Koti Madduluri" />
   <link rel="canonical" href="https://kotimadduluri.github.io/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Koti Madduluri — Senior Android Engineer" />
-  <meta property="og:description" content="Kotlin, Jetpack Compose, KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
+  <meta property="og:description" content="Kotlin · Jetpack Compose · KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
   <meta property="og:url" content="https://kotimadduluri.github.io/" />
   <meta property="og:site_name" content="Koti Madduluri" />
-  <!-- Optional: add a social preview image at assets/og-image.png (1200x630), then uncomment:
-  <meta property="og:image" content="https://kotimadduluri.github.io/assets/og-image.png" />
-  -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Koti Madduluri — Senior Android Engineer" />
-  <meta name="twitter:description" content="Kotlin, Jetpack Compose, KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
+  <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
 
-  <meta name="theme-color" content="#fdfdfc" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#101014" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#faf9fc" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0d0d12" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 
@@ -44,7 +41,8 @@
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "Koti Madduluri",
+    "name": "Koteswara Rao Madduluri",
+    "alternateName": "Koti Madduluri",
     "jobTitle": "Senior Android Engineer",
     "email": "mailto:kotimn@gmail.com",
     "telephone": "+44 7774 969393",
@@ -55,281 +53,428 @@
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="container nav" aria-label="Main navigation">
-      <a class="brand" href="#home">KM<span class="brand-dot">.</span></a>
+<!-- Inline SVG icon sprite (lucide-style, stroke icons) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+    <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></symbol>
+    <symbol id="i-code" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></symbol>
+    <symbol id="i-server" viewBox="0 0 24 24"><rect width="20" height="8" x="2" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></symbol>
+    <symbol id="i-radio" viewBox="0 0 24 24"><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></symbol>
+    <symbol id="i-flask" viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-branch" viewBox="0 0 24 24"><line x1="6" x2="6" y1="3" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></symbol>
+    <symbol id="i-terminal" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></symbol>
+    <symbol id="i-landmark" viewBox="0 0 24 24"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></symbol>
+    <symbol id="i-grad" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+    <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></symbol>
+  </defs>
+</svg>
 
-      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
-        <span class="nav-toggle-bar"></span>
-        <span class="nav-toggle-bar"></span>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ FLOATING NAV ============ -->
+<header class="nav-wrap">
+  <nav class="nav glass" aria-label="Main navigation">
+    <a class="brand" href="#home">KM<span class="brand-dot">.</span></a>
+
+    <ul class="nav-menu" id="nav-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Switch theme" title="Toggle theme">
+        <svg class="ic icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="ic icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
       </button>
+      <a class="btn btn-primary btn-sm nav-cta" href="#contact">Hire Me</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
 
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li>
-          <button class="theme-toggle" aria-label="Switch to dark mode" title="Toggle theme">
-            <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-            <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+<main id="main">
 
-  <main id="main">
-    <!-- ============ HERO ============ -->
-    <section class="hero" id="home">
-      <div class="container">
-        <p class="hero-kicker reveal">Senior Android Engineer</p>
-        <h1 class="reveal">Koti <span class="accent">Madduluri</span></h1>
-        <p class="hero-title reveal">Kotlin · Jetpack Compose · KMP/CMP — Fintech, Payments &amp; EPOS</p>
-        <p class="hero-tagline reveal">I build payment and banking experiences that millions of transactions rely on.</p>
-        <p class="hero-location reveal">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          London, UK
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="grid-overlay"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="badge reveal"><span class="pulse-dot" aria-hidden="true"></span>Senior Android Engineer</p>
+        <h1 class="reveal" style="--d:80ms">Hi, I'm <span class="grad-text">Koti</span>.<br />I build high-performance Android &amp; full-stack experiences.</h1>
+        <p class="hero-sub reveal" style="--d:160ms">10+ years shipping Kotlin across fintech, payments &amp; EPOS — from dual&#8209;screen payment terminals to digital banking for US banks.</p>
+
+        <ul class="hero-chips reveal" style="--d:240ms" aria-label="Core stack">
+          <li><svg class="ic c-primary" aria-hidden="true"><use href="#i-smartphone"/></svg>Kotlin</li>
+          <li><svg class="ic c-secondary" aria-hidden="true"><use href="#i-layers"/></svg>Jetpack Compose</li>
+          <li><svg class="ic c-tertiary" aria-hidden="true"><use href="#i-package"/></svg>KMP / CMP</li>
+          <li><svg class="ic c-primary" aria-hidden="true"><use href="#i-code"/></svg>React &amp; Node.js</li>
+        </ul>
+
+        <div class="hero-actions reveal" style="--d:320ms">
+          <a class="btn btn-primary" href="#projects">Explore Work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+          <a class="btn btn-glass" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
+        </div>
+
+        <p class="hero-meta reveal" style="--d:400ms">
+          <svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg> London, UK
+          <span class="meta-sep" aria-hidden="true">·</span>
+          <svg class="ic" aria-hidden="true"><use href="#i-award"/></svg> Backbase Certified
         </p>
-        <div class="hero-actions reveal">
-          <a class="btn btn-primary" href="assets/Koti_Madduluri_CV.pdf" download>
-            Download CV
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          </a>
-          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+      </div>
+
+      <div class="hero-visual reveal" style="--d:200ms">
+        <svg class="hero-blob-shape" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="blob-grad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#a78bfa" stop-opacity="0.55"/>
+              <stop offset="0.6" stop-color="#6d3bd7" stop-opacity="0.35"/>
+              <stop offset="1" stop-color="#4cd7f6" stop-opacity="0.45"/>
+            </linearGradient>
+          </defs>
+          <path fill="url(#blob-grad)" d="M421,306Q397,362,344.5,395.5Q292,429,231,414.5Q170,400,124,357.5Q78,315,82.5,252.5Q87,190,130.5,146Q174,102,235,92.5Q296,83,349,116Q402,149,424.5,224.5Q447,300,421,306Z"/>
+        </svg>
+        <div class="code-card glass" role="img" aria-label="Kotlin code snippet describing Koti: Senior Android Engineer, stack Kotlin, Compose and KMP, domains fintech, payments and EPOS, 10 plus years of experience, 30 plus production apps shipped.">
+          <div class="code-bar" aria-hidden="true">
+            <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+            <span class="code-title">Engineer.kt</span>
+          </div>
+          <pre class="code-body" aria-hidden="true"><code><span class="code-line"><span class="k">val</span> koti = <span class="f">Engineer</span>(</span>
+<span class="code-line">  role = <span class="s">"Senior Android Engineer"</span>,</span>
+<span class="code-line">  stack = <span class="f">listOf</span>(<span class="s">"Kotlin"</span>, <span class="s">"Compose"</span>, <span class="s">"KMP"</span>),</span>
+<span class="code-line">  domains = <span class="f">listOf</span>(<span class="s">"Fintech"</span>, <span class="s">"Payments"</span>, <span class="s">"EPOS"</span>),</span>
+<span class="code-line">  experience = <span class="n">10</span>.years,</span>
+<span class="code-line">)</span>
+<span class="code-line"> </span>
+<span class="code-line">koti.<span class="f">ship</span>() <span class="c">// 30+ production apps</span><span class="cursor"></span></span></code></pre>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- ============ ABOUT ============ -->
-    <section class="section" id="about">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="section-index">01</span>About</h2>
-        <div class="about-grid">
-          <div class="about-text reveal">
-            <p>I've spent <strong>10+ years building Kotlin apps</strong> — mainly Android, but I'm equally comfortable full-stack with React, Next.js, and Node.js. Along the way I've shipped <strong>30+ production apps</strong> across loyalty and fintech, digital banking, smart city IoT, EdTech, and enterprise software.</p>
-            <p>I've led Jetpack Compose migrations across hundreds of screens, driven multi-module restructuring that cut build times by ~30%, and managed offshore teams of 4–5 engineers. I'm a <strong>Backbase Certified Android Engineer</strong> with deep hands-on experience in payment terminal integrations, EPOS systems, on-device AI/ML, and real-time communication.</p>
-          </div>
-          <ul class="about-stats reveal" aria-label="Highlights">
-            <li><span class="stat-value">10+</span><span class="stat-label">Years of Kotlin</span></li>
-            <li><span class="stat-value">30+</span><span class="stat-label">Production apps</span></li>
-            <li><span class="stat-value">~30%</span><span class="stat-label">Build time cut via multi-module</span></li>
-            <li><span class="stat-value">100s</span><span class="stat-label">Screens migrated to Compose</span></li>
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============ INTEGRATIONS MARQUEE ============ -->
+  <section class="marquee-section" aria-label="Payment and platform integrations">
+    <p class="marquee-label">Payment &amp; platform integrations I've shipped with</p>
+    <div class="marquee" data-marquee>
+      <ul class="marquee-track">
+        <li>Verifone</li><li>Ingenico</li><li>PAX</li><li>Castles</li><li>Stripe</li><li>Backbase</li><li>Zelle</li><li>Glia</li><li>Payveris</li><li>ThreatMetrix</li><li>ShuftiPro</li>
+        <li aria-hidden="true">Verifone</li><li aria-hidden="true">Ingenico</li><li aria-hidden="true">PAX</li><li aria-hidden="true">Castles</li><li aria-hidden="true">Stripe</li><li aria-hidden="true">Backbase</li><li aria-hidden="true">Zelle</li><li aria-hidden="true">Glia</li><li aria-hidden="true">Payveris</li><li aria-hidden="true">ThreatMetrix</li><li aria-hidden="true">ShuftiPro</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">01 — About</p>
+        <h2>Code that works in the real world</h2>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>I'm a Senior Software Engineer with <strong>10+ years of experience</strong> — mainly Android (Kotlin/Java), but equally comfortable across the full stack with React, Next.js, and Node.js. I've worked on <strong>30+ production apps</strong> across loyalty and fintech, digital banking, smart city IoT, EdTech, and enterprise software.</p>
+          <p>I've led Jetpack Compose migrations across hundreds of screens, driven multi-module restructuring that cut build times by around 30%, and managed offshore teams of 4–5 engineers while working closely with stakeholders and clients. I have deep hands-on experience with payment terminal integrations, EPOS systems, on-device AI/ML, and real-time communication.</p>
+          <p>I care about writing code that's clean, maintainable, and actually works in the real world.</p>
+
+          <ul class="credentials">
+            <li class="glass"><svg class="ic c-primary" aria-hidden="true"><use href="#i-award"/></svg><div><strong>Backbase Certified Android Engineer</strong><span>Backbase · 2023</span></div></li>
+            <li class="glass"><svg class="ic c-secondary" aria-hidden="true"><use href="#i-grad"/></svg><div><strong>B.Tech, Computer Science</strong><span>JNTU, India · 2015</span></div></li>
           </ul>
         </div>
+
+        <ul class="stats" aria-label="Career highlights">
+          <li class="glass reveal"><span class="stat-num" data-count="10" data-suffix="+">10+</span><span class="stat-label">Years of Kotlin</span></li>
+          <li class="glass reveal" style="--d:80ms"><span class="stat-num" data-count="30" data-suffix="+">30+</span><span class="stat-label">Production apps</span></li>
+          <li class="glass reveal" style="--d:160ms"><span class="stat-num" data-count="30" data-prefix="~" data-suffix="%">~30%</span><span class="stat-label">Build time cut via multi&#8209;module</span></li>
+          <li class="glass reveal" style="--d:240ms"><span class="stat-num" data-count="100" data-suffix="s">100s</span><span class="stat-label">Screens migrated to Compose</span></li>
+        </ul>
       </div>
-    </section>
-
-    <!-- ============ SKILLS ============ -->
-    <section class="section" id="skills">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="section-index">02</span>Skills</h2>
-        <div class="skills-grid">
-          <div class="skill-group reveal">
-            <h3>Mobile</h3>
-            <ul class="pills">
-              <li>Kotlin</li><li>Java</li><li>Jetpack Compose (Advanced)</li><li>XML Layouts</li><li>Kotlin Multiplatform (KMP)</li><li>Compose Multiplatform (CMP)</li><li>React Native</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Architecture</h3>
-            <ul class="pills">
-              <li>MVVM</li><li>MVI</li><li>MVP</li><li>Clean Architecture</li><li>Multi-Module</li><li>Modular Design</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Android Libraries</h3>
-            <ul class="pills">
-              <li>Retrofit</li><li>Ktor</li><li>Volley</li><li>Koin</li><li>Hilt</li><li>Dagger</li><li>Room</li><li>WorkManager</li><li>Navigation Component</li><li>ExoPlayer</li><li>CameraX</li><li>Coil</li><li>Glide</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Frontend</h3>
-            <ul class="pills">
-              <li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SCSS</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Backend</h3>
-            <ul class="pills">
-              <li>Node.js</li><li>NestJS</li><li>Express</li><li>REST API Development</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Databases</h3>
-            <ul class="pills">
-              <li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>SQLite</li><li>Firebase Realtime DB</li><li>Room</li><li>DataStore</li>
-            </ul>
-          </div>
-          <div class="skill-group reveal">
-            <h3>Realtime &amp; IoT</h3>
-            <ul class="pills">
-              <li>MQTT</li><li>XMPP</li><li>WebRTC</li><li>Socket.io</li>
-              <!-- TODO(CV): add any other realtime/IoT technologies listed in the CV -->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ EXPERIENCE ============ -->
-    <section class="section" id="experience">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="section-index">03</span>Experience</h2>
-        <ol class="timeline">
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <p class="timeline-period">Feb 2026 – Present · London, Hybrid</p>
-              <h3>Senior Android &amp; Full Stack Engineer</h3>
-              <p class="timeline-company">Lopay</p>
-              <ul class="timeline-bullets">
-                <li>Working on the Terminal Pay product — EPOS payment hardware and dual-screen devices.</li>
-                <li>Stripe SDK integration for in-person payments.</li>
-                <!-- TODO(CV): replace/expand with exact bullets from the CV -->
-              </ul>
-            </div>
-          </li>
-
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <p class="timeline-period">Nov 2023 – Jan 2026</p>
-              <h3>Senior Software Engineer / Technical Lead</h3>
-              <p class="timeline-company">Payment Loyalty</p>
-              <ul class="timeline-bullets">
-                <li>Owned the loyalty platform end to end; rebuilt it from the ground up onto a modern architecture — stable ever since, with zero downtime.</li>
-                <li>Ran the platform alongside Verifone, Ingenico, PAX and Castles payment terminals.</li>
-                <li>Migrated 40–60 screens to Jetpack Compose and built a custom design system.</li>
-                <li>Drove a multi-module split of the codebase.</li>
-                <!-- TODO(CV): replace/expand with exact bullets from the CV -->
-              </ul>
-            </div>
-          </li>
-
-          <li class="timeline-item reveal">
-            <div class="timeline-marker" aria-hidden="true"></div>
-            <div class="timeline-content">
-              <p class="timeline-period"><!-- TODO(CV): exact dates from CV -->Dates from CV</p>
-              <h3>Android Engineer — Backbase Certified</h3>
-              <p class="timeline-company">Mobiquity</p>
-              <ul class="timeline-bullets">
-                <li>2+ years building Android banking apps on the Backbase platform for two US banks.</li>
-                <!-- TODO(CV): replace/expand with exact title, dates and bullets from the CV -->
-              </ul>
-            </div>
-          </li>
-
-          <!-- TODO(CV): add earlier roles exactly as they appear in the CV, using the same
-               <li class="timeline-item reveal"> structure as above -->
-        </ol>
-      </div>
-    </section>
-
-    <!-- ============ PROJECTS (placeholders — fill in from real work, don't invent) ============ -->
-    <section class="section" id="projects">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="section-index">04</span>Projects</h2>
-        <div class="projects-grid">
-          <article class="project-card reveal">
-            <h3>Project name<!-- TODO: real project name --></h3>
-            <p>One or two sentences describing the project, your role, and the outcome.<!-- TODO: real description --></p>
-            <ul class="pills pills-small">
-              <li>Kotlin</li><li>Compose</li><!-- TODO: real tech tags -->
-            </ul>
-            <!-- Optional link: <a class="project-link" href="#">View project →</a> -->
-          </article>
-          <article class="project-card reveal">
-            <h3>Project name<!-- TODO --></h3>
-            <p>One or two sentences describing the project, your role, and the outcome.<!-- TODO --></p>
-            <ul class="pills pills-small">
-              <li>KMP</li><li>Ktor</li><!-- TODO -->
-            </ul>
-          </article>
-          <article class="project-card reveal">
-            <h3>Project name<!-- TODO --></h3>
-            <p>One or two sentences describing the project, your role, and the outcome.<!-- TODO --></p>
-            <ul class="pills pills-small">
-              <li>Next.js</li><li>Node.js</li><!-- TODO -->
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ CONTACT ============ -->
-    <section class="section" id="contact">
-      <div class="container">
-        <h2 class="section-title reveal"><span class="section-index">05</span>Contact</h2>
-        <div class="contact-grid">
-          <div class="contact-info reveal">
-            <p class="contact-lead">Have a project in mind, or a role that could be a fit? I'm always open to a conversation.</p>
-            <ul class="contact-links">
-              <li>
-                <a href="mailto:kotimn@gmail.com">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-                  kotimn@gmail.com
-                </a>
-              </li>
-              <li>
-                <a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-                  linkedin.com/in/koti-madduluri
-                </a>
-              </li>
-              <li>
-                <a href="tel:+447774969393">
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-                  +44 7774 969393
-                </a>
-              </li>
-              <li>
-                <span>
-                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                  Crawley / London, UK
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <form class="contact-form reveal" id="contact-form" aria-label="Contact form">
-            <div class="form-field">
-              <label for="cf-name">Name</label>
-              <input type="text" id="cf-name" name="name" required autocomplete="name" />
-            </div>
-            <div class="form-field">
-              <label for="cf-subject">Subject</label>
-              <input type="text" id="cf-subject" name="subject" required />
-            </div>
-            <div class="form-field">
-              <label for="cf-message">Message</label>
-              <textarea id="cf-message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send message</button>
-            <p class="form-note">Opens your email app — no data is sent anywhere else.</p>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>© <span id="year">2026</span> Koti Madduluri</p>
-      <p class="footer-links">
-        <a href="mailto:kotimn@gmail.com" aria-label="Email">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        </a>
-        <a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-        </a>
-      </p>
     </div>
-  </footer>
+  </section>
 
-  <script src="js/main.js" defer></script>
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section" id="experience">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">02 — Experience</p>
+        <h2>A decade of shipping</h2>
+        <p class="section-sub">Reverse-chronological, exactly as it happened.</p>
+      </div>
+
+      <ol class="timeline">
+        <li class="t-item reveal">
+          <div class="t-node c-primary" aria-hidden="true"><svg class="ic"><use href="#i-card"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Feb 2026 — Present · London, Hybrid</p>
+            <h3>Senior Android &amp; Full Stack Engineer</h3>
+            <p class="t-company c-primary">Lopay — Terminal Pay &amp; Lopay POS (EPOS)</p>
+            <ul class="t-bullets">
+              <li>Building EPOS modules across two POS products running on dual-screen devices, keeping the customer display and operator interface in sync.</li>
+              <li>Own Terminal Pay end to end, solo — Android, iOS and the backend.</li>
+              <li>Leading the migration of both apps from XML to pure Jetpack Compose across hundreds of screens, and restructuring monolithic codebases into multi-module MVVM.</li>
+              <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="t-item reveal">
+          <div class="t-node c-secondary" aria-hidden="true"><svg class="ic"><use href="#i-heart"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Nov 2023 — Jan 2026</p>
+            <h3>Senior Android &amp; Full Stack Engineer</h3>
+            <p class="t-company c-secondary">Payment Loyalty — Loyalty Platform · Lopay (May 2025–Jan 2026)</p>
+            <ul class="t-bullets">
+              <li>Owned the complete Payment Loyalty solution end to end; rebuilt a faulty legacy system from the ground up — stable ever since with zero downtime.</li>
+              <li>Ran loyalty flows inside live transactions on Verifone, Ingenico, PAX and Castles terminals across real retail environments.</li>
+              <li>Migrated 40–60 screens to Jetpack Compose, built a custom design system from scratch, and split the app into feature/core modules — build times dropped ~30%.</li>
+              <li>Led an offshore team of 4–5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="t-item reveal">
+          <div class="t-node c-tertiary" aria-hidden="true"><svg class="ic"><use href="#i-landmark"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Aug 2021 — Nov 2023</p>
+            <h3>Senior Software Engineer</h3>
+            <p class="t-company c-tertiary">Mobiquity (Hexaware) — Sandy Spring Bank &amp; CNB Bank, Backbase platform</p>
+            <ul class="t-bullets">
+              <li>Lead engineer and main point of contact for the delivery team on two US digital banking apps — Accounts, Loans, Payments, Profile and Remote Deposit Capture.</li>
+              <li>Integrated ThreatMetrix, Glia, Zelle and Payveris SDKs into the Backbase product without breaking the existing architecture.</li>
+              <li>Implemented SSL certificate pinning and banking-grade security; kept CI/CD running on GitHub Actions and App Center; managed Play Store releases across environments.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="t-item reveal">
+          <div class="t-node c-primary" aria-hidden="true"><svg class="ic"><use href="#i-camera"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Oct 2020 — Aug 2021</p>
+            <h3>Senior Software Engineer</h3>
+            <p class="t-company c-primary">Sensen Networks — Gemineye, Smart City IoT Platform</p>
+            <ul class="t-bullets">
+              <li>Built vehicle number-plate detection and recognition with TensorFlow, TensorFlow Lite and ML Kit — cut manual processing and significantly improved accuracy.</li>
+              <li>Rewrote the client↔admin communication layer with NanoHTTP and Content Providers; migrated networking from Volley to Retrofit.</li>
+              <li>Adopted Coroutines and LiveData throughout — ANRs dropped noticeably.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="t-item reveal">
+          <div class="t-node c-secondary" aria-hidden="true"><svg class="ic"><use href="#i-users"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Oct 2017 — Oct 2020</p>
+            <h3>Software Engineer</h3>
+            <p class="t-company c-secondary">Iconma — Enterprise Collaboration &amp; EdTech</p>
+            <ul class="t-bullets">
+              <li>Built and maintained enterprise collaboration and EdTech apps across the full Android lifecycle, from requirements to release.</li>
+              <li>Led Java → Kotlin migrations of several core apps; built real-time chat with XMPP and Socket.IO plus the backend APIs behind it.</li>
+            </ul>
+          </article>
+        </li>
+
+        <li class="t-item reveal">
+          <div class="t-node c-tertiary" aria-hidden="true"><svg class="ic"><use href="#i-briefcase"/></svg></div>
+          <article class="t-card glass">
+            <p class="t-period">Jul 2015 — Sep 2017</p>
+            <h3>Software Engineer</h3>
+            <p class="t-company c-tertiary">Tvisha Technologies — Travel, Real-Time Communication &amp; Payments</p>
+            <ul class="t-bullets">
+              <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways — solid grounding in REST integration and Material Design.</li>
+            </ul>
+          </article>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">03 — Skills</p>
+        <h2>Technical arsenal</h2>
+        <p class="section-sub">The full stack — mobile-first, but comfortable everywhere.</p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card glass reveal">
+          <div class="skill-head"><span class="skill-icon c-primary"><svg class="ic"><use href="#i-smartphone"/></svg></span><h3>Mobile</h3></div>
+          <ul class="chips"><li>Kotlin</li><li>Java</li><li>Jetpack Compose</li><li>XML Layouts</li><li>KMP</li><li>CMP</li><li>Coroutines</li><li>Flow</li><li>StateFlow</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:60ms">
+          <div class="skill-head"><span class="skill-icon c-secondary"><svg class="ic"><use href="#i-layers"/></svg></span><h3>Architecture</h3></div>
+          <ul class="chips"><li>MVVM</li><li>MVI</li><li>Clean Architecture</li><li>Multi-Module</li><li>Modular Design</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:120ms">
+          <div class="skill-head"><span class="skill-icon c-tertiary"><svg class="ic"><use href="#i-package"/></svg></span><h3>Android Libraries</h3></div>
+          <ul class="chips"><li>Retrofit</li><li>Ktor</li><li>Volley</li><li>Koin</li><li>Hilt</li><li>Dagger</li><li>Room</li><li>WorkManager</li><li>Navigation</li><li>ExoPlayer</li><li>CameraX</li><li>Coil</li><li>Glide</li></ul>
+        </div>
+        <div class="skill-card glass reveal">
+          <div class="skill-head"><span class="skill-icon c-primary"><svg class="ic"><use href="#i-code"/></svg></span><h3>Frontend</h3></div>
+          <ul class="chips"><li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SCSS</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:60ms">
+          <div class="skill-head"><span class="skill-icon c-secondary"><svg class="ic"><use href="#i-server"/></svg></span><h3>Backend &amp; Databases</h3></div>
+          <ul class="chips"><li>Node.js</li><li>NestJS</li><li>Express</li><li>REST APIs</li><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>SQLite</li><li>Firebase RTDB</li><li>DataStore</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:120ms">
+          <div class="skill-head"><span class="skill-icon c-tertiary"><svg class="ic"><use href="#i-radio"/></svg></span><h3>Realtime &amp; IoT</h3></div>
+          <ul class="chips"><li>MQTT</li><li>XMPP</li><li>WebRTC</li><li>Socket.IO</li><li>BLE</li><li>NFC</li><li>NanoHTTP</li></ul>
+        </div>
+        <div class="skill-card glass reveal">
+          <div class="skill-head"><span class="skill-icon c-primary"><svg class="ic"><use href="#i-flame"/></svg></span><h3>Firebase</h3></div>
+          <ul class="chips"><li>Auth</li><li>Firestore</li><li>FCM</li><li>Crashlytics</li><li>Remote Config</li><li>App Distribution</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:60ms">
+          <div class="skill-head"><span class="skill-icon c-secondary"><svg class="ic"><use href="#i-cpu"/></svg></span><h3>AI / ML &amp; AI&#8209;Assisted Dev</h3></div>
+          <ul class="chips"><li>TensorFlow</li><li>TensorFlow Lite</li><li>ML Kit</li><li>Claude Code</li><li>Cursor</li><li>ChatGPT (Codex)</li></ul>
+        </div>
+        <div class="skill-card glass reveal" style="--d:120ms">
+          <div class="skill-head"><span class="skill-icon c-tertiary"><svg class="ic"><use href="#i-flask"/></svg></span><h3>Testing &amp; Quality</h3></div>
+          <ul class="chips"><li>JUnit</li><li>Espresso</li><li>Robolectric</li><li>MockK</li><li>LeakCanary</li><li>Sentry</li><li>Android Studio Profiler</li></ul>
+        </div>
+        <div class="skill-card glass reveal">
+          <div class="skill-head"><span class="skill-icon c-primary"><svg class="ic"><use href="#i-shield"/></svg></span><h3>DevOps &amp; Security</h3></div>
+          <ul class="chips"><li>GitHub Actions</li><li>Bitrise</li><li>Play Console</li><li>R8 / ProGuard</li><li>SSL Pinning</li><li>Play Integrity API</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">04 — Projects</p>
+        <h2>Featured work</h2>
+        <p class="section-sub">Real products, in production, handling real money.</p>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card glass reveal">
+          <span class="project-icon c-primary"><svg class="ic"><use href="#i-card"/></svg></span>
+          <h3>Terminal Pay</h3>
+          <p class="project-org">Lopay</p>
+          <p>EPOS product for dual-screen payment hardware, owned end to end across Android, iOS and backend. Pure Jetpack Compose, multi-module MVVM, NestJS APIs and Stripe payment flows.</p>
+          <ul class="chips chips-tags"><li>Android</li><li>EPOS</li><li>Stripe</li><li>Compose</li></ul>
+        </article>
+
+        <article class="project-card glass reveal" style="--d:80ms">
+          <span class="project-icon c-secondary"><svg class="ic"><use href="#i-heart"/></svg></span>
+          <h3>Payment Loyalty Platform</h3>
+          <p class="project-org">Payment Loyalty</p>
+          <p>Loyalty engine that runs inside live card transactions on Verifone, Ingenico, PAX and Castles terminals. Rebuilt from a faulty legacy system into a zero-downtime platform with a custom design system.</p>
+          <ul class="chips chips-tags"><li>Fintech</li><li>Multi-Module</li><li>Design System</li></ul>
+        </article>
+
+        <article class="project-card glass reveal" style="--d:160ms">
+          <span class="project-icon c-tertiary"><svg class="ic"><use href="#i-landmark"/></svg></span>
+          <h3>US Digital Banking</h3>
+          <p class="project-org">Sandy Spring Bank &amp; CNB Bank · Backbase</p>
+          <p>Android banking apps on the Backbase platform — accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations at banking-grade security.</p>
+          <ul class="chips chips-tags"><li>Backbase</li><li>Banking</li><li>Security</li></ul>
+        </article>
+
+        <article class="project-card glass reveal" style="--d:240ms">
+          <span class="project-icon c-primary"><svg class="ic"><use href="#i-camera"/></svg></span>
+          <h3>Gemineye</h3>
+          <p class="project-org">Sensen Networks</p>
+          <p>Smart city IoT platform with on-device vehicle number-plate detection and recognition built on TensorFlow Lite and ML Kit, running reliably in live environments.</p>
+          <ul class="chips chips-tags"><li>AI / ML</li><li>IoT</li><li>On-Device</li></ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="eyebrow">05 — Contact</p>
+        <h2>Let's build something</h2>
+        <p class="section-sub">Open to interesting problems in fintech, payments and beyond.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <ul class="contact-links">
+            <li><a class="glass" href="mailto:kotimn@gmail.com"><svg class="ic c-primary" aria-hidden="true"><use href="#i-mail"/></svg><span><strong>Email</strong>kotimn@gmail.com</span></a></li>
+            <li><a class="glass" href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer"><svg class="ic c-secondary icon-fill" aria-hidden="true"><use href="#i-linkedin"/></svg><span><strong>LinkedIn</strong>koti-madduluri</span></a></li>
+            <li><a class="glass" href="tel:+447774969393"><svg class="ic c-tertiary" aria-hidden="true"><use href="#i-phone"/></svg><span><strong>Phone</strong>+44 7774 969393</span></a></li>
+            <li><span class="glass"><svg class="ic c-primary" aria-hidden="true"><use href="#i-pin"/></svg><span><strong>Location</strong>Crawley / London, UK</span></span></li>
+          </ul>
+        </div>
+
+        <form class="contact-form glass reveal" id="contact-form" style="--d:120ms" aria-label="Contact form">
+          <div class="form-field">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required autocomplete="name" />
+          </div>
+          <div class="form-field">
+            <label for="cf-subject">Subject</label>
+            <input type="text" id="cf-subject" name="subject" required />
+          </div>
+          <div class="form-field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send message <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+          <p class="form-note">Opens your email app — nothing is stored or sent anywhere else.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="brand-sm">KM<span class="brand-dot">.</span></p>
+    <p>© <span id="year">2026</span> Koteswara Rao "Koti" Madduluri</p>
+    <div class="footer-links">
+      <a href="mailto:kotimn@gmail.com" aria-label="Email"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></a>
+      <a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="ic icon-fill" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
 </body>
 </html>

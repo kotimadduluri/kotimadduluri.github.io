@@ -8,18 +8,20 @@ Live at: **https://kotimadduluri.github.io**
 
 Plain HTML, CSS, and vanilla JavaScript — no framework, no build step. `index.html` lives at the repo root, which is the simplest layout for GitHub Pages: the Actions workflow uploads the whole repo as the Pages artifact, so what you see locally is exactly what deploys.
 
+Design: dark-first glassmorphism with violet/cyan/mint accents, Sora + Inter + JetBrains Mono type system, inline SVG icon sprite (no icon fonts), animated hero with a Kotlin code card, integrations marquee, and an alternating experience timeline.
+
 - Light/dark mode: auto-detects system preference, manual toggle persists in `localStorage`
 - Responsive (mobile / tablet / desktop), semantic HTML, keyboard-navigable
-- Scroll-in animations that respect `prefers-reduced-motion`
+- Scroll-in animations, staggered reveals and stat count-ups that respect `prefers-reduced-motion`
 - SEO: meta description, Open Graph/Twitter tags, JSON-LD, canonical URL, SVG favicon
 
 ## Structure
 
 ```
-index.html                  # single-page site
+index.html                  # single-page site (includes inline SVG icon sprite)
 css/style.css               # all styles (theme via [data-theme] on <html>)
-js/main.js                  # theme toggle, mobile nav, reveal animations, mailto form
-assets/                     # favicon + CV PDF (Koti_Madduluri_CV.pdf)
+js/main.js                  # theme toggle, nav, scrollspy, reveals, count-ups, mailto form
+assets/                     # favicon + CV PDF (Koti_Madduluri_Senior_Android_Engineer_CV.pdf)
 .github/workflows/deploy.yml# deploys to GitHub Pages on push to main
 ```
 
@@ -45,9 +47,9 @@ One-time setup after creating the repo:
      -f build_type=workflow
    ```
 
-## Adding / updating the CV
+## Updating the CV
 
-Put the PDF at `assets/Koti_Madduluri_CV.pdf` (exact name — the Download CV button links to it), commit, and push.
+Replace `assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf` (exact name — the Download CV button links to it), commit, and push.
 
 ## Custom domain (optional — not required)
 
