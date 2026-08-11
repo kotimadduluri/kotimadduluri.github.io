@@ -18,13 +18,16 @@
   <meta name="twitter:title" content="Koti Madduluri - Senior Android Engineer" />
   <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
 
-  <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#101012" media="(prefers-color-scheme: dark)" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="css/style.css" />
 
@@ -76,7 +79,7 @@
 
 <header class="site-header">
   <nav class="container nav" aria-label="Main navigation">
-    <a class="brand" href="#home">Koti Madduluri</a>
+    <a class="brand" href="#home">KM<span class="brand-dot">.</span></a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
       <span></span><span></span>
     </button>
@@ -96,36 +99,19 @@
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
+  <!-- ============ HERO (editorial poster) ============ -->
   <section class="hero" id="home">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <p class="hero-eyebrow reveal">Senior Android Engineer, London, UK</p>
-        <h1 aria-label="Hi, I'm Koti. I ship Android for payments.">
-          <span class="h-line"><span class="h-line-inner">Hi, I'm Koti.</span></span>
-          <span class="h-line"><span class="h-line-inner" style="--hd:120ms">I ship Android for <em class="u-draw">payments</em>.</span></span>
-        </h1>
-        <p class="hero-sub reveal" style="--d:280ms">10+ years of Kotlin across fintech, EPOS and digital banking. From dual-screen payment terminals to US banks.</p>
-        <div class="hero-actions reveal" style="--d:360ms">
+    <div class="container">
+      <p class="hero-eyebrow reveal">Senior Android Engineer, London</p>
+      <h1 class="display" aria-label="Koti Madduluri">
+        <span class="h-line"><span class="h-line-inner">Koti</span></span>
+        <span class="h-line"><span class="h-line-inner" style="--hd:110ms">Madduluri</span></span>
+      </h1>
+      <div class="hero-foot">
+        <p class="hero-sub reveal" style="--d:300ms">I ship Android for <em class="u-draw">payments</em>. 10+ years of Kotlin across fintech, EPOS and digital banking.</p>
+        <div class="hero-actions reveal" style="--d:380ms">
           <a class="btn btn-primary" href="#projects">View my work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
           <a class="btn btn-secondary" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal" style="--d:140ms">
-        <div class="code-card" role="img" aria-label="Kotlin code snippet describing Koti: Senior Android Engineer, stack Kotlin, Compose and KMP, domains fintech, payments and EPOS, 10 plus years of experience, 30 plus production apps shipped.">
-          <div class="code-bar" aria-hidden="true">
-            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-            <span class="code-title">Engineer.kt</span>
-          </div>
-          <pre class="code-body" aria-hidden="true"><code><span class="code-line"><span class="k">val</span> koti = <span class="f">Engineer</span>(</span>
-<span class="code-line">  role = <span class="s">"Senior Android Engineer"</span>,</span>
-<span class="code-line">  stack = <span class="f">listOf</span>(<span class="s">"Kotlin"</span>, <span class="s">"Compose"</span>, <span class="s">"KMP"</span>),</span>
-<span class="code-line">  domains = <span class="f">listOf</span>(<span class="s">"Fintech"</span>, <span class="s">"Payments"</span>, <span class="s">"EPOS"</span>),</span>
-<span class="code-line">  experience = <span class="n">10</span>.years,</span>
-<span class="code-line">)</span>
-<span class="code-line"> </span>
-<span class="code-line">koti.<span class="f">ship</span>() <span class="c">// 30+ production apps</span></span></code></pre>
         </div>
       </div>
     </div>
@@ -275,33 +261,45 @@
   <section class="section" id="projects">
     <div class="container">
       <h2 class="reveal">Featured work</h2>
-      <div class="projects-grid">
-        <article class="project-card reveal">
-          <h3>Terminal Pay</h3>
-          <p class="project-org">Lopay</p>
-          <p class="project-desc">EPOS product for dual-screen payment hardware, owned end to end across Android, iOS and backend. Pure Jetpack Compose, multi-module MVVM, NestJS APIs and Stripe payment flows.</p>
-          <ul class="chips"><li>Android</li><li>EPOS</li><li>Stripe</li><li>Compose</li></ul>
+      <div class="proj-list">
+        <article class="proj-row reveal">
+          <p class="proj-year">2026</p>
+          <div class="proj-main">
+            <h3>Terminal Pay <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+            <p class="proj-org">Lopay</p>
+            <p class="proj-desc">EPOS product for dual-screen payment hardware, owned end to end across Android, iOS and backend. Pure Jetpack Compose, multi-module MVVM, NestJS APIs and Stripe payment flows.</p>
+          </div>
+          <ul class="chips proj-tags"><li>Android</li><li>EPOS</li><li>Stripe</li><li>Compose</li></ul>
         </article>
 
-        <article class="project-card reveal" style="--d:60ms">
-          <h3>Payment Loyalty Platform</h3>
-          <p class="project-org">Payment Loyalty</p>
-          <p class="project-desc">Loyalty engine that runs inside live card transactions on Verifone, Ingenico, PAX and Castles terminals. Rebuilt from a faulty legacy system into a zero-downtime platform with a custom design system.</p>
-          <ul class="chips"><li>Fintech</li><li>Multi-Module</li><li>Design System</li></ul>
+        <article class="proj-row reveal">
+          <p class="proj-year">2023</p>
+          <div class="proj-main">
+            <h3>Payment Loyalty Platform <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+            <p class="proj-org">Payment Loyalty</p>
+            <p class="proj-desc">Loyalty engine that runs inside live card transactions on Verifone, Ingenico, PAX and Castles terminals. Rebuilt from a faulty legacy system into a zero-downtime platform with a custom design system.</p>
+          </div>
+          <ul class="chips proj-tags"><li>Fintech</li><li>Multi-Module</li><li>Design System</li></ul>
         </article>
 
-        <article class="project-card reveal" style="--d:120ms">
-          <h3>US Digital Banking</h3>
-          <p class="project-org">Sandy Spring Bank &amp; CNB Bank · Backbase</p>
-          <p class="project-desc">Android banking apps on the Backbase platform - accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations at banking-grade security.</p>
-          <ul class="chips"><li>Backbase</li><li>Banking</li><li>Security</li></ul>
+        <article class="proj-row reveal">
+          <p class="proj-year">2021</p>
+          <div class="proj-main">
+            <h3>US Digital Banking <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+            <p class="proj-org">Sandy Spring Bank &amp; CNB Bank · Backbase</p>
+            <p class="proj-desc">Android banking apps on the Backbase platform: accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations at banking-grade security.</p>
+          </div>
+          <ul class="chips proj-tags"><li>Backbase</li><li>Banking</li><li>Security</li></ul>
         </article>
 
-        <article class="project-card reveal" style="--d:180ms">
-          <h3>Gemineye</h3>
-          <p class="project-org">Sensen Networks</p>
-          <p class="project-desc">Smart city IoT platform with on-device vehicle number-plate detection and recognition built on TensorFlow Lite and ML Kit, running reliably in live environments.</p>
-          <ul class="chips"><li>AI / ML</li><li>IoT</li><li>On-Device</li></ul>
+        <article class="proj-row reveal">
+          <p class="proj-year">2020</p>
+          <div class="proj-main">
+            <h3>Gemineye <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+            <p class="proj-org">Sensen Networks</p>
+            <p class="proj-desc">Smart city IoT platform with on-device vehicle number-plate detection and recognition built on TensorFlow Lite and ML Kit, running reliably in live environments.</p>
+          </div>
+          <ul class="chips proj-tags"><li>AI / ML</li><li>IoT</li><li>On-Device</li></ul>
         </article>
       </div>
     </div>
