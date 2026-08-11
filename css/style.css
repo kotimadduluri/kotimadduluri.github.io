@@ -524,6 +524,43 @@ html.no-js .u-draw::after { transform: scaleX(1); }
   background: var(--accent);
 }
 
+/* ---------- skills: core stack icon grid ---------- */
+
+.core-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: clamp(36px, 5vh, 56px);
+}
+.core-grid li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.core-grid li:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+}
+.brand-ic {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  color: var(--ink);
+}
+.core-grid li:hover .brand-ic { color: var(--accent); }
+.core-grid span {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
 /* ---------- skills: ledger table ---------- */
 
 .skills-table { margin: 0; }
@@ -754,9 +791,9 @@ html.no-js .reveal { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .chips li, .btn .ic, .proj-arrow { transition: none; }
+  .btn, .chips li, .btn .ic, .proj-arrow, .core-grid li { transition: none; }
   .btn:active { transform: none; }
-  .chips li:hover { transform: none; }
+  .chips li:hover, .core-grid li:hover { transform: none; }
   .h-line-inner { transform: none; transition: none; }
   .u-draw::after { transform: scaleX(1); transition: none; }
   .scroll-progress { display: none; }
@@ -802,6 +839,7 @@ html.no-js .reveal { opacity: 1; transform: none; }
   .nav-menu.is-open { display: flex; }
   .nav-menu a { padding: 12px; font-size: 1rem; }
 
+  .core-grid { grid-template-columns: repeat(2, 1fr); }
   .xp-card { position: static; grid-template-columns: 1fr; gap: 6px; padding: 24px 20px; margin-bottom: 16px; }
   .xp-period { margin: 0; }
   .skills-row { grid-template-columns: 1fr; gap: 10px; padding: 18px 0; }
