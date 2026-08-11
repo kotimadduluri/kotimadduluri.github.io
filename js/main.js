@@ -173,44 +173,6 @@
     });
   }
 
-  /* ---------- premium micro-interactions (fine pointers only) ---------- */
-  var finePointer = matchMedia("(pointer: fine)").matches;
-
-  if (finePointer && !reduceMotion) {
-    // cursor-tracked spotlight on cards
-    var spotCards = Array.prototype.slice.call(document.querySelectorAll(
-      ".skill-card, .project-card, .t-card, .stats li, .contact-links .glass"
-    ));
-    spotCards.forEach(function (card) {
-      card.classList.add("spotlight-target");
-      card.addEventListener("pointermove", function (e) {
-        var rect = card.getBoundingClientRect();
-        card.style.setProperty("--mx", (e.clientX - rect.left) + "px");
-        card.style.setProperty("--my", (e.clientY - rect.top) + "px");
-      });
-      card.addEventListener("pointerenter", function () { card.classList.add("is-spot"); });
-      card.addEventListener("pointerleave", function () { card.classList.remove("is-spot"); });
-    });
-
-    // subtle 3D tilt on the hero code card
-    var heroVisual = document.querySelector(".hero-visual");
-    var codeCard = document.querySelector(".code-card");
-    if (heroVisual && codeCard) {
-      var MAX_TILT = 5; // degrees
-      heroVisual.addEventListener("pointermove", function (e) {
-        var rect = heroVisual.getBoundingClientRect();
-        var px = (e.clientX - rect.left) / rect.width - 0.5;
-        var py = (e.clientY - rect.top) / rect.height - 0.5;
-        codeCard.style.setProperty("--ry", (px * MAX_TILT * 2).toFixed(2) + "deg");
-        codeCard.style.setProperty("--rx", (-py * MAX_TILT * 2).toFixed(2) + "deg");
-      });
-      heroVisual.addEventListener("pointerleave", function () {
-        codeCard.style.setProperty("--rx", "0deg");
-        codeCard.style.setProperty("--ry", "0deg");
-      });
-    }
-  }
-
   /* ---------- footer year ---------- */
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());

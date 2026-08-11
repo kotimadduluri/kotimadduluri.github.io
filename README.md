@@ -8,7 +8,7 @@ Live at: **https://kotimadduluri.github.io**
 
 Plain HTML, CSS, and vanilla JavaScript — no framework, no build step. `index.html` lives at the repo root, which is the simplest layout for GitHub Pages: the Actions workflow uploads the whole repo as the Pages artifact, so what you see locally is exactly what deploys.
 
-Design: dark-first glassmorphism with violet/cyan/mint accents, Sora + Inter + JetBrains Mono type system, inline SVG icon sprite (no icon fonts), animated hero with a Kotlin code card, integrations marquee, and an alternating experience timeline.
+Design: precision dark-first system — neutral base, single violet accent, Geist + Geist Mono type, inline SVG icon sprite (no icon fonts), a Kotlin code card in the hero, and editorial list layouts for experience and skills.
 
 - Light/dark mode: auto-detects system preference, manual toggle persists in `localStorage`
 - Responsive (mobile / tablet / desktop), semantic HTML, keyboard-navigable
