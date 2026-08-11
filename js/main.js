@@ -5,6 +5,11 @@
   var html = document.documentElement;
   html.classList.remove("no-js");
 
+  // trigger hero entrance on the next frame, once styles are applied
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { html.classList.add("is-loaded"); });
+  });
+
   var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasIO = "IntersectionObserver" in window;
 
@@ -27,7 +32,27 @@
     themeToggle.addEventListener("click", function () {
       var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
       try { localStorage.setItem("theme", next); } catch (err) {}
-      applyTheme(next);
+
+      // circle-reveal the new theme from the toggle (state transition)
+      var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (!document.startViewTransition || reduce) {
+        applyTheme(next);
+        return;
+      }
+      var rect = themeToggle.getBoundingClientRect();
+      var cx = rect.left + rect.width / 2;
+      var cy = rect.top + rect.height / 2;
+      var radius = Math.hypot(
+        Math.max(cx, window.innerWidth - cx),
+        Math.max(cy, window.innerHeight - cy)
+      );
+      var transition = document.startViewTransition(function () { applyTheme(next); });
+      transition.ready.then(function () {
+        document.documentElement.animate(
+          { clipPath: ["circle(0px at " + cx + "px " + cy + "px)", "circle(" + radius + "px at " + cx + "px " + cy + "px)"] },
+          { duration: 450, easing: "cubic-bezier(0.16, 1, 0.3, 1)", pseudoElement: "::view-transition-new(root)" }
+        );
+      }).catch(function () {});
     });
   }
 

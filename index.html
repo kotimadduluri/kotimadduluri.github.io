@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koti Madduluri — Senior Android Engineer</title>
-  <meta name="description" content="Koti Madduluri — Senior Android Engineer in London, UK. 10+ years of Kotlin, Jetpack Compose and KMP/CMP across fintech, payments, EPOS and digital banking." />
+  <title>Koti Madduluri - Senior Android Engineer</title>
+  <meta name="description" content="Koti Madduluri - Senior Android Engineer in London, UK. 10+ years of Kotlin, Jetpack Compose and KMP/CMP across fintech, payments, EPOS and digital banking." />
   <meta name="author" content="Koti Madduluri" />
   <link rel="canonical" href="https://kotimadduluri.github.io/" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Koti Madduluri — Senior Android Engineer" />
-  <meta property="og:description" content="Kotlin · Jetpack Compose · KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
+  <meta property="og:title" content="Koti Madduluri - Senior Android Engineer" />
+  <meta property="og:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
   <meta property="og:url" content="https://kotimadduluri.github.io/" />
   <meta property="og:site_name" content="Koti Madduluri" />
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Koti Madduluri — Senior Android Engineer" />
-  <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP — Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
+  <meta name="twitter:title" content="Koti Madduluri - Senior Android Engineer" />
+  <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
 
   <meta name="theme-color" content="#fbfbfc" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0a0a0b" media="(prefers-color-scheme: dark)" />
@@ -72,6 +72,8 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 
+<div class="scroll-progress" aria-hidden="true"></div>
+
 <header class="site-header">
   <nav class="container nav" aria-label="Main navigation">
     <a class="brand" href="#home">Koti Madduluri</a>
@@ -98,10 +100,13 @@
   <section class="hero" id="home">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <p class="hero-eyebrow reveal">Senior Android Engineer — London, UK</p>
-        <h1 class="reveal" style="--d:60ms">Hi, I'm Koti.<br />I ship Android for payments.</h1>
-        <p class="hero-sub reveal" style="--d:120ms">10+ years of Kotlin across fintech, EPOS and digital banking — from dual-screen payment terminals to US banks.</p>
-        <div class="hero-actions reveal" style="--d:180ms">
+        <p class="hero-eyebrow reveal">Senior Android Engineer, London, UK</p>
+        <h1 aria-label="Hi, I'm Koti. I ship Android for payments.">
+          <span class="h-line"><span class="h-line-inner">Hi, I'm Koti.</span></span>
+          <span class="h-line"><span class="h-line-inner" style="--hd:120ms">I ship Android for <em class="u-draw">payments</em>.</span></span>
+        </h1>
+        <p class="hero-sub reveal" style="--d:280ms">10+ years of Kotlin across fintech, EPOS and digital banking. From dual-screen payment terminals to US banks.</p>
+        <div class="hero-actions reveal" style="--d:360ms">
           <a class="btn btn-primary" href="#projects">View my work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
           <a class="btn btn-secondary" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
         </div>
@@ -125,11 +130,14 @@
       </div>
     </div>
 
-    <div class="container integrations reveal" aria-label="Payment and platform integrations">
-      <p class="integrations-label">Integrations shipped</p>
-      <ul class="integrations-list">
-        <li>Verifone</li><li>Ingenico</li><li>PAX</li><li>Castles</li><li>Stripe</li><li>Backbase</li><li>Zelle</li><li>Glia</li><li>Payveris</li><li>ThreatMetrix</li><li>ShuftiPro</li>
-      </ul>
+    <div class="integrations reveal" aria-label="Payment and platform integrations">
+      <p class="integrations-label container">Integrations shipped</p>
+      <div class="marquee">
+        <ul class="marquee-track">
+          <li>Verifone</li><li>Ingenico</li><li>PAX</li><li>Castles</li><li>Stripe</li><li>Backbase</li><li>Zelle</li><li>Glia</li><li>Payveris</li><li>ThreatMetrix</li><li>ShuftiPro</li>
+          <li aria-hidden="true">Verifone</li><li aria-hidden="true">Ingenico</li><li aria-hidden="true">PAX</li><li aria-hidden="true">Castles</li><li aria-hidden="true">Stripe</li><li aria-hidden="true">Backbase</li><li aria-hidden="true">Zelle</li><li aria-hidden="true">Glia</li><li aria-hidden="true">Payveris</li><li aria-hidden="true">ThreatMetrix</li><li aria-hidden="true">ShuftiPro</li>
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -139,13 +147,13 @@
       <h2 class="reveal">About</h2>
       <div class="about-grid">
         <div class="about-text reveal">
-          <p>I'm a Senior Software Engineer with <strong>10+ years of experience</strong> — mainly Android (Kotlin/Java), but equally comfortable across the full stack with React, Next.js, and Node.js. I've worked on <strong>30+ production apps</strong> across loyalty and fintech, digital banking, smart city IoT, EdTech, and enterprise software.</p>
-          <p>I've led Jetpack Compose migrations across hundreds of screens, driven multi-module restructuring that cut build times by around 30%, and managed offshore teams of 4–5 engineers while working closely with stakeholders and clients. I have deep hands-on experience with payment terminal integrations, EPOS systems, on-device AI/ML, and real-time communication.</p>
+          <p>I'm a Senior Software Engineer with <strong>10+ years of experience</strong>, mainly Android (Kotlin/Java), but equally comfortable across the full stack with React, Next.js, and Node.js. I've worked on <strong>30+ production apps</strong> across loyalty and fintech, digital banking, smart city IoT, EdTech, and enterprise software.</p>
+          <p>I've led Jetpack Compose migrations across hundreds of screens, driven multi-module restructuring that cut build times by around 30%, and managed offshore teams of 4-5 engineers while working closely with stakeholders and clients. I have deep hands-on experience with payment terminal integrations, EPOS systems, on-device AI/ML, and real-time communication.</p>
           <p>I care about writing code that's clean, maintainable, and actually works in the real world.</p>
 
           <ul class="credentials">
-            <li><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg><span><strong>Backbase Certified Android Engineer</strong> — Backbase, 2023</span></li>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg><span><strong>B.Tech, Computer Science</strong> — JNTU, India, 2015</span></li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg><span><strong>Backbase Certified Android Engineer</strong>, 2023</span></li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg><span><strong>B.Tech, Computer Science</strong>, JNTU, 2015</span></li>
           </ul>
         </div>
 
@@ -163,63 +171,63 @@
   <section class="section" id="experience">
     <div class="container">
       <h2 class="reveal">Experience</h2>
-      <ol class="xp-list">
-        <li class="xp reveal">
-          <p class="xp-period">Feb 2026 — Present</p>
+      <ol class="xp-stack">
+        <li class="xp-card">
+          <p class="xp-period">Feb 2026 - Present</p>
           <div class="xp-body">
             <h3>Senior Android &amp; Full Stack Engineer · <span class="xp-org">Lopay</span></h3>
             <p class="xp-meta">Terminal Pay &amp; Lopay POS (EPOS) · London, Hybrid</p>
             <ul class="xp-bullets">
               <li>Building EPOS modules across two POS products running on dual-screen devices, keeping the customer display and operator interface in sync.</li>
-              <li>Own Terminal Pay end to end, solo — Android, iOS and the backend.</li>
+              <li>Own Terminal Pay end to end, solo: Android, iOS and the backend.</li>
               <li>Leading the migration of both apps from XML to pure Jetpack Compose across hundreds of screens, and restructuring monolithic codebases into multi-module MVVM.</li>
               <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
             </ul>
           </div>
         </li>
 
-        <li class="xp reveal">
-          <p class="xp-period">Nov 2023 — Jan 2026</p>
+        <li class="xp-card">
+          <p class="xp-period">Nov 2023 - Jan 2026</p>
           <div class="xp-body">
             <h3>Senior Android &amp; Full Stack Engineer · <span class="xp-org">Payment Loyalty</span></h3>
-            <p class="xp-meta">Payment Loyalty Platform · Lopay (May 2025 – Jan 2026)</p>
+            <p class="xp-meta">Payment Loyalty Platform · Lopay (May 2025 - Jan 2026)</p>
             <ul class="xp-bullets">
-              <li>Owned the complete Payment Loyalty solution end to end; rebuilt a faulty legacy system from the ground up — stable ever since with zero downtime.</li>
+              <li>Owned the complete Payment Loyalty solution end to end; rebuilt a faulty legacy system from the ground up. Stable ever since with zero downtime.</li>
               <li>Ran loyalty flows inside live transactions on Verifone, Ingenico, PAX and Castles terminals across real retail environments.</li>
-              <li>Migrated 40–60 screens to Jetpack Compose, built a custom design system from scratch, and split the app into feature/core modules — build times dropped ~30%.</li>
-              <li>Led an offshore team of 4–5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
+              <li>Migrated 40-60 screens to Jetpack Compose, built a custom design system from scratch, and split the app into feature/core modules. Build times dropped around 30%.</li>
+              <li>Led an offshore team of 4-5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
             </ul>
           </div>
         </li>
 
-        <li class="xp reveal">
-          <p class="xp-period">Aug 2021 — Nov 2023</p>
+        <li class="xp-card">
+          <p class="xp-period">Aug 2021 - Nov 2023</p>
           <div class="xp-body">
             <h3>Senior Software Engineer · <span class="xp-org">Mobiquity (Hexaware)</span></h3>
-            <p class="xp-meta">Sandy Spring Bank &amp; CNB Bank — Backbase digital banking</p>
+            <p class="xp-meta">Sandy Spring Bank &amp; CNB Bank, Backbase digital banking</p>
             <ul class="xp-bullets">
-              <li>Lead engineer and main point of contact for the delivery team on two US digital banking apps — Accounts, Loans, Payments, Profile and Remote Deposit Capture.</li>
+              <li>Lead engineer and main point of contact for the delivery team on two US digital banking apps: Accounts, Loans, Payments, Profile and Remote Deposit Capture.</li>
               <li>Integrated ThreatMetrix, Glia, Zelle and Payveris SDKs into the Backbase product without breaking the existing architecture.</li>
               <li>Implemented SSL certificate pinning and banking-grade security; kept CI/CD running on GitHub Actions and App Center; managed Play Store releases across environments.</li>
             </ul>
           </div>
         </li>
 
-        <li class="xp reveal">
-          <p class="xp-period">Oct 2020 — Aug 2021</p>
+        <li class="xp-card">
+          <p class="xp-period">Oct 2020 - Aug 2021</p>
           <div class="xp-body">
             <h3>Senior Software Engineer · <span class="xp-org">Sensen Networks</span></h3>
-            <p class="xp-meta">Gemineye — Smart City IoT Platform</p>
+            <p class="xp-meta">Gemineye, Smart City IoT Platform</p>
             <ul class="xp-bullets">
-              <li>Built vehicle number-plate detection and recognition with TensorFlow, TensorFlow Lite and ML Kit — cut manual processing and significantly improved accuracy.</li>
+              <li>Built vehicle number-plate detection and recognition with TensorFlow, TensorFlow Lite and ML Kit. Cut manual processing and significantly improved accuracy.</li>
               <li>Rewrote the client↔admin communication layer with NanoHTTP and Content Providers; migrated networking from Volley to Retrofit.</li>
-              <li>Adopted Coroutines and LiveData throughout — ANRs dropped noticeably.</li>
+              <li>Adopted Coroutines and LiveData throughout, and ANRs dropped noticeably.</li>
             </ul>
           </div>
         </li>
 
-        <li class="xp reveal">
-          <p class="xp-period">Oct 2017 — Oct 2020</p>
+        <li class="xp-card">
+          <p class="xp-period">Oct 2017 - Oct 2020</p>
           <div class="xp-body">
             <h3>Software Engineer · <span class="xp-org">Iconma</span></h3>
             <p class="xp-meta">Enterprise Collaboration &amp; EdTech</p>
@@ -230,13 +238,13 @@
           </div>
         </li>
 
-        <li class="xp reveal">
-          <p class="xp-period">Jul 2015 — Sep 2017</p>
+        <li class="xp-card">
+          <p class="xp-period">Jul 2015 - Sep 2017</p>
           <div class="xp-body">
             <h3>Software Engineer · <span class="xp-org">Tvisha Technologies</span></h3>
             <p class="xp-meta">Travel, Real-Time Communication &amp; Payments</p>
             <ul class="xp-bullets">
-              <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways — solid grounding in REST integration and Material Design.</li>
+              <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways. Solid grounding in REST integration and Material Design.</li>
             </ul>
           </div>
         </li>
@@ -285,7 +293,7 @@
         <article class="project-card reveal" style="--d:120ms">
           <h3>US Digital Banking</h3>
           <p class="project-org">Sandy Spring Bank &amp; CNB Bank · Backbase</p>
-          <p class="project-desc">Android banking apps on the Backbase platform — accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations at banking-grade security.</p>
+          <p class="project-desc">Android banking apps on the Backbase platform - accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations at banking-grade security.</p>
           <ul class="chips"><li>Backbase</li><li>Banking</li><li>Security</li></ul>
         </article>
 
@@ -328,7 +336,7 @@
             <textarea id="cf-message" name="message" rows="5" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
-          <p class="form-note">Opens your email app — nothing is stored or sent anywhere else.</p>
+          <p class="form-note">Opens your email app. Nothing is stored or sent anywhere else.</p>
         </form>
       </div>
     </div>
