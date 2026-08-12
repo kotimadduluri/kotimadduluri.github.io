@@ -182,8 +182,44 @@
   }
   // Reduced motion / no IO: leave the hardcoded fallback text untouched.
 
-  /* ---------- contact form → mailto ---------- */
+  /* ---------- contact form → mailto + printed receipt ---------- */
   var form = document.getElementById("contact-form");
+  var receiptEl = document.getElementById("receipt");
+
+  function receiptRow(label, value) {
+    var row = document.createElement("div");
+    row.className = "receipt-row";
+    var l = document.createElement("span");
+    l.textContent = label;
+    var v = document.createElement("span");
+    v.textContent = value;
+    row.appendChild(l);
+    row.appendChild(v);
+    return row;
+  }
+
+  function printReceipt(name) {
+    if (!receiptEl) return;
+    receiptEl.textContent = "";
+    var head = document.createElement("p");
+    head.className = "receipt-center";
+    head.textContent = "KM · London, UK";
+    receiptEl.appendChild(head);
+    receiptEl.appendChild(Object.assign(document.createElement("hr"), { className: "receipt-rule" }));
+    receiptEl.appendChild(receiptRow("Item", "1 × message"));
+    if (name) receiptEl.appendChild(receiptRow("From", name));
+    var status = receiptRow("Status", "Approved");
+    status.className += " receipt-status";
+    receiptEl.appendChild(status);
+    receiptEl.appendChild(receiptRow("Auth code", "KM-" + Date.now().toString(36).slice(-4)));
+    receiptEl.appendChild(Object.assign(document.createElement("hr"), { className: "receipt-rule" }));
+    var foot = document.createElement("p");
+    foot.className = "receipt-center";
+    foot.textContent = "Thank you · I reply within a day";
+    receiptEl.appendChild(foot);
+    receiptEl.closest(".receipt-slot").classList.add("is-printed");
+  }
+
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -191,6 +227,7 @@
       var subject = form.elements.subject ? form.elements.subject.value.trim() : "";
       var message = form.elements.message ? form.elements.message.value.trim() : "";
       var body = message + "\n\n— " + name;
+      printReceipt(name);
       window.location.href =
         "mailto:kotimn@gmail.com" +
         "?subject=" + encodeURIComponent(subject) +
@@ -336,20 +373,41 @@
     }
   }
 
-  /* ---------- timeline: hovering a company also lights its domain ---------- */
-  if (finePointer) {
-    var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
-    if (tlLanes.length === 2) {
-      var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
-      var setHot = function (i, on) {
-        if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
-        if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
-      };
-      tlLanes.forEach(function (lane) {
-        Array.prototype.forEach.call(lane.children, function (span, i) {
+  /* ---------- timeline: hover sync + click-through to the role ledger ---------- */
+  var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
+  var xpItems = Array.prototype.slice.call(document.querySelectorAll(".xp-ledger .xp"));
+
+  if (tlLanes.length === 2) {
+    var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
+    var setHot = function (i, on) {
+      if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
+      if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
+    };
+    // lanes run oldest-first, the ledger newest-first
+    var xpForLane = function (i) { return xpItems[xpItems.length - 1 - i]; };
+
+    tlLanes.forEach(function (lane) {
+      Array.prototype.forEach.call(lane.children, function (span, i) {
+        if (finePointer) {
           span.addEventListener("pointerenter", function () { setHot(i, true); });
           span.addEventListener("pointerleave", function () { setHot(i, false); });
+        }
+        span.addEventListener("click", function () {
+          var xp = xpForLane(i);
+          if (!xp) return;
+          xp.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+          xp.classList.remove("xp-hit");
+          void xp.offsetWidth; // restart the flash animation
+          xp.classList.add("xp-hit");
         });
+      });
+    });
+
+    if (finePointer) {
+      xpItems.forEach(function (xp, j) {
+        var laneIdx = xpItems.length - 1 - j;
+        xp.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
+        xp.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
       });
     }
   }
@@ -370,6 +428,103 @@
         btn.style.setProperty("--my", "0px");
       });
     });
+  }
+
+  /* ---------- command palette (⌘K / Ctrl+K) ---------- */
+  var cmdk = document.getElementById("cmdk");
+  var cmdkHint = document.querySelector(".cmdk-hint");
+
+  if (cmdk) {
+    var cmdkInput = cmdk.querySelector(".cmdk-input");
+    var cmdkItems = Array.prototype.slice.call(cmdk.querySelectorAll(".cmdk-list li"));
+    var cmdkPrevFocus = null;
+    var activeIdx = 0;
+
+    var visibleItems = function () {
+      return cmdkItems.filter(function (li) { return !li.hidden; });
+    };
+
+    var setActive = function (li) {
+      cmdkItems.forEach(function (el) { el.classList.toggle("is-active", el === li); });
+      if (li) li.scrollIntoView({ block: "nearest" });
+    };
+
+    var openCmdk = function () {
+      cmdkPrevFocus = document.activeElement;
+      cmdk.hidden = false;
+      cmdkInput.value = "";
+      cmdkItems.forEach(function (li) { li.hidden = false; });
+      setActive(cmdkItems[0]);
+      cmdkInput.focus();
+      document.documentElement.style.overflow = "hidden";
+    };
+
+    var closeCmdk = function () {
+      cmdk.hidden = true;
+      document.documentElement.style.overflow = "";
+      if (cmdkPrevFocus && cmdkPrevFocus.focus) cmdkPrevFocus.focus();
+    };
+
+    var runCmd = function (li) {
+      if (!li) return;
+      var action = li.getAttribute("data-action");
+      closeCmdk();
+      if (action === "goto") {
+        var target = document.querySelector(li.getAttribute("data-target"));
+        if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      } else if (action === "cv") {
+        var a = document.createElement("a");
+        a.href = "assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf";
+        a.download = "";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else if (action === "email") {
+        if (navigator.clipboard) navigator.clipboard.writeText("kotimn@gmail.com").catch(function () {});
+      } else if (action === "linkedin") {
+        window.open("https://linkedin.com/in/koti-madduluri", "_blank", "noopener");
+      } else if (action === "theme" && themeToggle) {
+        themeToggle.click();
+      }
+    };
+
+    document.addEventListener("keydown", function (e) {
+      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
+        e.preventDefault();
+        cmdk.hidden ? openCmdk() : closeCmdk();
+        return;
+      }
+      if (cmdk.hidden) return;
+      var vis = visibleItems();
+      var idx = vis.indexOf(cmdk.querySelector(".cmdk-list li.is-active"));
+      if (e.key === "Escape") { e.preventDefault(); closeCmdk(); }
+      else if (e.key === "ArrowDown") { e.preventDefault(); setActive(vis[Math.min(idx + 1, vis.length - 1)]); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); setActive(vis[Math.max(idx - 1, 0)]); }
+      else if (e.key === "Enter") { e.preventDefault(); runCmd(vis[idx]); }
+    });
+
+    cmdkInput.addEventListener("input", function () {
+      var q = cmdkInput.value.trim().toLowerCase();
+      cmdkItems.forEach(function (li) {
+        li.hidden = q !== "" && li.textContent.toLowerCase().indexOf(q) === -1;
+      });
+      setActive(visibleItems()[0] || null);
+    });
+
+    cmdk.addEventListener("click", function (e) {
+      if (e.target.closest("[data-cmdk-close]")) { closeCmdk(); return; }
+      var li = e.target.closest(".cmdk-list li");
+      if (li) runCmd(li);
+    });
+
+    if (finePointer) {
+      cmdk.addEventListener("pointermove", function (e) {
+        var li = e.target.closest(".cmdk-list li");
+        if (li && !li.classList.contains("is-active")) setActive(li);
+      });
+    }
+
+    if (cmdkHint) cmdkHint.addEventListener("click", openCmdk);
   }
 
   /* ---------- footer year ---------- */

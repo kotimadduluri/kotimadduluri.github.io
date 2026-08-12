@@ -13,7 +13,12 @@
   <meta property="og:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
   <meta property="og:url" content="https://kotimadduluri.github.io/" />
   <meta property="og:site_name" content="Koti Madduluri" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://kotimadduluri.github.io/assets/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Koti Madduluri, Senior Android Engineer. Payments, EPOS and digital banking. London, UK." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://kotimadduluri.github.io/assets/og.png" />
   <meta name="twitter:title" content="Koti Madduluri - Senior Android Engineer" />
   <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
 
@@ -100,6 +105,9 @@
       <li><a href="#expertise">Expertise</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="cmdk-hint" aria-label="Open command menu" title="Command menu">
+      <kbd>&#8984;</kbd><kbd>K</kbd>
+    </button>
     <button class="theme-toggle" aria-label="Switch theme" title="Toggle theme">
       <svg class="ic icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
       <svg class="ic icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
@@ -442,6 +450,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Send message</button>
           <p class="form-note">Opens your email app. Nothing is stored or sent anywhere else.</p>
+          <div class="receipt-slot" aria-live="polite"><div class="receipt-clip"><div class="receipt" id="receipt"></div></div></div>
         </form>
       </div>
     </div>
@@ -458,6 +467,26 @@
     </div>
   </div>
 </footer>
+
+<div class="cmdk" id="cmdk" hidden>
+  <div class="cmdk-backdrop" data-cmdk-close></div>
+  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command menu">
+    <input class="cmdk-input" type="text" placeholder="Type a command" aria-label="Filter commands" autocomplete="off" spellcheck="false" />
+    <ul class="cmdk-list" role="listbox" aria-label="Commands">
+      <li role="option" data-action="goto" data-target="#career"><span class="cmdk-kind">go</span>Career</li>
+      <li role="option" data-action="goto" data-target="#skills"><span class="cmdk-kind">go</span>Skills</li>
+      <li role="option" data-action="goto" data-target="#work"><span class="cmdk-kind">go</span>Selected work</li>
+      <li role="option" data-action="goto" data-target="#expertise"><span class="cmdk-kind">go</span>Payments domain</li>
+      <li role="option" data-action="goto" data-target="#contact"><span class="cmdk-kind">go</span>Contact</li>
+      <li role="option" data-action="cv"><span class="cmdk-kind">run</span>Download CV</li>
+      <li role="option" data-action="email"><span class="cmdk-kind">run</span>Copy email address</li>
+      <li role="option" data-action="linkedin"><span class="cmdk-kind">run</span>Open LinkedIn</li>
+      <li role="option" data-action="theme"><span class="cmdk-kind">run</span>Toggle theme</li>
+      <li role="option" data-action="goto" data-target="#top"><span class="cmdk-kind">go</span>Back to top</li>
+    </ul>
+    <p class="cmdk-foot"><kbd>&#8593;&#8595;</kbd> navigate <kbd>&#8629;</kbd> run <kbd>esc</kbd> close</p>
+  </div>
+</div>
 
 <script src="js/main.js" defer></script>
 </body>
