@@ -336,6 +336,24 @@
     }
   }
 
+  /* ---------- timeline: hovering a company also lights its domain ---------- */
+  if (finePointer) {
+    var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
+    if (tlLanes.length === 2) {
+      var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
+      var setHot = function (i, on) {
+        if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
+        if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
+      };
+      tlLanes.forEach(function (lane) {
+        Array.prototype.forEach.call(lane.children, function (span, i) {
+          span.addEventListener("pointerenter", function () { setHot(i, true); });
+          span.addEventListener("pointerleave", function () { setHot(i, false); });
+        });
+      });
+    }
+  }
+
   /* ---------- magnetic buttons (fine pointers) ---------- */
   if (finePointer && !reduceMotion) {
     var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
