@@ -391,7 +391,7 @@ html.no-js .u-draw::after { transform: scaleX(1); }
 .fact-strip {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   border-top: 2px solid var(--rule);
   border-bottom: 1px solid var(--hairline);
   margin-bottom: 0;
@@ -490,8 +490,10 @@ html.no-js .u-draw::after { transform: scaleX(1); }
 .tl-span {
   grid-column: var(--s) / var(--e);
   transform-origin: left center;
-  background: var(--green-soft);
+  /* opaque fill so the year grid only shows in empty track space */
+  background: color-mix(in srgb, var(--green) 9%, var(--paper));
   border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
+  align-content: center;
   color: var(--ink);
   font-family: var(--mono);
   font-size: 0.66rem;
@@ -504,7 +506,7 @@ html.no-js .u-draw::after { transform: scaleX(1); }
   transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 .tl-span.is-hot {
-  background: color-mix(in srgb, var(--green) 22%, transparent);
+  background: color-mix(in srgb, var(--green) 20%, var(--paper));
   border-color: color-mix(in srgb, var(--green) 55%, transparent);
 }
 .tl-span.tl-now {
@@ -515,22 +517,26 @@ html.no-js .u-draw::after { transform: scaleX(1); }
 }
 .tl-span.tl-now.is-hot { background: var(--green-strong); border-color: var(--green-strong); }
 .tl-lane-domain .tl-span {
-  background: transparent;
+  background: var(--paper);
   border: 1px solid var(--hairline);
   color: var(--muted);
   padding: 6px 10px;
 }
 .tl-lane-domain .tl-span.is-hot {
-  background: var(--green-soft);
+  background: color-mix(in srgb, var(--green) 10%, var(--paper));
   border-color: color-mix(in srgb, var(--green) 45%, transparent);
   color: var(--ink);
 }
 .tl-lane-domain .tl-span.tl-now {
   border-color: var(--green);
   color: var(--green);
-  background: transparent;
+  background: var(--paper);
+  /* the one narrow label that never fits on a line: let it wrap */
+  white-space: normal;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
 }
-.tl-lane-domain .tl-span.tl-now.is-hot { background: var(--green-soft); color: var(--green-strong); }
+.tl-lane-domain .tl-span.tl-now.is-hot { background: color-mix(in srgb, var(--green) 10%, var(--paper)); color: var(--green-strong); }
 
 /* square LED marking the company I work at now */
 .tl-live {
@@ -917,11 +923,6 @@ html:not(.no-js) .timeline-scroll:not(.is-visible) .tl-span { transform: scaleX(
   color: var(--muted);
   font-size: 0.85rem;
 }
-.colophon {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-}
 .footer-links { display: flex; gap: 8px; }
 .footer-links a {
   display: grid;
@@ -1137,9 +1138,9 @@ html.no-js .reveal { opacity: 1; transform: none; }
   .contact-grid, .about-row { grid-template-columns: 1fr; }
   .mast-foot { grid-template-columns: 1fr; align-items: start; }
   .mast-actions { justify-content: flex-start; }
-  .fact-strip { grid-template-columns: repeat(3, 1fr); }
-  .fact-strip li:nth-child(3) { border-right: none; }
-  .fact-strip li:nth-child(n+4) { border-top: 1px solid var(--hairline); }
+  .fact-strip { grid-template-columns: repeat(2, 1fr); }
+  .fact-strip li:nth-child(2n) { border-right: none; }
+  .fact-strip li:nth-child(n+3) { border-top: 1px solid var(--hairline); }
   .proj-row { grid-template-columns: 90px 1fr; }
   .proj-tags { grid-column: 2; justify-content: flex-start; margin-top: 14px; }
   .domain-row { grid-template-columns: 200px 1fr; }
