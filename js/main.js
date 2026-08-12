@@ -149,7 +149,7 @@
   }
 
   /* ---------- stat count-up ---------- */
-  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count]"));
+  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count], .fact-num[data-count]"));
 
   function countUp(el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
@@ -195,6 +195,118 @@
         "mailto:kotimn@gmail.com" +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  /* ---------- masthead dot matrix (cursor-reactive, fine pointers) ---------- */
+  var canvas = document.querySelector(".dot-grid");
+  var finePointer = matchMedia("(pointer: fine)").matches;
+
+  if (canvas && !reduceMotion) {
+    var ctx = canvas.getContext("2d");
+    var masthead = canvas.parentElement;
+    var dots = [];
+    var mouse = { x: -9999, y: -9999 };
+    var running = false;
+    var rafId = null;
+    var SPACING = 26;
+    var RADIUS = 130;
+
+    function buildGrid() {
+      var rect = masthead.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      for (var y = SPACING; y < rect.height; y += SPACING) {
+        for (var x = SPACING; x < rect.width; x += SPACING) {
+          dots.push({ x: x, y: y });
+        }
+      }
+    }
+
+    function greenColor(alpha) {
+      var g = getComputedStyle(document.documentElement).getPropertyValue("--green").trim();
+      return g ? g : "#3ddc84";
+    }
+
+    function draw() {
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      var base = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#96988c";
+      var green = greenColor();
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var dx = d.x - mouse.x;
+        var dy = d.y - mouse.y;
+        var dist = Math.hypot(dx, dy);
+        var t = Math.max(0, 1 - dist / RADIUS);
+        var push = t * t * 10;
+        var px = dist > 0 ? d.x + (dx / dist) * push : d.x;
+        var py = dist > 0 ? d.y + (dy / dist) * push : d.y;
+        var r = 1 + t * 1.6;
+        ctx.globalAlpha = 0.16 + t * 0.7;
+        ctx.fillStyle = t > 0.05 ? green : base;
+        ctx.beginPath();
+        ctx.arc(px, py, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      rafId = running ? requestAnimationFrame(draw) : null;
+    }
+
+    function start() {
+      if (!running) { running = true; rafId = requestAnimationFrame(draw); }
+    }
+    function stop() {
+      running = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    buildGrid();
+    // draw one static frame even without pointer interaction
+    running = true; draw(); stop();
+
+    if (finePointer) {
+      masthead.addEventListener("pointermove", function (e) {
+        var rect = masthead.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        start();
+      });
+      masthead.addEventListener("pointerleave", function () {
+        mouse.x = -9999; mouse.y = -9999;
+        // let the field settle to static, then stop the loop
+        setTimeout(function () { running = true; draw(); stop(); }, 60);
+      });
+    }
+
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        buildGrid();
+        running = true; draw(); stop();
+      }, 150);
+    });
+  }
+
+  /* ---------- magnetic buttons (fine pointers) ---------- */
+  if (finePointer && !reduceMotion) {
+    var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
+    magnets.forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width - 0.5;
+        var relY = (e.clientY - rect.top) / rect.height - 0.5;
+        btn.style.setProperty("--mx", (relX * 6).toFixed(1) + "px");
+        btn.style.setProperty("--my", (relY * 4).toFixed(1) + "px");
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--mx", "0px");
+        btn.style.setProperty("--my", "0px");
+      });
     });
   }
 
