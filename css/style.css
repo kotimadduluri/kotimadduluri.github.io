@@ -287,13 +287,43 @@ button { font: inherit; color: inherit; }
 }
 .mast-meta-right { margin-left: auto; color: var(--green); }
 
+.name-wrap { position: relative; }
+
 .mast-name {
+  position: relative;
+  z-index: 1;
   font-size: clamp(3.4rem, 12vw, 9.5rem);
   font-weight: 800;
   line-height: 0.98;
   letter-spacing: -0.02em;
   margin-bottom: clamp(28px, 5vh, 48px);
 }
+
+/* skills set as banknote-style security microprint behind the name;
+   the cursor works like a UV lamp and reveals it in green */
+.microprint {
+  position: absolute;
+  inset: -14px 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 2;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0.06;
+}
+.microprint-glow {
+  color: var(--green-strong);
+  opacity: 0.9;
+  -webkit-mask-image: radial-gradient(190px circle at var(--ux, -999px) var(--uy, -999px), #000 0%, transparent 100%);
+  mask-image: radial-gradient(190px circle at var(--ux, -999px) var(--uy, -999px), #000 0%, transparent 100%);
+}
+[data-theme="light"] .microprint-glow { color: var(--green); }
 
 .h-line {
   display: block;
@@ -900,6 +930,7 @@ html.no-js .reveal { opacity: 1; transform: none; }
   }
   .marquee-track li[aria-hidden="true"] { display: none; }
   .dot-grid { display: none; }
+  .microprint-glow { display: none; }
   html:not(.no-js) .timeline-scroll:not(.is-visible) .tl-span { transform: none; }
   .timeline-scroll.is-visible .tl-span { animation: none; }
   .btn { transform: none; }

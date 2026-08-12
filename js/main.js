@@ -292,6 +292,50 @@
     });
   }
 
+  /* ---------- security microprint behind the name ---------- */
+  // Skills set as banknote-style microprint; the cursor acts like a UV lamp.
+  var nameWrap = document.querySelector(".name-wrap");
+  if (nameWrap) {
+    var printLayers = Array.prototype.slice.call(nameWrap.querySelectorAll(".microprint"));
+    var SKILLS = [
+      "Kotlin", "Jetpack Compose", "KMP", "CMP", "Coroutines", "Flow",
+      "MVVM", "Clean Architecture", "Hilt", "Koin", "Ktor", "Retrofit",
+      "NFC", "BLE", "MQTT", "GitHub Actions", "React", "TypeScript",
+      "Node.js", "PostgreSQL", "Firebase"
+    ];
+
+    var buildPrint = function () {
+      var rows = Math.ceil((nameWrap.offsetHeight + 28) / 22) + 1;
+      var markup = "";
+      for (var i = 0; i < rows; i++) {
+        var shift = (i * 5) % SKILLS.length;
+        var line = SKILLS.slice(shift).concat(SKILLS.slice(0, shift)).join(" · ");
+        markup += "<div>" + line + " · " + line + "</div>";
+      }
+      printLayers.forEach(function (layer) { layer.innerHTML = markup; });
+    };
+    buildPrint();
+
+    var printResizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(printResizeTimer);
+      printResizeTimer = setTimeout(buildPrint, 150);
+    });
+
+    if (finePointer) {
+      var mast = nameWrap.closest(".masthead") || nameWrap;
+      mast.addEventListener("pointermove", function (e) {
+        var rect = nameWrap.getBoundingClientRect();
+        nameWrap.style.setProperty("--ux", (e.clientX - rect.left).toFixed(0) + "px");
+        nameWrap.style.setProperty("--uy", (e.clientY - rect.top).toFixed(0) + "px");
+      });
+      mast.addEventListener("pointerleave", function () {
+        nameWrap.style.setProperty("--ux", "-999px");
+        nameWrap.style.setProperty("--uy", "-999px");
+      });
+    }
+  }
+
   /* ---------- magnetic buttons (fine pointers) ---------- */
   if (finePointer && !reduceMotion) {
     var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
