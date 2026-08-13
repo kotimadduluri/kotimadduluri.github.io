@@ -193,10 +193,31 @@
         </div>
       </div>
 
-      <ol class="xp-ledger">
-        <li class="xp reveal">
-          <p class="xp-period">Feb 2026<br />Present</p>
-          <div class="xp-body">
+      <div class="xp-tabs reveal">
+        <div class="xp-rail" role="tablist" aria-label="Employers" aria-orientation="vertical">
+          <button class="xp-tab is-active" role="tab" id="xtab-0" aria-controls="xpanel-0" aria-selected="true">
+            <span class="xp-tab-org">Lopay</span><span class="xp-tab-period">2026 · Now</span>
+          </button>
+          <button class="xp-tab" role="tab" id="xtab-1" aria-controls="xpanel-1" aria-selected="false" tabindex="-1">
+            <span class="xp-tab-org">Payment Loyalty</span><span class="xp-tab-period">2023-26</span>
+          </button>
+          <button class="xp-tab" role="tab" id="xtab-2" aria-controls="xpanel-2" aria-selected="false" tabindex="-1">
+            <span class="xp-tab-org">Mobiquity</span><span class="xp-tab-period">2021-23</span>
+          </button>
+          <button class="xp-tab" role="tab" id="xtab-3" aria-controls="xpanel-3" aria-selected="false" tabindex="-1">
+            <span class="xp-tab-org">Sensen Networks</span><span class="xp-tab-period">2020-21</span>
+          </button>
+          <button class="xp-tab" role="tab" id="xtab-4" aria-controls="xpanel-4" aria-selected="false" tabindex="-1">
+            <span class="xp-tab-org">Iconma</span><span class="xp-tab-period">2017-20</span>
+          </button>
+          <button class="xp-tab" role="tab" id="xtab-5" aria-controls="xpanel-5" aria-selected="false" tabindex="-1">
+            <span class="xp-tab-org">Tvisha</span><span class="xp-tab-period">2015-17</span>
+          </button>
+        </div>
+
+        <div class="xp-panels">
+          <article class="xp-panel is-active" role="tabpanel" id="xpanel-0" aria-labelledby="xtab-0">
+            <p class="xp-period">Feb 2026 · Present</p>
             <h3>Senior Android &amp; Full Stack Engineer <span class="xp-org">Lopay</span></h3>
             <p class="xp-meta">Terminal Pay &amp; Lopay POS (EPOS) · UK fintech serving 50,000+ businesses · London, Hybrid</p>
             <ul class="xp-bullets">
@@ -206,12 +227,10 @@
               <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
             </ul>
             <ul class="chips xp-tags"><li>Jetpack Compose</li><li>KMP / CMP</li><li>Stripe</li><li>NestJS</li><li>React</li></ul>
-          </div>
-        </li>
+          </article>
 
-        <li class="xp reveal">
-          <p class="xp-period">Nov 2023<br />Jan 2026</p>
-          <div class="xp-body">
+          <article class="xp-panel" role="tabpanel" id="xpanel-1" aria-labelledby="xtab-1">
+            <p class="xp-period">Nov 2023 · Jan 2026</p>
             <h3>Senior Android &amp; Full Stack Engineer <span class="xp-org">Payment Loyalty</span></h3>
             <p class="xp-meta">Payment Loyalty Platform · Lopay (May 2025 - Jan 2026)</p>
             <ul class="xp-bullets">
@@ -221,12 +240,10 @@
               <li>Led an offshore team of 4-5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
             </ul>
             <ul class="chips xp-tags"><li>Compose</li><li>Multi-Module</li><li>Design System</li><li>Node.js</li><li>Team Lead</li></ul>
-          </div>
-        </li>
+          </article>
 
-        <li class="xp reveal">
-          <p class="xp-period">Aug 2021<br />Nov 2023</p>
-          <div class="xp-body">
+          <article class="xp-panel" role="tabpanel" id="xpanel-2" aria-labelledby="xtab-2">
+            <p class="xp-period">Aug 2021 · Nov 2023</p>
             <h3>Senior Software Engineer <span class="xp-org">Mobiquity (Hexaware)</span></h3>
             <p class="xp-meta">Sandy Spring Bank &amp; CNB Bank, Backbase digital banking</p>
             <ul class="xp-bullets">
@@ -235,12 +252,10 @@
               <li>Implemented SSL certificate pinning and banking-grade security; kept CI/CD running on GitHub Actions and App Center; managed Play Store releases across environments.</li>
             </ul>
             <ul class="chips xp-tags"><li>Backbase</li><li>Kotlin</li><li>Coroutines / Flow</li><li>CI/CD</li><li>Security</li></ul>
-          </div>
-        </li>
+          </article>
 
-        <li class="xp reveal">
-          <p class="xp-period">Oct 2020<br />Aug 2021</p>
-          <div class="xp-body">
+          <article class="xp-panel" role="tabpanel" id="xpanel-3" aria-labelledby="xtab-3">
+            <p class="xp-period">Oct 2020 · Aug 2021</p>
             <h3>Senior Software Engineer <span class="xp-org">Sensen Networks</span></h3>
             <p class="xp-meta">Gemineye, Smart City IoT Platform</p>
             <ul class="xp-bullets">
@@ -249,12 +264,10 @@
               <li>Adopted Coroutines and LiveData throughout, and ANRs dropped noticeably.</li>
             </ul>
             <ul class="chips xp-tags"><li>TensorFlow Lite</li><li>ML Kit</li><li>Retrofit</li><li>Coroutines</li></ul>
-          </div>
-        </li>
+          </article>
 
-        <li class="xp reveal">
-          <p class="xp-period">Oct 2017<br />Oct 2020</p>
-          <div class="xp-body">
+          <article class="xp-panel" role="tabpanel" id="xpanel-4" aria-labelledby="xtab-4">
+            <p class="xp-period">Oct 2017 · Oct 2020</p>
             <h3>Software Engineer <span class="xp-org">Iconma</span></h3>
             <p class="xp-meta">Enterprise Collaboration &amp; EdTech</p>
             <ul class="xp-bullets">
@@ -262,21 +275,19 @@
               <li>Led Java to Kotlin migrations of several core apps; built real-time chat with XMPP and Socket.IO plus the backend APIs behind it.</li>
             </ul>
             <ul class="chips xp-tags"><li>Kotlin Migration</li><li>XMPP</li><li>Socket.IO</li></ul>
-          </div>
-        </li>
+          </article>
 
-        <li class="xp reveal">
-          <p class="xp-period">Jul 2015<br />Sep 2017</p>
-          <div class="xp-body">
+          <article class="xp-panel" role="tabpanel" id="xpanel-5" aria-labelledby="xtab-5">
+            <p class="xp-period">Jul 2015 · Sep 2017</p>
             <h3>Software Engineer <span class="xp-org">Tvisha Technologies</span></h3>
             <p class="xp-meta">Travel, Real-Time Communication &amp; Payments</p>
             <ul class="xp-bullets">
               <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways. Solid grounding in REST integration and Material Design.</li>
             </ul>
             <ul class="chips xp-tags"><li>REST</li><li>Payment Gateways</li><li>Material Design</li></ul>
-          </div>
-        </li>
-      </ol>
+          </article>
+        </div>
+      </div>
 
       <div class="about-row reveal">
         <p>I care about writing code that is clean, maintainable, and actually works in the real world. Along the way I have led Jetpack Compose migrations across hundreds of screens, managed offshore teams of 4-5 engineers, and worked directly with stakeholders to turn requirements into shipped product.</p>

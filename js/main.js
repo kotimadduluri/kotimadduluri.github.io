@@ -373,18 +373,63 @@
     }
   }
 
-  /* ---------- timeline: hover sync + click-through to the role ledger ---------- */
+  /* ---------- experience tabs ---------- */
+  var xpTabs = Array.prototype.slice.call(document.querySelectorAll(".xp-tab"));
+  var xpPanels = Array.prototype.slice.call(document.querySelectorAll(".xp-panel"));
+
+  function selectXp(idx, focusTab) {
+    if (!xpTabs[idx]) return;
+    xpTabs.forEach(function (tab, j) {
+      var on = j === idx;
+      tab.classList.toggle("is-active", on);
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+    });
+    xpPanels.forEach(function (panel, j) {
+      panel.classList.toggle("is-active", j === idx);
+      panel.classList.remove("panel-in");
+    });
+    if (!reduceMotion && xpPanels[idx]) {
+      void xpPanels[idx].offsetWidth;
+      xpPanels[idx].classList.add("panel-in");
+    }
+    if (focusTab) xpTabs[idx].focus();
+  }
+
+  xpTabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selectXp(i); });
+  });
+
+  var xpRail = document.querySelector(".xp-rail");
+  if (xpRail) {
+    xpRail.addEventListener("keydown", function (e) {
+      var current = xpTabs.indexOf(document.activeElement);
+      if (current === -1) return;
+      var next = null;
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") next = Math.min(current + 1, xpTabs.length - 1);
+      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = Math.max(current - 1, 0);
+      else if (e.key === "Home") next = 0;
+      else if (e.key === "End") next = xpTabs.length - 1;
+      if (next !== null) {
+        e.preventDefault();
+        selectXp(next, true);
+      }
+    });
+  }
+
+  /* ---------- timeline: hover sync + click opens that company's tab ---------- */
   var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
-  var xpItems = Array.prototype.slice.call(document.querySelectorAll(".xp-ledger .xp"));
 
   if (tlLanes.length === 2) {
     var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
+    // lanes run oldest-first, the tab rail newest-first
+    var tabForLane = function (i) { return xpTabs.length - 1 - i; };
     var setHot = function (i, on) {
       if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
       if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
+      var tab = xpTabs[tabForLane(i)];
+      if (tab) tab.classList.toggle("is-hot", on);
     };
-    // lanes run oldest-first, the ledger newest-first
-    var xpForLane = function (i) { return xpItems[xpItems.length - 1 - i]; };
 
     tlLanes.forEach(function (lane) {
       Array.prototype.forEach.call(lane.children, function (span, i) {
@@ -393,21 +438,18 @@
           span.addEventListener("pointerleave", function () { setHot(i, false); });
         }
         span.addEventListener("click", function () {
-          var xp = xpForLane(i);
-          if (!xp) return;
-          xp.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-          xp.classList.remove("xp-hit");
-          void xp.offsetWidth; // restart the flash animation
-          xp.classList.add("xp-hit");
+          selectXp(tabForLane(i));
+          var tabs = document.querySelector(".xp-tabs");
+          if (tabs) tabs.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
         });
       });
     });
 
     if (finePointer) {
-      xpItems.forEach(function (xp, j) {
-        var laneIdx = xpItems.length - 1 - j;
-        xp.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
-        xp.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
+      xpTabs.forEach(function (tab, j) {
+        var laneIdx = xpTabs.length - 1 - j;
+        tab.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
+        tab.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
       });
     }
   }
