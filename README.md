@@ -1,6 +1,6 @@
 # Koti Madduluri — Portfolio
 
-Personal resume / portfolio site for **Koti Madduluri** — Senior Android Engineer (Kotlin, Jetpack Compose, KMP/CMP · Fintech, Payments & EPOS).
+Interactive engineering portfolio for **Koti Madduluri** — "I build software that moves money" (Android, payments, EPOS, backend, cross-platform).
 
 Live at: **https://kotimadduluri.github.io**
 
@@ -8,11 +8,11 @@ Live at: **https://kotimadduluri.github.io**
 
 Plain HTML, CSS, and vanilla JavaScript — no framework, no build step. `index.html` lives at the repo root, which is the simplest layout for GitHub Pages: the Actions workflow uploads the whole repo as the Pages artifact, so what you see locally is exactly what deploys.
 
-Design: precision dark-first system — neutral base, single violet accent, Geist + Geist Mono type, inline SVG icon sprite (no icon fonts), a Kotlin code card in the hero, and editorial list layouts for experience and skills.
+Design: precision-minimal dark-first system — cool neutral base, single money-green accent, Geist + Geist Mono type, inline SVG icon sprite (no icon fonts). Storytelling through system diagrams instead of CV lists: an animated transaction path in the hero (terminal → app → SDK → backend → customer), flow-diagram case studies, expandable "Systems I've built" architecture cards, and an interactive career timeline.
 
 - Light/dark mode: auto-detects system preference, manual toggle persists in `localStorage`
-- Responsive (mobile / tablet / desktop), semantic HTML, keyboard-navigable
-- Scroll-in animations, staggered reveals and stat count-ups that respect `prefers-reduced-motion`
+- Responsive (mobile / tablet / desktop), semantic HTML, keyboard-navigable, ⌘K command palette
+- Transaction-path animation, scroll reveals and stat count-ups that respect `prefers-reduced-motion`
 - SEO: meta description, Open Graph/Twitter tags, JSON-LD, canonical URL, SVG favicon
 
 ## Structure
@@ -20,7 +20,7 @@ Design: precision dark-first system — neutral base, single violet accent, Geis
 ```
 index.html                  # single-page site (includes inline SVG icon sprite)
 css/style.css               # all styles (theme via [data-theme] on <html>)
-js/main.js                  # theme toggle, nav, scrollspy, reveals, count-ups, mailto form
+js/main.js                  # theme, nav, reveals, transaction animation, accordions, timeline, cmdk, mailto form
 assets/                     # favicon + CV PDF (Koti_Madduluri_Senior_Android_Engineer_CV.pdf)
 .github/workflows/deploy.yml# deploys to GitHub Pages on push to main
 ```
