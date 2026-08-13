@@ -16,8 +16,11 @@
   /* ---------- theme toggle ---------- */
   var themeToggle = document.querySelector(".theme-toggle");
 
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+
   function applyTheme(theme) {
     html.setAttribute("data-theme", theme);
+    if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#101210" : "#f5f4ef");
     if (themeToggle) {
       themeToggle.setAttribute(
         "aria-label",
@@ -31,13 +34,7 @@
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
       var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      // store only when the choice differs from the system preference, so
-      // picking the system's own theme returns the site to auto-follow
-      try {
-        var sysTheme = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-        if (next === sysTheme) localStorage.removeItem("theme");
-        else localStorage.setItem("theme", next);
-      } catch (err) {}
+      try { localStorage.setItem("theme", next); } catch (err) {}
 
       // circle-reveal the new theme from the toggle (state transition)
       var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -62,12 +59,6 @@
     });
   }
 
-  // Follow the system preference live, unless the user chose manually.
-  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (e) {
-    var stored = null;
-    try { stored = localStorage.getItem("theme"); } catch (err) {}
-    if (!stored) applyTheme(e.matches ? "dark" : "light");
-  });
 
   /* ---------- mobile nav ---------- */
   var navToggle = document.querySelector(".nav-toggle");
