@@ -12,7 +12,6 @@
 
   var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var hasIO = "IntersectionObserver" in window;
-  var finePointer = matchMedia("(pointer: fine)").matches;
 
   /* ---------- theme toggle ---------- */
   var themeToggle = document.querySelector(".theme-toggle");
@@ -27,7 +26,7 @@
     }
   }
 
-  applyTheme(html.getAttribute("data-theme") || "dark");
+  applyTheme(html.getAttribute("data-theme") || "light");
 
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
@@ -92,6 +91,23 @@
     });
   }
 
+  /* ---------- scrolled nav state (rAF-throttled) ---------- */
+  var navWrap = document.querySelector(".nav-wrap");
+  if (navWrap) {
+    var ticking = false;
+    var updateNav = function () {
+      navWrap.classList.toggle("is-scrolled", window.scrollY > 24);
+      ticking = false;
+    };
+    window.addEventListener("scroll", function () {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(updateNav);
+      }
+    }, { passive: true });
+    updateNav();
+  }
+
   /* ---------- scrollspy ---------- */
   var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-menu a[href^="#"]'));
@@ -115,8 +131,8 @@
     sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ---------- reveal-on-scroll ---------- */
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  /* ---------- reveal-on-scroll (.reveal and .code-card) ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal, .code-card"));
 
   if (reduceMotion || !hasIO) {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
@@ -132,8 +148,8 @@
     revealEls.forEach(function (el) { revealer.observe(el); });
   }
 
-  /* ---------- footprint count-up ---------- */
-  var stats = Array.prototype.slice.call(document.querySelectorAll(".fp-num[data-count]"));
+  /* ---------- stat count-up ---------- */
+  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count], .fact-num[data-count]"));
 
   function countUp(el) {
     var target = parseInt(el.getAttribute("data-count"), 10);
@@ -165,186 +181,6 @@
     stats.forEach(function (el) { statObserver.observe(el); });
   }
   // Reduced motion / no IO: leave the hardcoded fallback text untouched.
-
-  /* ---------- hero: transaction path animation ---------- */
-  // A pulse travels terminal → app → SDK → backend → customer, narrating
-  // each hop in the status line. Loops while visible; replay on demand.
-  var txn = document.querySelector(".txn");
-
-  if (txn) {
-    var txnNodes = Array.prototype.slice.call(txn.querySelectorAll(".txn-node"));
-    var txnSpark = txn.querySelector(".txn-spark");
-    var txnStatus = txn.querySelector(".txn-status");
-    var txnReplay = txn.querySelector(".txn-replay");
-    var txnPath = txn.querySelector(".txn-path");
-    var txnTimers = [];
-    var txnVisible = true;
-    var txnRunning = false;
-
-    var clearTxnTimers = function () {
-      txnTimers.forEach(clearTimeout);
-      txnTimers = [];
-    };
-
-    var sparkTopFor = function (node) {
-      // center the 7px spark on the node's 8px dot (dot top sits 16px into the node)
-      return node.offsetTop + txnPath.offsetTop + 16.5 + "px";
-    };
-
-    var setStep = function (i) {
-      txnNodes.forEach(function (node, j) {
-        node.classList.toggle("is-done", j < i);
-        node.classList.toggle("is-active", j === i);
-      });
-      if (txnSpark) {
-        txnSpark.style.top = sparkTopFor(txnNodes[i]);
-        txnSpark.classList.add("is-on");
-      }
-      if (txnStatus) txnStatus.textContent = txnNodes[i].getAttribute("data-status") || "";
-    };
-
-    var finishTxn = function () {
-      txnNodes.forEach(function (node) {
-        node.classList.add("is-done");
-        node.classList.remove("is-active");
-      });
-      if (txnSpark) txnSpark.classList.remove("is-on");
-    };
-
-    var runTxn = function () {
-      if (txnRunning) return;
-      txnRunning = true;
-      clearTxnTimers();
-      var stepMs = 950;
-      txnNodes.forEach(function (node, i) {
-        txnTimers.push(setTimeout(function () { setStep(i); }, i * stepMs));
-      });
-      txnTimers.push(setTimeout(function () {
-        finishTxn();
-        txnRunning = false;
-        // idle, then loop while still on screen
-        txnTimers.push(setTimeout(function () {
-          if (txnVisible && !document.hidden) runTxn();
-        }, 4200));
-      }, txnNodes.length * stepMs + 400));
-    };
-
-    if (reduceMotion) {
-      // static end-state; CSS already paints all dots as done
-      if (txnStatus) txnStatus.textContent = txnNodes[txnNodes.length - 1].getAttribute("data-status") || "";
-    } else {
-      if (hasIO) {
-        var txnObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            txnVisible = entry.isIntersecting;
-            if (txnVisible && !txnRunning) runTxn();
-            if (!txnVisible) { clearTxnTimers(); txnRunning = false; }
-          });
-        }, { threshold: 0.3 });
-        txnObserver.observe(txn);
-      } else {
-        runTxn();
-      }
-
-      if (txnReplay) {
-        txnReplay.addEventListener("click", function () {
-          clearTxnTimers();
-          txnRunning = false;
-          runTxn();
-        });
-      }
-    }
-  }
-
-  /* ---------- hero: technology evidence readout ---------- */
-  var readout = document.querySelector(".hero-readout");
-
-  if (readout) {
-    var defaultReadout = readout.getAttribute("data-default") || "";
-    var infoChips = Array.prototype.slice.call(document.querySelectorAll(".txn-chips button[data-info]"));
-
-    var showInfo = function (text) {
-      readout.textContent = text;
-      readout.classList.add("is-live");
-    };
-    var resetInfo = function () {
-      readout.textContent = defaultReadout;
-      readout.classList.remove("is-live");
-    };
-
-    infoChips.forEach(function (chip) {
-      var info = chip.getAttribute("data-info");
-      chip.addEventListener("pointerenter", function () { showInfo(info); });
-      chip.addEventListener("pointerleave", resetInfo);
-      chip.addEventListener("focus", function () { showInfo(info); });
-      chip.addEventListener("blur", resetInfo);
-      // touch: tapping toggles the readout
-      chip.addEventListener("click", function () { showInfo(info); });
-    });
-  }
-
-  /* ---------- systems accordions ---------- */
-  var sysHeads = Array.prototype.slice.call(document.querySelectorAll(".sys-head"));
-
-  sysHeads.forEach(function (head) {
-    head.addEventListener("click", function () {
-      var sys = head.closest(".sys");
-      var open = sys.classList.toggle("is-open");
-      head.setAttribute("aria-expanded", String(open));
-    });
-  });
-
-  /* ---------- timeline: hover sync, era readout, click-through ---------- */
-  var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
-  var xpItems = Array.prototype.slice.call(document.querySelectorAll(".xp-ledger .xp"));
-  var tlReadout = document.querySelector(".tl-readout");
-
-  // oldest-first, matching the lanes
-  var TL_ERAS = [
-    "2015 · Mobile and web: travel, realtime chat, payment gateways",
-    "2017 · Enterprise and EdTech: Java to Kotlin migrations",
-    "2020 · Smart city IoT: on-device ML at Sensen",
-    "2021 · US digital banking on Backbase",
-    "2023 · Payments and loyalty on live terminal hardware",
-    "2026 · EPOS, payments, KMP and full stack at Lopay"
-  ];
-  var tlDefault = TL_ERAS[TL_ERAS.length - 1];
-
-  if (tlLanes.length === 2) {
-    var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
-    var setHot = function (i, on) {
-      if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
-      if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
-      if (tlReadout) tlReadout.textContent = on ? (TL_ERAS[i] || tlDefault) : tlDefault;
-    };
-    // lanes run oldest-first, the ledger newest-first
-    var xpForLane = function (i) { return xpItems[xpItems.length - 1 - i]; };
-
-    tlLanes.forEach(function (lane) {
-      Array.prototype.forEach.call(lane.children, function (span, i) {
-        if (finePointer) {
-          span.addEventListener("pointerenter", function () { setHot(i, true); });
-          span.addEventListener("pointerleave", function () { setHot(i, false); });
-        }
-        span.addEventListener("click", function () {
-          var xp = xpForLane(i);
-          if (!xp) return;
-          xp.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-          xp.classList.remove("xp-hit");
-          void xp.offsetWidth; // restart the flash animation
-          xp.classList.add("xp-hit");
-        });
-      });
-    });
-
-    if (finePointer) {
-      xpItems.forEach(function (xp, j) {
-        var laneIdx = xpItems.length - 1 - j;
-        xp.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
-        xp.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
-      });
-    }
-  }
 
   /* ---------- contact form → mailto + printed receipt ---------- */
   var form = document.getElementById("contact-form");
@@ -390,12 +226,207 @@
       var name = form.elements.name ? form.elements.name.value.trim() : "";
       var subject = form.elements.subject ? form.elements.subject.value.trim() : "";
       var message = form.elements.message ? form.elements.message.value.trim() : "";
-      var body = message + "\n\n- " + name;
+      var body = message + "\n\n— " + name;
       printReceipt(name);
       window.location.href =
         "mailto:kotimn@gmail.com" +
         "?subject=" + encodeURIComponent(subject) +
         "&body=" + encodeURIComponent(body);
+    });
+  }
+
+  /* ---------- masthead dot matrix (cursor-reactive, fine pointers) ---------- */
+  var canvas = document.querySelector(".dot-grid");
+  var finePointer = matchMedia("(pointer: fine)").matches;
+
+  if (canvas && !reduceMotion) {
+    var ctx = canvas.getContext("2d");
+    var masthead = canvas.parentElement;
+    var dots = [];
+    var mouse = { x: -9999, y: -9999 };
+    var running = false;
+    var rafId = null;
+    var SPACING = 26;
+    var RADIUS = 130;
+
+    function buildGrid() {
+      var rect = masthead.getBoundingClientRect();
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      dots = [];
+      for (var y = SPACING; y < rect.height; y += SPACING) {
+        for (var x = SPACING; x < rect.width; x += SPACING) {
+          dots.push({ x: x, y: y });
+        }
+      }
+    }
+
+    function greenColor(alpha) {
+      var g = getComputedStyle(document.documentElement).getPropertyValue("--green").trim();
+      return g ? g : "#3ddc84";
+    }
+
+    function draw() {
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      var base = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#96988c";
+      var green = greenColor();
+      for (var i = 0; i < dots.length; i++) {
+        var d = dots[i];
+        var dx = d.x - mouse.x;
+        var dy = d.y - mouse.y;
+        var dist = Math.hypot(dx, dy);
+        var t = Math.max(0, 1 - dist / RADIUS);
+        var push = t * t * 10;
+        var px = dist > 0 ? d.x + (dx / dist) * push : d.x;
+        var py = dist > 0 ? d.y + (dy / dist) * push : d.y;
+        var r = 1 + t * 1.6;
+        ctx.globalAlpha = 0.16 + t * 0.7;
+        ctx.fillStyle = t > 0.05 ? green : base;
+        ctx.beginPath();
+        ctx.arc(px, py, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      rafId = running ? requestAnimationFrame(draw) : null;
+    }
+
+    function start() {
+      if (!running) { running = true; rafId = requestAnimationFrame(draw); }
+    }
+    function stop() {
+      running = false;
+      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+    }
+
+    buildGrid();
+    // draw one static frame even without pointer interaction
+    running = true; draw(); stop();
+
+    if (finePointer) {
+      masthead.addEventListener("pointermove", function (e) {
+        var rect = masthead.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        start();
+      });
+      masthead.addEventListener("pointerleave", function () {
+        mouse.x = -9999; mouse.y = -9999;
+        // let the field settle to static, then stop the loop
+        setTimeout(function () { running = true; draw(); stop(); }, 60);
+      });
+    }
+
+    var resizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        buildGrid();
+        running = true; draw(); stop();
+      }, 150);
+    });
+  }
+
+  /* ---------- security microprint behind the name ---------- */
+  // Skills set as banknote-style microprint; the cursor acts like a UV lamp.
+  var nameWrap = document.querySelector(".name-wrap");
+  if (nameWrap) {
+    var printLayers = Array.prototype.slice.call(nameWrap.querySelectorAll(".microprint"));
+    var SKILLS = [
+      "Kotlin", "Jetpack Compose", "KMP", "CMP", "Coroutines", "Flow",
+      "MVVM", "Clean Architecture", "Hilt", "Koin", "Ktor", "Retrofit",
+      "NFC", "BLE", "MQTT", "GitHub Actions", "React", "TypeScript",
+      "Node.js", "PostgreSQL", "Firebase"
+    ];
+
+    var buildPrint = function () {
+      var rows = Math.ceil((nameWrap.offsetHeight + 28) / 22) + 1;
+      var markup = "";
+      for (var i = 0; i < rows; i++) {
+        var shift = (i * 5) % SKILLS.length;
+        var line = SKILLS.slice(shift).concat(SKILLS.slice(0, shift)).join(" · ");
+        markup += "<div>" + line + " · " + line + "</div>";
+      }
+      printLayers.forEach(function (layer) { layer.innerHTML = markup; });
+    };
+    buildPrint();
+
+    var printResizeTimer = null;
+    window.addEventListener("resize", function () {
+      clearTimeout(printResizeTimer);
+      printResizeTimer = setTimeout(buildPrint, 150);
+    });
+
+    if (finePointer) {
+      var mast = nameWrap.closest(".masthead") || nameWrap;
+      mast.addEventListener("pointermove", function (e) {
+        var rect = nameWrap.getBoundingClientRect();
+        nameWrap.style.setProperty("--ux", (e.clientX - rect.left).toFixed(0) + "px");
+        nameWrap.style.setProperty("--uy", (e.clientY - rect.top).toFixed(0) + "px");
+      });
+      mast.addEventListener("pointerleave", function () {
+        nameWrap.style.setProperty("--ux", "-999px");
+        nameWrap.style.setProperty("--uy", "-999px");
+      });
+    }
+  }
+
+  /* ---------- timeline: hover sync + click-through to the role ledger ---------- */
+  var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
+  var xpItems = Array.prototype.slice.call(document.querySelectorAll(".xp-ledger .xp"));
+
+  if (tlLanes.length === 2) {
+    var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
+    var setHot = function (i, on) {
+      if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
+      if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
+    };
+    // lanes run oldest-first, the ledger newest-first
+    var xpForLane = function (i) { return xpItems[xpItems.length - 1 - i]; };
+
+    tlLanes.forEach(function (lane) {
+      Array.prototype.forEach.call(lane.children, function (span, i) {
+        if (finePointer) {
+          span.addEventListener("pointerenter", function () { setHot(i, true); });
+          span.addEventListener("pointerleave", function () { setHot(i, false); });
+        }
+        span.addEventListener("click", function () {
+          var xp = xpForLane(i);
+          if (!xp) return;
+          xp.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+          xp.classList.remove("xp-hit");
+          void xp.offsetWidth; // restart the flash animation
+          xp.classList.add("xp-hit");
+        });
+      });
+    });
+
+    if (finePointer) {
+      xpItems.forEach(function (xp, j) {
+        var laneIdx = xpItems.length - 1 - j;
+        xp.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
+        xp.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
+      });
+    }
+  }
+
+  /* ---------- magnetic buttons (fine pointers) ---------- */
+  if (finePointer && !reduceMotion) {
+    var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
+    magnets.forEach(function (btn) {
+      btn.addEventListener("pointermove", function (e) {
+        var rect = btn.getBoundingClientRect();
+        var relX = (e.clientX - rect.left) / rect.width - 0.5;
+        var relY = (e.clientY - rect.top) / rect.height - 0.5;
+        btn.style.setProperty("--mx", (relX * 6).toFixed(1) + "px");
+        btn.style.setProperty("--my", (relY * 4).toFixed(1) + "px");
+      });
+      btn.addEventListener("pointerleave", function () {
+        btn.style.setProperty("--mx", "0px");
+        btn.style.setProperty("--my", "0px");
+      });
     });
   }
 
@@ -407,6 +438,7 @@
     var cmdkInput = cmdk.querySelector(".cmdk-input");
     var cmdkItems = Array.prototype.slice.call(cmdk.querySelectorAll(".cmdk-list li"));
     var cmdkPrevFocus = null;
+    var activeIdx = 0;
 
     var visibleItems = function () {
       return cmdkItems.filter(function (li) { return !li.hidden; });
