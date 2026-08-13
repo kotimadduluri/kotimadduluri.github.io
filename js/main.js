@@ -31,7 +31,13 @@
   if (themeToggle) {
     themeToggle.addEventListener("click", function () {
       var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      try { localStorage.setItem("theme", next); } catch (err) {}
+      // store only when the choice differs from the system preference, so
+      // picking the system's own theme returns the site to auto-follow
+      try {
+        var sysTheme = matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+        if (next === sysTheme) localStorage.removeItem("theme");
+        else localStorage.setItem("theme", next);
+      } catch (err) {}
 
       // circle-reveal the new theme from the toggle (state transition)
       var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;

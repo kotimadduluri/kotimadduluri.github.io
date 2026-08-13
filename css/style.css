@@ -13,6 +13,7 @@
   --ink: #e9e7dc;
   --muted: #96988c;
   --hairline: #262b26;
+  --border-strong: #606660;
   --rule: #e9e7dc;
   --green: #3ddc84;
   --green-strong: #66e6a2;
@@ -32,6 +33,7 @@
   --ink: #1b1a17;
   --muted: #6b6960;
   --hairline: #dbd8cd;
+  --border-strong: #89877d;
   --rule: #1b1a17;
   --green: #1e5c45;
   --green-strong: #174937;
@@ -967,7 +969,7 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
   font-size: 0.95rem;
   color: var(--ink);
   background: var(--paper);
-  border: 1px solid var(--hairline);
+  border: 1px solid var(--border-strong);
   padding: 11px 12px;
   width: 100%;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
