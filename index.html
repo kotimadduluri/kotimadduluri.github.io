@@ -22,7 +22,8 @@
   <meta name="twitter:title" content="Koti Madduluri - Senior Android Engineer" />
   <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments & EPOS. 10+ years, 30+ production apps." />
 
-  <meta name="theme-color" content="#101210" />
+  <meta name="theme-color" content="#101210" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#f5f4ef" media="(prefers-color-scheme: light)" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="preconnect" href="https://api.fontshare.com" />
@@ -38,7 +39,7 @@
   <script>
     (function () {
       var stored = localStorage.getItem("theme");
-      var theme = stored || "dark";
+      var theme = stored || (matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
