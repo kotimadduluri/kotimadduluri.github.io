@@ -521,6 +521,8 @@
         document.body.appendChild(a);
         a.click();
         a.remove();
+      } else if (action === "cvpage") {
+        window.location.href = "cv/";
       } else if (action === "email") {
         if (navigator.clipboard) navigator.clipboard.writeText("kotimn@gmail.com").catch(function () {});
       } else if (action === "linkedin") {

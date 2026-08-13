@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CV · Koti Madduluri · Senior Android Engineer</title>
+  <meta name="description" content="CV of Koteswara Rao 'Koti' Madduluri, Senior Android Engineer. Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK." />
+  <link rel="canonical" href="https://kotimadduluri.github.io/cv/" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="CV · Koti Madduluri · Senior Android Engineer" />
+  <meta property="og:description" content="Live CV: Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK." />
+  <meta property="og:url" content="https://kotimadduluri.github.io/cv/" />
+  <meta property="og:image" content="https://kotimadduluri.github.io/assets/og.png" />
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+  <script>
+    document.documentElement.classList.remove("no-js");
+    (function () {
+      var stored = null;
+      try { stored = localStorage.getItem("theme"); } catch (e) {}
+      var theme = stored || "dark";
+      document.documentElement.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@700,800&amp;f[]=general-sans@400,500,600&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .cv-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+    .cv-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .cv-bar a:not(.btn) { color: var(--muted); text-decoration: none; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .cv-bar a:not(.btn):hover { color: var(--green); }
+    .cv-bar .btn { font-size: 0.85rem; padding: 10px 18px; }
+    .cv-head h1 { font-family: var(--serif); font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; line-height: 1.05; margin-bottom: 8px; }
+    .cv-role { color: var(--green); font-weight: 600; margin-bottom: 6px; }
+    .cv-contact { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 36px; }
+    .cv-contact a { color: var(--muted); }
+    .cv-contact a:hover { color: var(--green); }
+    .cv-section { margin-bottom: 40px; }
+    .cv-section > h2 {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      border-top: 2px solid var(--rule);
+      padding-top: 10px;
+      margin-bottom: 18px;
+    }
+    .cv-section p, .cv-section li { color: var(--muted); font-size: 0.95rem; }
+    .cv-skills { display: grid; gap: 8px; margin: 0; }
+    .cv-skills div { display: grid; grid-template-columns: 190px 1fr; gap: 12px; }
+    .cv-skills dt { font-weight: 600; color: var(--ink); font-size: 0.9rem; }
+    .cv-skills dd { margin: 0; }
+    .cv-job { margin-bottom: 28px; }
+    .cv-job h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 800; }
+    .cv-job h3 span { color: var(--green); font-style: italic; }
+    .cv-job-meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 10px; }
+    .cv-job ul { list-style: none; display: grid; gap: 7px; }
+    .cv-job li { padding-left: 18px; position: relative; }
+    .cv-job li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 8px; height: 2px; background: var(--green); }
+    .cv-edu li { padding-left: 0; display: flex; justify-content: space-between; gap: 16px; }
+    .cv-edu li::before { display: none; }
+    .cv-edu strong { color: var(--ink); }
+    @media (max-width: 640px) {
+      .cv-skills div { grid-template-columns: 1fr; gap: 2px; }
+      .cv-edu li { flex-direction: column; gap: 2px; }
+    }
+    @media print {
+      :root, [data-theme="dark"] {
+        --paper: #ffffff; --paper-raised: #ffffff; --ink: #191919;
+        --muted: #3d3d3d; --hairline: #cccccc; --rule: #191919;
+        --green: #1e5c45; --green-strong: #1e5c45; --green-soft: transparent;
+      }
+      body { background: #ffffff; }
+      .cv-bar { display: none; }
+      .cv-wrap { padding: 0; max-width: none; }
+      .cv-section { break-inside: avoid-page; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="cv-wrap">
+  <nav class="cv-bar" aria-label="CV navigation">
+    <a href="../">&#8592; kotimadduluri.github.io</a>
+    <a class="btn btn-primary" href="../assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download PDF</a>
+  </nav>
+
+  <header class="cv-head">
+    <h1>Koteswara Rao Madduluri</h1>
+    <p class="cv-role">Senior Android Engineer · Kotlin &amp; Jetpack Compose · Full-Stack (React, Node.js)</p>
+    <div class="cv-contact">
+      <span>London, UK</span>
+      <a href="tel:+447774969393">+44 7774 969393</a>
+      <a href="mailto:kotimn@gmail.com">kotimn@gmail.com</a>
+      <a href="https://linkedin.com/in/koti-madduluri">linkedin.com/in/koti-madduluri</a>
+      <a href="https://kotimadduluri.github.io">kotimadduluri.github.io</a>
+    </div>
+  </header>
+
+  <section class="cv-section">
+    <h2>Professional summary</h2>
+    <p>I'm a Senior Software Engineer with 10+ years of experience, mainly focused on Android (Kotlin/Java) but equally comfortable across the full stack with React, Next.js, and Node.js. Over my career I've worked on 30+ production apps across loyalty and fintech, digital banking, smart city IoT, EdTech, and enterprise software. I've led Jetpack Compose migrations across hundreds of screens, driven multi-module restructuring that cut build times by around 30%, and managed offshore teams of 4-5 engineers while working closely with stakeholders and clients. I hold a Backbase Certified Android Engineer certification and have deep hands-on experience with payment terminal integrations, EPOS systems, AI/ML on device, and real-time communication. I care about writing code that's clean, maintainable, and actually works in the real world.</p>
+  </section>
+
+  <section class="cv-section">
+    <h2>Key skills</h2>
+    <dl class="cv-skills">
+      <div><dt>Mobile</dt><dd>Kotlin, Java, Jetpack Compose, XML Layouts, KMP, CMP, Coroutines, Flow, StateFlow</dd></div>
+      <div><dt>Architecture</dt><dd>MVVM, MVI, Clean Architecture, Multi-Module, Modular Design</dd></div>
+      <div><dt>Android Libraries</dt><dd>Retrofit, Ktor, Volley, Koin, Hilt, Dagger, Room, WorkManager, Navigation Component, ExoPlayer, CameraX, Coil, Glide</dd></div>
+      <div><dt>Frontend</dt><dd>React, Next.js, TypeScript, JavaScript, HTML, CSS, SCSS</dd></div>
+      <div><dt>Backend &amp; Databases</dt><dd>Node.js, NestJS, Express, REST APIs, PostgreSQL, MySQL, MongoDB, SQLite, Firebase Realtime DB, DataStore</dd></div>
+      <div><dt>Realtime &amp; IoT</dt><dd>MQTT, XMPP, WebRTC, Socket.IO, BLE, NFC, Nano HTTP</dd></div>
+      <div><dt>Firebase</dt><dd>Auth, Firestore, FCM, Crashlytics, Remote Config, App Distribution</dd></div>
+      <div><dt>AI / ML</dt><dd>TensorFlow, TensorFlow Lite, ML Kit</dd></div>
+      <div><dt>AI-Assisted Development</dt><dd>Claude Code, Cursor, ChatGPT (Codex)</dd></div>
+      <div><dt>Testing</dt><dd>JUnit, Espresso, Robolectric, MockK</dd></div>
+      <div><dt>DevOps &amp; Security</dt><dd>GitHub Actions, Bitrise, Play Console, R8/ProGuard, SSL Certificate Pinning, Play Integrity API</dd></div>
+      <div><dt>Integrations</dt><dd>Verifone, PAX, Castles, Ingenico, Stripe, Glia, Zelle, ShuftiPro, Payveris, Threat Metrix</dd></div>
+      <div><dt>Tools</dt><dd>Android Studio Profiler, LeakCanary, Sentry, Postman, Swagger, pgAdmin, VS Code, IntelliJ, Gradle (Kotlin DSL), Linear</dd></div>
+      <div><dt>Version Control</dt><dd>GitHub, GitLab, SVN</dd></div>
+      <div><dt>Methodology</dt><dd>Agile, Scrum, Sprint Planning, Code Review, Mentoring</dd></div>
+    </dl>
+  </section>
+
+  <section class="cv-section">
+    <h2>Professional experience</h2>
+
+    <div class="cv-job">
+      <h3>Senior Android &amp; Full Stack Engineer <span>· Lopay</span></h3>
+      <p class="cv-job-meta">Feb 2026 to Present · Terminal Pay, Lopay - Point of Sale (EPOS) Products</p>
+      <ul>
+        <li>Working across two POS products - Terminal Pay and Lopay - building out the EPOS modules on Android. Both products run on dual-screen devices where the customer display and operator interface need to stay in sync.</li>
+        <li>On Terminal Pay I own the product end to end on my own, across every area: Android, iOS and the backend.</li>
+        <li>Leading the migration of both apps from XML to pure Jetpack Compose across hundreds of screens.</li>
+        <li>Restructuring both codebases from monolithic single-module setups into proper multi-module architectures, with MVVM in place across all modules.</li>
+        <li>Building and maintaining backend APIs in NestJS, contributing to the React web app, and working with the Stripe SDKs and APIs across the payment flows.</li>
+        <li>Built proof-of-concept apps with Kotlin Multiplatform (KMP) and Compose Multiplatform (CMP) to evaluate sharing business logic and UI across platforms for future Lopay products.</li>
+        <li>Actively use AI tooling - Claude Code, Cursor, and ChatGPT (Codex) - as part of the day-to-day development workflow.</li>
+        <li>Working directly with stakeholders to understand what's needed and turn it into something the team can build and ship.</li>
+      </ul>
+    </div>
+
+    <div class="cv-job">
+      <h3>Senior Android &amp; Full Stack Engineer <span>· Payment Loyalty</span></h3>
+      <p class="cv-job-meta">Nov 2023 to Jan 2026 · Payment Loyalty Platform, Lopay (May 2025 to Jan 2026)</p>
+      <ul>
+        <li>Owned the complete Payment Loyalty solution end to end. Restructured an old, faulty system from the ground up; stable ever since with zero downtime.</li>
+        <li>Built a loyalty platform that sits alongside payment terminals - Verifone, Ingenico, PAX, Castles - where the loyalty flow runs inside live transactions across different hardware in real retail environments.</li>
+        <li>Migrated 40-60 screens from XML to Jetpack Compose and built a custom design system from scratch with reusable components shared across apps and modules.</li>
+        <li>Broke the app from a single module into a multi-module architecture organised by feature and core layers. Build times dropped by around 30%.</li>
+        <li>Built and maintained backend APIs in Node.js and NestJS, and contributed regularly to the React web app.</li>
+        <li>Led an offshore team of 4-5 engineers: Linear for tasks, code reviews, coordination with vendors like Verifone, PAX, and Stripe.</li>
+        <li>Set up WorkManager and background Services for reliable offline data sync in shops and restaurants running all day.</li>
+        <li>Integrated Firebase Crashlytics and Sentry; profiled regularly with Android Studio Profiler and LeakCanary.</li>
+      </ul>
+    </div>
+
+    <div class="cv-job">
+      <h3>Senior Software Engineer <span>· Mobiquity (Hexaware)</span></h3>
+      <p class="cv-job-meta">Aug 2021 to Nov 2023 · Sandy Spring Bank, CNB Bank - Backbase Digital Banking Platform</p>
+      <ul>
+        <li>Delivered features across Accounts, Loans, Payments, Profile, and Remote Deposit Capture on the Backbase digital banking platform for two US banks.</li>
+        <li>Acted as Lead Engineer and main point of contact for the delivery team; set goals, unblocked the team, and ran knowledge transfer sessions.</li>
+        <li>Integrated Threat Metrix, Glia, Zelle, and Payveris SDKs into the Backbase product without breaking the existing architecture.</li>
+        <li>Implemented SSL certificate pinning and other banking-grade security measures.</li>
+        <li>Kept CI/CD pipelines running on GitHub Actions and App Center; managed Play Store releases across dev, staging, and production.</li>
+        <li>Used Kotlin Coroutines, Flow, and the repository pattern throughout, within a clean architecture.</li>
+      </ul>
+    </div>
+
+    <div class="cv-job">
+      <h3>Senior Software Engineer <span>· Sensen Networks</span></h3>
+      <p class="cv-job-meta">Oct 2020 to Aug 2021 · Gemineye - Smart City IoT Platform</p>
+      <ul>
+        <li>Built vehicle number plate detection and recognition with TensorFlow, TensorFlow Lite, and ML Kit; reduced manual processing and significantly improved accuracy.</li>
+        <li>Rewrote the client-admin communication layer using NanoHTTP SDK and Content Providers.</li>
+        <li>Migrated the networking layer from Volley to Retrofit; adopted Kotlin Coroutines and LiveData throughout, and ANRs dropped noticeably.</li>
+        <li>Ran pair programming sessions and code reviews with junior developers.</li>
+      </ul>
+    </div>
+
+    <div class="cv-job">
+      <h3>Software Engineer <span>· Iconma</span></h3>
+      <p class="cv-job-meta">Oct 2017 to Oct 2020 · Enterprise Collaboration &amp; EdTech Applications</p>
+      <ul>
+        <li>Built and maintained enterprise collaboration and EdTech apps covering the full Android lifecycle from requirements to release.</li>
+        <li>Led the migration of several core apps from Java to Kotlin.</li>
+        <li>Built real-time chat with XMPP and Socket.IO and developed the backend APIs powering messaging and collaboration.</li>
+      </ul>
+    </div>
+
+    <div class="cv-job">
+      <h3>Software Engineer <span>· Tvisha Technologies</span></h3>
+      <p class="cv-job-meta">Jul 2015 to Sep 2017 · Travel Planning, Real-Time Communication &amp; Payment Gateway Apps</p>
+      <ul>
+        <li>Started my career building mobile and web apps across travel, real-time communication, and payments.</li>
+        <li>Solid foundations in REST API integration, payment gateway implementation, and Material Design.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Education &amp; certifications</h2>
+    <ul class="cv-edu cv-job">
+      <li><span><strong>Backbase Certified Android Engineer</strong>, Backbase</span><span>2023</span></li>
+      <li><span><strong>B.Tech in Computer Science</strong>, Jawaharlal Nehru Technological University, India</span><span>2015</span></li>
+    </ul>
+  </section>
+</div>
+</body>
+</html>
