@@ -845,6 +845,7 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
 
 /* ---------- skills ---------- */
 
+.core-grid li.core-wide { grid-column: span 3; }
 .core-grid {
   list-style: none;
   display: grid;
@@ -1253,6 +1254,7 @@ main { counter-reset: sec; }
   .proj-tags { grid-column: 2; justify-content: flex-start; margin-top: 14px; }
   .domain-row { grid-template-columns: 200px 1fr; }
   .core-grid { grid-template-columns: repeat(4, 1fr); }
+  .core-grid li.core-wide { grid-column: span 2; }
 }
 
 @media (max-width: 800px) {
