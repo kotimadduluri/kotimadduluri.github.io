@@ -223,7 +223,7 @@
       var name = form.elements.name ? form.elements.name.value.trim() : "";
       var subject = form.elements.subject ? form.elements.subject.value.trim() : "";
       var message = form.elements.message ? form.elements.message.value.trim() : "";
-      var body = message + "\n\n— " + name;
+      var body = message + "\n\n- " + name;
       printReceipt(name);
       window.location.href =
         "mailto:kotimn@gmail.com" +
@@ -449,6 +449,20 @@
         tab.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
       });
     }
+  }
+
+  /* ---------- skills disclosure ---------- */
+  var skillsTable = document.querySelector(".skills-table");
+  var skillsMore = document.querySelector(".skills-more");
+  if (skillsTable && skillsMore) {
+    skillsTable.classList.add("is-collapsed");
+    skillsMore.hidden = false;
+    skillsMore.addEventListener("click", function () {
+      var collapsed = skillsTable.classList.toggle("is-collapsed");
+      skillsMore.setAttribute("aria-expanded", collapsed ? "false" : "true");
+      skillsMore.firstChild.textContent = collapsed ? "Show the full stack " : "Show less ";
+      skillsMore.querySelector(".skills-more-n").hidden = !collapsed;
+    });
   }
 
   /* ---------- selected work filter tabs ---------- */

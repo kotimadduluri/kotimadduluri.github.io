@@ -360,6 +360,7 @@
         <div class="skills-row reveal"><dt>Version Control</dt><dd><ul class="chips"><li>GitHub</li><li>GitLab</li><li>SVN</li></ul></dd></div>
         <div class="skills-row reveal"><dt>Practices</dt><dd><ul class="chips"><li>Agile</li><li>Scrum</li><li>Sprint Planning</li><li>Code Review</li><li>Mentoring</li></ul></dd></div>
       </dl>
+      <button class="skills-more" type="button" aria-expanded="false" hidden>Show the full stack <span class="skills-more-n">+ 8 more categories</span></button>
     </div>
   </section>
 
@@ -372,7 +373,7 @@
         <button class="work-tab" id="worktab-personal" role="tab" aria-selected="false" aria-controls="proj-list" data-track="personal" tabindex="-1" type="button">Personal<span class="work-tab-n">02</span></button>
       </div>
       <div class="proj-list" id="proj-list" role="tabpanel" aria-label="Selected work list">
-        <article class="proj-row reveal" data-track="company">
+        <article class="proj-row reveal flagship" data-track="company">
           <p class="proj-year">Now</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -388,11 +389,15 @@
               <a href="https://play.google.com/store/apps/details?id=com.terminalpay" target="_blank" rel="noopener noreferrer">Google Play &#8599;</a>
               <a href="https://apps.apple.com/us/app/terminal-pay/id6743445028" target="_blank" rel="noopener noreferrer">App Store &#8599;</a>
             </p>
+            <div class="proj-shots">
+              <img src="assets/shots/terminal-pay-2.jpg" alt="Terminal Pay charge screen taking a 10 pound card payment" loading="lazy" width="520" height="1129" />
+              <img src="assets/shots/terminal-pay-1.jpg" alt="Terminal Pay, the terminal app for Stripe payments" loading="lazy" width="520" height="1129" />
+            </div>
           </div>
           <ul class="chips proj-tags"><li>Android</li><li>Stripe Terminal</li><li>Tap to Pay</li><li>Compose</li></ul>
         </article>
 
-        <article class="proj-row reveal" data-track="company">
+        <article class="proj-row reveal flagship" data-track="company">
           <p class="proj-year">Now</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -408,11 +413,14 @@
               <a href="https://apps.apple.com/us/app/lopay-payments-pos/id1565369434" target="_blank" rel="noopener noreferrer">App Store &#8599;</a>
               <a href="https://lopay.com/en-gb/point-of-sale" target="_blank" rel="noopener noreferrer">lopay.com &#8599;</a>
             </p>
+            <div class="proj-shots">
+              <img class="shot-cutout" src="assets/shots/lopay-terminal-hw.png" alt="Lopay POS product grid running on a Stripe S700 payment terminal" loading="lazy" width="640" height="661" />
+            </div>
           </div>
           <ul class="chips proj-tags"><li>Android</li><li>Compose Migration</li><li>Multi-Module</li></ul>
         </article>
 
-        <article class="proj-row reveal" data-track="personal">
+        <article class="proj-row reveal flagship" data-track="personal">
           <p class="proj-year">2026</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -429,6 +437,7 @@
               <a href="https://github.com/kotimadduluri/printbeam-sdk" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
               <a href="https://github.com/kotimadduluri/printbeam-samples" target="_blank" rel="noopener noreferrer">Samples &#8599;</a>
             </p>
+            <p class="proj-code"><code>implementation("dev.printbeam:printbeam:0.1.0-alpha04")</code></p>
           </div>
           <ul class="chips proj-tags"><li>KMP / CMP</li><li>ESC/POS</li><li>Bluetooth LE</li><li>Swift Package</li></ul>
         </article>
@@ -534,6 +543,14 @@
       </div>
     </div>
   </section>
+
+  <!-- ============ PULL STAT ============ -->
+  <aside class="pull-stat" aria-label="Lopay platform scale">
+    <div class="container pull-stat-grid">
+      <p class="pull-stat-num reveal">50,000+</p>
+      <p class="pull-stat-copy reveal">small businesses run on the Lopay platform, where I build the point of sale.</p>
+    </div>
+  </aside>
 
   <!-- ============ DOMAIN EXPERTISE ============ -->
   <section class="section" id="expertise">
