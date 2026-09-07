@@ -739,7 +739,7 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
 
 .work-tabs {
   display: inline-flex;
-  border: 1px solid var(--border-strong);
+  border: 1px solid var(--hairline);
   margin-bottom: 28px;
 }
 .work-tab {
@@ -757,8 +757,7 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
   cursor: pointer;
   transition: color 0.15s ease, background-color 0.15s ease;
 }
-.work-tab + .work-tab { border-left: 1px solid var(--border-strong); }
-.work-tab:hover { color: var(--ink); background: var(--green-soft); }
+.work-tab + .work-tab { border-left: 1px solid var(--hairline); }
 .work-tab.is-active { color: var(--on-fill); background: var(--green-fill); }
 .work-tab-n {
   font-size: 0.65rem;
@@ -927,7 +926,7 @@ html.no-js .work-tabs { display: none; }
   font-family: var(--serif);
   font-size: clamp(1.25rem, 2.4vw, 1.9rem);
   line-height: 1.3;
-  max-width: 24ch;
+  max-width: 36ch;
   margin: 0;
 }
 @media (max-width: 800px) {
@@ -952,8 +951,19 @@ html.no-js .work-tabs { display: none; }
   cursor: pointer;
   transition: color 0.15s ease, background-color 0.15s ease;
 }
-.skills-more:hover { color: var(--ink); background: var(--green-soft); }
 .skills-more-n { font-size: 0.65rem; color: color-mix(in srgb, var(--muted) 65%, transparent); }
+@media (max-width: 480px) {
+  .skills-more { flex-direction: column; align-items: flex-start; gap: 4px; }
+}
+/* newly revealed rows ease in with a short stagger (JS sets --i) */
+.row-in {
+  animation: row-in 0.2s ease-out both;
+  animation-delay: calc(var(--i, 0) * 40ms);
+}
+@keyframes row-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: none; }
+}
 
 /* ---------- domain expertise ---------- */
 
@@ -1346,6 +1356,35 @@ main { counter-reset: sec; }
 }
 .xp-hit { animation: xp-flash 1.4s ease-out both; }
 
+/* ---------- interaction polish: press states + touch-safe hovers ---------- */
+
+.work-tab, .skills-more, .xp-tab, .theme-toggle {
+  transition: transform 0.12s ease-out, color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+.work-tab:active, .skills-more:active, .xp-tab:active, .theme-toggle:active { transform: scale(0.97); }
+.cmdk-list li:active { background: var(--green-soft); }
+.proj-links a:active, .contact-links a:active, .footer-links a:active { color: var(--green); }
+.tl-span {
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, filter 0.15s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-tab:hover:not(.is-active) { color: var(--ink); background: var(--green-soft); }
+  .skills-more:hover { color: var(--ink); background: var(--green-soft); }
+}
+@media (hover: none) {
+  /* taps must not leave elements stuck in their hover state */
+  .xp-tab:hover:not(.is-active) { border-left-color: var(--hairline); background: transparent; }
+  .xp-tab:hover:not(.is-active) .xp-tab-org { color: var(--muted); }
+  .proj-row:hover { background: transparent; }
+  .proj-row:hover .proj-main h3 { color: inherit; }
+  .proj-row:hover .proj-outcome { color: var(--green); }
+  .core-grid li:hover { background: transparent; }
+  .core-grid li:hover .brand-ic { color: currentColor; }
+  .skills-row:hover, .domain-row:hover { background: transparent; }
+  .chips li:hover { border-color: var(--hairline); color: inherit; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
@@ -1373,6 +1412,14 @@ main { counter-reset: sec; }
   html:not(.no-js) .timeline-scroll:not(.is-visible) .tl-span { transform: none; }
   .timeline-scroll.is-visible .tl-span { animation: none; }
   .btn { transform: none; }
+  /* gentler press cue instead of none at all */
+  .btn:active, .work-tab:active, .skills-more:active, .xp-tab:active, .theme-toggle:active {
+    transform: none;
+    filter: brightness(0.93);
+  }
+  .work-tab, .skills-more, .xp-tab, .theme-toggle { transition: none; }
+  .nav-toggle span { transition: none; }
+  .row-in { animation: none; }
 }
 
 /* ---------- responsive ---------- */

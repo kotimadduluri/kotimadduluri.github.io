@@ -265,15 +265,20 @@
       return g ? g : "#3ddc84";
     }
 
+    var smx = -9999, smy = -9999;
     function draw() {
       var w = canvas.width, h = canvas.height;
       ctx.clearRect(0, 0, w, h);
       var base = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#96988c";
       var green = greenColor();
+      // damped pointer: the field trails the cursor instead of snapping to it
+      if (smx < -5000) { smx = mouse.x; smy = mouse.y; }
+      smx += (mouse.x - smx) * 0.18;
+      smy += (mouse.y - smy) * 0.18;
       for (var i = 0; i < dots.length; i++) {
         var d = dots[i];
-        var dx = d.x - mouse.x;
-        var dy = d.y - mouse.y;
+        var dx = d.x - smx;
+        var dy = d.y - smy;
         var dist = Math.hypot(dx, dy);
         var t = Math.max(0, 1 - dist / RADIUS);
         var push = t * t * 10;
@@ -311,6 +316,7 @@
       });
       masthead.addEventListener("pointerleave", function () {
         mouse.x = -9999; mouse.y = -9999;
+        smx = -9999; smy = -9999;
         // let the field settle to static, then stop the loop
         setTimeout(function () { running = true; draw(); stop(); }, 60);
       });
@@ -358,12 +364,29 @@
 
     if (finePointer) {
       var mast = nameWrap.closest(".masthead") || nameWrap;
+      // damped UV lamp: the glow trails the cursor
+      var uvTX = -999, uvTY = -999, uvX = -999, uvY = -999, uvRaf = null;
+      function uvTick() {
+        uvX += (uvTX - uvX) * 0.22;
+        uvY += (uvTY - uvY) * 0.22;
+        nameWrap.style.setProperty("--ux", uvX.toFixed(1) + "px");
+        nameWrap.style.setProperty("--uy", uvY.toFixed(1) + "px");
+        if (Math.abs(uvTX - uvX) + Math.abs(uvTY - uvY) > 0.5) {
+          uvRaf = requestAnimationFrame(uvTick);
+        } else {
+          uvRaf = null;
+        }
+      }
       mast.addEventListener("pointermove", function (e) {
         var rect = nameWrap.getBoundingClientRect();
-        nameWrap.style.setProperty("--ux", (e.clientX - rect.left).toFixed(0) + "px");
-        nameWrap.style.setProperty("--uy", (e.clientY - rect.top).toFixed(0) + "px");
+        uvTX = e.clientX - rect.left;
+        uvTY = e.clientY - rect.top;
+        if (uvX < -500) { uvX = uvTX; uvY = uvTY; }
+        if (!uvRaf) uvRaf = requestAnimationFrame(uvTick);
       });
       mast.addEventListener("pointerleave", function () {
+        if (uvRaf) { cancelAnimationFrame(uvRaf); uvRaf = null; }
+        uvTX = uvX = -999; uvTY = uvY = -999;
         nameWrap.style.setProperty("--ux", "-999px");
         nameWrap.style.setProperty("--uy", "-999px");
       });
@@ -386,7 +409,8 @@
       panel.classList.toggle("is-active", j === idx);
       panel.classList.remove("panel-in");
     });
-    if (!reduceMotion && xpPanels[idx]) {
+    // keyboard-driven tab changes never animate (rapid arrow cycling must feel instant)
+    if (!reduceMotion && !focusTab && xpPanels[idx]) {
       void xpPanels[idx].offsetWidth;
       xpPanels[idx].classList.add("panel-in");
     }
@@ -462,6 +486,15 @@
       skillsMore.setAttribute("aria-expanded", collapsed ? "false" : "true");
       skillsMore.firstChild.textContent = collapsed ? "Show the full stack " : "Show less ";
       skillsMore.querySelector(".skills-more-n").hidden = !collapsed;
+      if (!collapsed) {
+        var revealed = Array.prototype.slice.call(skillsTable.querySelectorAll(".skills-row")).slice(5);
+        revealed.forEach(function (row, i) {
+          row.classList.remove("row-in");
+          void row.offsetWidth;
+          row.style.setProperty("--i", i);
+          row.classList.add("row-in");
+        });
+      }
     });
   }
 
@@ -476,8 +509,17 @@
       t.setAttribute("aria-selected", on ? "true" : "false");
       t.tabIndex = on ? 0 : -1;
     });
+    var shown = 0;
     workRows.forEach(function (row) {
-      row.hidden = row.getAttribute("data-track") !== track;
+      var show = row.getAttribute("data-track") === track;
+      if (show && row.hidden) {
+        row.classList.remove("row-in");
+        void row.offsetWidth;
+        row.style.setProperty("--i", Math.min(shown, 4));
+        row.classList.add("row-in");
+      }
+      if (show) shown++;
+      row.hidden = !show;
     });
   }
   workTabs.forEach(function (tab, i) {
