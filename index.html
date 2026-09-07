@@ -247,7 +247,7 @@
               <li>Building EPOS modules across two POS products running on dual-screen devices, keeping the customer display and operator interface in sync.</li>
               <li>Own Terminal Pay end to end, solo: Android, iOS and the backend.</li>
               <li>Migrating both apps from XML to pure Jetpack Compose across hundreds of screens, and restructuring monolithic codebases into multi-module MVVM.</li>
-              <li>Built a shared print library that drives receipt printing across both POS products.</li>
+              <li>Built and released PrintBeam, a Kotlin Multiplatform print library that drives receipt printing across both POS products: one API for ESC/POS printers over network and Bluetooth LE on Android and iOS.</li>
               <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
             </ul>
             <ul class="chips xp-tags"><li>Jetpack Compose</li><li>KMP / CMP</li><li>Stripe</li><li>NestJS</li><li>React</li></ul>
@@ -398,7 +398,7 @@
                 <p class="proj-org">Lopay</p>
               </div>
             </div>
-            <p class="proj-desc">Point of sale inside the Lopay platform used by 50,000+ small businesses in the UK, expanding into the US: product grids, inventory and digital receipts on Stripe payment hardware. Leading its XML to Compose migration and multi-module restructure.</p>
+            <p class="proj-desc">Point of sale inside the Lopay platform used by 50,000+ small businesses in the UK, expanding into the US: product grids, inventory and digital receipts on Stripe payment hardware. Migrating it from XML to Compose alongside a multi-module restructure.</p>
             <p class="proj-outcome">Hundreds of screens moving to pure Compose; team ships in parallel</p>
             <p class="proj-links">
               <a href="https://apps.apple.com/us/app/lopay-payments-pos/id1565369434" target="_blank" rel="noopener noreferrer">App Store &#8599;</a>
@@ -406,6 +406,27 @@
             </p>
           </div>
           <ul class="chips proj-tags"><li>Android</li><li>Compose Migration</li><li>Multi-Module</li></ul>
+        </article>
+
+        <article class="proj-row reveal">
+          <p class="proj-year">2026</p>
+          <div class="proj-main">
+            <div class="proj-head">
+              <img class="proj-app-ic" src="assets/apps/printbeam.svg" alt="" width="48" height="48" loading="lazy" />
+              <div>
+                <h3>PrintBeam <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+                <p class="proj-org">Own SDK release</p>
+              </div>
+            </div>
+            <p class="proj-desc">One API for ESC/POS receipt printers over network and Bluetooth LE, on Android, iOS and Kotlin Multiplatform. Shipped as hosted Maven artifacts and a Swift Package, with Compose Multiplatform, SwiftUI and native Android sample apps.</p>
+            <p class="proj-outcome">Designed, built and released solo; free to use, including commercially</p>
+            <p class="proj-links">
+              <a href="https://kotimadduluri.github.io/printbeam-sdk/" target="_blank" rel="noopener noreferrer">Docs &#8599;</a>
+              <a href="https://github.com/kotimadduluri/printbeam-sdk" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
+              <a href="https://github.com/kotimadduluri/printbeam-samples" target="_blank" rel="noopener noreferrer">Samples &#8599;</a>
+            </p>
+          </div>
+          <ul class="chips proj-tags"><li>KMP / CMP</li><li>ESC/POS</li><li>Bluetooth LE</li><li>Swift Package</li></ul>
         </article>
 
         <article class="proj-row reveal">
