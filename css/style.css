@@ -730,6 +730,37 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
 
 /* ---------- selected work ---------- */
 
+.work-tabs {
+  display: flex;
+  position: relative;
+  z-index: 1;
+  margin-bottom: -2px;
+}
+.work-tab {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 10px 16px 12px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.work-tab:hover { color: var(--ink); border-bottom-color: color-mix(in srgb, var(--green) 45%, transparent); }
+.work-tab.is-active { color: var(--green); border-bottom-color: var(--green); background: var(--green-soft); }
+.work-tab-n {
+  font-size: 0.65rem;
+  color: color-mix(in srgb, var(--muted) 65%, transparent);
+}
+.work-tab.is-active .work-tab-n { color: inherit; }
+html.no-js .work-tabs { display: none; }
+
 .proj-list { border-top: 2px solid var(--rule); }
 .proj-row {
   display: grid;
@@ -740,6 +771,7 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
   align-items: start;
 }
 .proj-row > * { min-width: 0; }
+.proj-row[hidden] { display: none; }
 
 .proj-year {
   font-family: var(--mono);

@@ -367,8 +367,12 @@
   <section class="section" id="work">
     <div class="container">
       <h2 class="reveal">Selected work</h2>
-      <div class="proj-list">
-        <article class="proj-row reveal">
+      <div class="work-tabs reveal" role="tablist" aria-label="Work type">
+        <button class="work-tab is-active" id="worktab-company" role="tab" aria-selected="true" aria-controls="proj-list" data-track="company" type="button">Company<span class="work-tab-n">07</span></button>
+        <button class="work-tab" id="worktab-personal" role="tab" aria-selected="false" aria-controls="proj-list" data-track="personal" tabindex="-1" type="button">Personal<span class="work-tab-n">02</span></button>
+      </div>
+      <div class="proj-list" id="proj-list" role="tabpanel" aria-label="Selected work list">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">Now</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -388,7 +392,7 @@
           <ul class="chips proj-tags"><li>Android</li><li>Stripe Terminal</li><li>Tap to Pay</li><li>Compose</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">Now</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -408,7 +412,7 @@
           <ul class="chips proj-tags"><li>Android</li><li>Compose Migration</li><li>Multi-Module</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="personal">
           <p class="proj-year">2026</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -429,7 +433,26 @@
           <ul class="chips proj-tags"><li>KMP / CMP</li><li>ESC/POS</li><li>Bluetooth LE</li><li>Swift Package</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="personal">
+          <p class="proj-year">2026</p>
+          <div class="proj-main">
+            <div class="proj-head">
+              <img class="proj-app-ic" src="assets/apps/locodrop.svg" alt="" width="48" height="48" loading="lazy" />
+              <div>
+                <h3>LocoDrop <svg class="ic proj-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg></h3>
+                <p class="proj-org">Own product, early access</p>
+              </div>
+            </div>
+            <p class="proj-desc">Private file transfer between your own devices: files move over the local network, encrypted end to end, with no cloud and no account. One app across Android, iPhone, Windows, Mac and Linux.</p>
+            <p class="proj-outcome">v0.1 working build; early access opening soon</p>
+            <p class="proj-links">
+              <a href="https://kotimadduluri.github.io/locodrop-web/" target="_blank" rel="noopener noreferrer">Website &#8599;</a>
+            </p>
+          </div>
+          <ul class="chips proj-tags"><li>Cross-Platform</li><li>Local-First</li><li>Encrypted</li></ul>
+        </article>
+
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">2023</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -445,7 +468,7 @@
           <ul class="chips proj-tags"><li>Fintech</li><li>Multi-Module</li><li>Design System</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">2021</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -461,7 +484,7 @@
           <ul class="chips proj-tags"><li>Backbase</li><li>Banking</li><li>Security</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">2020</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -477,7 +500,7 @@
           <ul class="chips proj-tags"><li>AI / ML</li><li>IoT</li><li>On-Device</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">2017</p>
           <div class="proj-main">
             <div class="proj-head">
@@ -493,7 +516,7 @@
           <ul class="chips proj-tags"><li>Android</li><li>XMPP</li><li>Socket.IO</li></ul>
         </article>
 
-        <article class="proj-row reveal">
+        <article class="proj-row reveal" data-track="company">
           <p class="proj-year">2015</p>
           <div class="proj-main">
             <div class="proj-head">

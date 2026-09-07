@@ -451,6 +451,38 @@
     }
   }
 
+  /* ---------- selected work filter tabs ---------- */
+  var workTabs = Array.prototype.slice.call(document.querySelectorAll(".work-tab"));
+  var workRows = Array.prototype.slice.call(document.querySelectorAll("#work .proj-row"));
+  function selectWork(tab) {
+    var track = tab.getAttribute("data-track");
+    workTabs.forEach(function (t) {
+      var on = t === tab;
+      t.classList.toggle("is-active", on);
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+    });
+    workRows.forEach(function (row) {
+      row.hidden = row.getAttribute("data-track") !== track;
+    });
+  }
+  workTabs.forEach(function (tab, i) {
+    tab.addEventListener("click", function () { selectWork(tab); });
+    tab.addEventListener("keydown", function (e) {
+      var next = null;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = workTabs[(i + 1) % workTabs.length];
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = workTabs[(i - 1 + workTabs.length) % workTabs.length];
+      else if (e.key === "Home") next = workTabs[0];
+      else if (e.key === "End") next = workTabs[workTabs.length - 1];
+      if (next) {
+        e.preventDefault();
+        next.focus();
+        selectWork(next);
+      }
+    });
+  });
+  if (workTabs.length) selectWork(workTabs[0]);
+
   /* ---------- magnetic buttons (fine pointers) ---------- */
   if (finePointer && !reduceMotion) {
     var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
