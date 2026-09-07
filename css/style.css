@@ -731,10 +731,9 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
 /* ---------- selected work ---------- */
 
 .work-tabs {
-  display: flex;
-  position: relative;
-  z-index: 1;
-  margin-bottom: -2px;
+  display: inline-flex;
+  border: 1px solid var(--border-strong);
+  margin-bottom: 28px;
 }
 .work-tab {
   display: inline-flex;
@@ -747,18 +746,18 @@ html.no-js .xp-panel { display: block; border-bottom: 1px solid var(--hairline);
   color: var(--muted);
   background: transparent;
   border: 0;
-  border-bottom: 2px solid transparent;
-  padding: 10px 16px 12px;
+  padding: 11px 20px 12px;
   cursor: pointer;
-  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  transition: color 0.15s ease, background-color 0.15s ease;
 }
-.work-tab:hover { color: var(--ink); border-bottom-color: color-mix(in srgb, var(--green) 45%, transparent); }
-.work-tab.is-active { color: var(--green); border-bottom-color: var(--green); background: var(--green-soft); }
+.work-tab + .work-tab { border-left: 1px solid var(--border-strong); }
+.work-tab:hover { color: var(--ink); background: var(--green-soft); }
+.work-tab.is-active { color: var(--on-fill); background: var(--green-fill); }
 .work-tab-n {
   font-size: 0.65rem;
   color: color-mix(in srgb, var(--muted) 65%, transparent);
 }
-.work-tab.is-active .work-tab-n { color: inherit; }
+.work-tab.is-active .work-tab-n { color: color-mix(in srgb, var(--on-fill) 70%, transparent); }
 html.no-js .work-tabs { display: none; }
 
 .proj-list { border-top: 2px solid var(--rule); }
