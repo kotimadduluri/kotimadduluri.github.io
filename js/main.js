@@ -612,6 +612,8 @@
         if (navigator.clipboard) navigator.clipboard.writeText("kotimn@gmail.com").catch(function () {});
       } else if (action === "linkedin") {
         window.open("https://linkedin.com/in/koti-madduluri", "_blank", "noopener");
+      } else if (action === "github") {
+        window.open("https://github.com/kotimadduluri", "_blank", "noopener");
       } else if (action === "theme" && themeToggle) {
         themeToggle.click();
       }
