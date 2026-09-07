@@ -419,8 +419,8 @@
 
   if (tlLanes.length === 2) {
     var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
-    // lanes run oldest-first, the tab rail newest-first
-    var tabForLane = function (i) { return xpTabs.length - 1 - i; };
+    // lanes and the tab rail both run newest-first
+    var tabForLane = function (i) { return i; };
     var setHot = function (i, on) {
       if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
       if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
@@ -444,7 +444,7 @@
 
     if (finePointer) {
       xpTabs.forEach(function (tab, j) {
-        var laneIdx = xpTabs.length - 1 - j;
+        var laneIdx = j;
         tab.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
         tab.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
       });
