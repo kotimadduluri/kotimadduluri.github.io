@@ -235,6 +235,8 @@
   /* ---------- masthead dot matrix (cursor-reactive, fine pointers) ---------- */
   var canvas = document.querySelector(".dot-grid");
   var finePointer = matchMedia("(pointer: fine)").matches;
+  // shared flag: cursor effects idle whenever the masthead is off screen
+  var mastOnScreen = true;
 
   if (canvas && !reduceMotion) {
     var ctx = canvas.getContext("2d");
@@ -245,54 +247,103 @@
     var rafId = null;
     var SPACING = 26;
     var RADIUS = 130;
+    var gridW = 0, gridH = 0, cols = 0, rowsN = 0;
+    var docLeft = 0, docTop = 0;
+    var baseColor = "#96988c", accentColor = "#3ddc84";
+    var staticLayer = null;
+
+    function readColors() {
+      var cs = getComputedStyle(document.documentElement);
+      baseColor = cs.getPropertyValue("--muted").trim() || "#96988c";
+      accentColor = cs.getPropertyValue("--green").trim() || "#3ddc84";
+    }
+
+    // the resting field is prerendered once; frames only redraw dots near the cursor
+    function buildStatic() {
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      staticLayer = document.createElement("canvas");
+      staticLayer.width = canvas.width;
+      staticLayer.height = canvas.height;
+      var sctx = staticLayer.getContext("2d");
+      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sctx.globalAlpha = 0.16;
+      sctx.fillStyle = baseColor;
+      sctx.beginPath();
+      for (var i = 0; i < dots.length; i++) {
+        sctx.moveTo(dots[i].x + 1, dots[i].y);
+        sctx.arc(dots[i].x, dots[i].y, 1, 0, Math.PI * 2);
+      }
+      sctx.fill();
+    }
 
     function buildGrid() {
       var rect = masthead.getBoundingClientRect();
-      var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
+      docLeft = rect.left + window.scrollX;
+      docTop = rect.top + window.scrollY;
+      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+      gridW = rect.width;
+      gridH = rect.height;
+      canvas.width = gridW * dpr;
+      canvas.height = gridH * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       dots = [];
-      for (var y = SPACING; y < rect.height; y += SPACING) {
-        for (var x = SPACING; x < rect.width; x += SPACING) {
+      cols = 0;
+      rowsN = 0;
+      for (var y = SPACING; y < gridH; y += SPACING) {
+        rowsN++;
+        var rowCount = 0;
+        for (var x = SPACING; x < gridW; x += SPACING) {
           dots.push({ x: x, y: y });
+          rowCount++;
         }
+        cols = rowCount;
       }
-    }
-
-    function greenColor(alpha) {
-      var g = getComputedStyle(document.documentElement).getPropertyValue("--green").trim();
-      return g ? g : "#3ddc84";
+      readColors();
+      buildStatic();
     }
 
     var smx = -9999, smy = -9999;
     function draw() {
-      var w = canvas.width, h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-      var base = getComputedStyle(document.documentElement).getPropertyValue("--muted").trim() || "#96988c";
-      var green = greenColor();
+      ctx.clearRect(0, 0, gridW, gridH);
+      if (staticLayer) ctx.drawImage(staticLayer, 0, 0, gridW, gridH);
       // damped pointer: the field trails the cursor instead of snapping to it
       if (smx < -5000) { smx = mouse.x; smy = mouse.y; }
       smx += (mouse.x - smx) * 0.18;
       smy += (mouse.y - smy) * 0.18;
-      for (var i = 0; i < dots.length; i++) {
-        var d = dots[i];
-        var dx = d.x - smx;
-        var dy = d.y - smy;
-        var dist = Math.hypot(dx, dy);
-        var t = Math.max(0, 1 - dist / RADIUS);
-        var push = t * t * 10;
-        var px = dist > 0 ? d.x + (dx / dist) * push : d.x;
-        var py = dist > 0 ? d.y + (dy / dist) * push : d.y;
-        var r = 1 + t * 1.6;
-        ctx.globalAlpha = 0.16 + t * 0.7;
-        ctx.fillStyle = t > 0.05 ? green : base;
-        ctx.beginPath();
-        ctx.arc(px, py, r, 0, Math.PI * 2);
-        ctx.fill();
+      // touch only the grid window around the cursor, not all ~2000 dots
+      var r0 = Math.max(0, Math.floor((smy - RADIUS) / SPACING) - 1);
+      var r1 = Math.min(rowsN - 1, Math.ceil((smy + RADIUS) / SPACING));
+      var c0 = Math.max(0, Math.floor((smx - RADIUS) / SPACING) - 1);
+      var c1 = Math.min(cols - 1, Math.ceil((smx + RADIUS) / SPACING));
+      for (var ry = r0; ry <= r1; ry++) {
+        for (var cx = c0; cx <= c1; cx++) {
+          var d = dots[ry * cols + cx];
+          if (!d) continue;
+          var dx = d.x - smx;
+          var dy = d.y - smy;
+          var dist = Math.hypot(dx, dy);
+          var t = Math.max(0, 1 - dist / RADIUS);
+          if (t <= 0.01) continue;
+          var push = t * t * 10;
+          var px = dist > 0 ? d.x + (dx / dist) * push : d.x;
+          var py = dist > 0 ? d.y + (dy / dist) * push : d.y;
+          ctx.globalAlpha = 0.16 + t * 0.7;
+          ctx.fillStyle = t > 0.05 ? accentColor : baseColor;
+          ctx.beginPath();
+          ctx.arc(px, py, 1 + t * 1.6, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
       ctx.globalAlpha = 1;
-      rafId = running ? requestAnimationFrame(draw) : null;
+      // once the field has caught up with the cursor, stop burning frames;
+      // any pointermove starts the loop again
+      var settled = Math.abs(mouse.x - smx) + Math.abs(mouse.y - smy) < 0.4;
+      if (running && !settled) {
+        rafId = requestAnimationFrame(draw);
+      } else {
+        running = false;
+        rafId = null;
+      }
     }
 
     function start() {
@@ -305,29 +356,43 @@
 
     buildGrid();
     // draw one static frame even without pointer interaction
-    running = true; draw(); stop();
+    draw();
 
     if (finePointer) {
       masthead.addEventListener("pointermove", function (e) {
-        var rect = masthead.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-        start();
+        // cached document offsets: no layout flush per event
+        mouse.x = e.clientX + window.scrollX - docLeft;
+        mouse.y = e.clientY + window.scrollY - docTop;
+        if (mastOnScreen) start();
       });
       masthead.addEventListener("pointerleave", function () {
-        mouse.x = -9999; mouse.y = -9999;
-        smx = -9999; smy = -9999;
-        // let the field settle to static, then stop the loop
-        setTimeout(function () { running = true; draw(); stop(); }, 60);
+        mouse.x = -9999;
+        mouse.y = -9999;
+        // the loop eases the field back out and stops itself once settled
+        if (mastOnScreen) start();
       });
     }
+
+    if (hasIO) {
+      new IntersectionObserver(function (entries) {
+        mastOnScreen = entries[entries.length - 1].isIntersecting;
+        if (!mastOnScreen) stop();
+      }, { rootMargin: "80px" }).observe(masthead);
+    }
+
+    // theme switches recolor the prerendered field
+    new MutationObserver(function () {
+      readColors();
+      buildStatic();
+      draw();
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
     var resizeTimer = null;
     window.addEventListener("resize", function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
         buildGrid();
-        running = true; draw(); stop();
+        draw();
       }, 150);
     });
   }
@@ -356,10 +421,22 @@
     };
     buildPrint();
 
+    // cache the wrap's document offsets so pointermove never forces layout
+    var wrapLeft = 0, wrapTop = 0;
+    var measureWrap = function () {
+      var r = nameWrap.getBoundingClientRect();
+      wrapLeft = r.left + window.scrollX;
+      wrapTop = r.top + window.scrollY;
+    };
+    measureWrap();
+
     var printResizeTimer = null;
     window.addEventListener("resize", function () {
       clearTimeout(printResizeTimer);
-      printResizeTimer = setTimeout(buildPrint, 150);
+      printResizeTimer = setTimeout(function () {
+        buildPrint();
+        measureWrap();
+      }, 150);
     });
 
     if (finePointer) {
@@ -378,9 +455,9 @@
         }
       }
       mast.addEventListener("pointermove", function (e) {
-        var rect = nameWrap.getBoundingClientRect();
-        uvTX = e.clientX - rect.left;
-        uvTY = e.clientY - rect.top;
+        if (!mastOnScreen) return;
+        uvTX = e.clientX + window.scrollX - wrapLeft;
+        uvTY = e.clientY + window.scrollY - wrapTop;
         if (uvX < -500) { uvX = uvTX; uvY = uvTY; }
         if (!uvRaf) uvRaf = requestAnimationFrame(uvTick);
       });
