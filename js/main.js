@@ -616,6 +616,38 @@
   });
   if (workTabs.length) selectWork(workTabs[0]);
 
+  /* ---------- in-copy ledger links: prose that jumps to the proof ---------- */
+  var copyLinks = Array.prototype.slice.call(document.querySelectorAll("a.copy-link"));
+  copyLinks.forEach(function (link) {
+    link.addEventListener("click", function (e) {
+      var hash = link.getAttribute("href");
+      if (!hash || hash.charAt(0) !== "#") return;
+      var target = document.querySelector(hash);
+      if (!target) return;
+      e.preventDefault();
+      // rows hidden behind the other work tab: switch tabs first
+      if (target.classList.contains("proj-row") && target.hidden) {
+        var track = target.getAttribute("data-track");
+        var tab = workTabs.filter(function (t) {
+          return t.getAttribute("data-track") === track;
+        })[0];
+        if (tab) selectWork(tab);
+      }
+      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
+      // one-beat highlighter pass so the eye lands on the right row
+      if (target.classList.contains("proj-row")) {
+        target.classList.remove("is-flashed");
+        void target.offsetWidth;
+        target.classList.add("is-flashed");
+        target.addEventListener("animationend", function onFlashEnd(ev) {
+          if (ev.animationName !== "row-flash") return;
+          target.classList.remove("is-flashed");
+          target.removeEventListener("animationend", onFlashEnd);
+        });
+      }
+    });
+  });
+
   /* ---------- magnetic buttons (fine pointers) ---------- */
   if (finePointer && !reduceMotion) {
     var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
