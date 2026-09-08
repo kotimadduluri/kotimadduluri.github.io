@@ -1037,26 +1037,15 @@ article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-
 
 /* ---------- skills ---------- */
 
-/* the stack in three ledger bands: each group closes as a full row */
-.stack-label {
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin: 0 0 10px;
-}
+.core-grid li.core-wide { grid-column: span 3; }
 .core-grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   border-top: 1px solid var(--hairline);
   border-left: 1px solid var(--hairline);
-  margin-bottom: 26px;
+  margin-bottom: clamp(36px, 5vh, 56px);
 }
-.core-grid-5 { grid-template-columns: repeat(5, 1fr); }
-.core-grid-3 { grid-template-columns: repeat(3, 1fr); }
-.core-grid:last-of-type { margin-bottom: clamp(36px, 5vh, 56px); }
 .core-grid li {
   display: flex;
   flex-direction: column;
@@ -1548,8 +1537,8 @@ main { counter-reset: sec; }
   .proj-row { grid-template-columns: 90px 1fr; }
   .proj-tags { grid-column: 2; justify-content: flex-start; margin-top: 14px; }
   .domain-row { grid-template-columns: 200px 1fr; }
-  .core-grid, .core-grid-5, .core-grid-3 { grid-template-columns: repeat(3, 1fr); }
-  .core-grid-5 li:last-child { grid-column: span 2; }
+  .core-grid { grid-template-columns: repeat(4, 1fr); }
+  .core-grid li.core-wide { grid-column: span 2; }
 }
 
 @media (max-width: 800px) {
@@ -1598,8 +1587,7 @@ main { counter-reset: sec; }
   .proj-row { grid-template-columns: 1fr; gap: 8px; padding: 28px 0; }
   .proj-year { margin: 0; }
   .proj-tags { grid-column: 1; }
-  .core-grid, .core-grid-5, .core-grid-3 { grid-template-columns: repeat(2, 1fr); }
-  .core-grid-5 li:last-child, .core-grid-3 li:last-child { grid-column: span 2; }
+  .core-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 480px) {
