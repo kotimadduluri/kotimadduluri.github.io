@@ -817,13 +817,9 @@ html.no-js .work-tabs { display: none; }
   margin: 12px 0 0;
 }
 .proj-main h3 {
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   font-weight: 800;
   margin-bottom: 2px;
-  transition: color 0.15s ease;
 }
 .proj-head {
   display: flex;
@@ -849,16 +845,6 @@ html.no-js .work-tabs { display: none; }
   border: 1px solid var(--hairline);
   background: #fff;
 }
-.proj-arrow {
-  width: 22px;
-  height: 22px;
-  color: var(--green);
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-.proj-row:hover .proj-main h3 { color: var(--green); }
-.proj-row:hover .proj-arrow { opacity: 1; transform: none; }
 .proj-org {
   font-family: var(--mono);
   font-size: 0.76rem;
@@ -1506,7 +1492,6 @@ main { counter-reset: sec; }
   .xp-tab:hover:not(.is-active) { border-left-color: var(--hairline); background: transparent; }
   .xp-tab:hover:not(.is-active) .xp-tab-org { color: var(--muted); }
   .proj-row:hover { background: transparent; }
-  .proj-row:hover .proj-main h3 { color: inherit; }
   .proj-row:hover .proj-outcome { color: var(--green); }
   .core-grid li:hover { background: transparent; }
   .core-grid li:hover .brand-ic { color: currentColor; }
@@ -1517,12 +1502,11 @@ main { counter-reset: sec; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .btn, .chips li, .btn .ic, .proj-arrow, .core-grid li { transition: none; }
+  .btn, .chips li, .btn .ic, .core-grid li { transition: none; }
   .btn:active { transform: none; }
   .h-line-inner { transform: none; transition: none; }
   .u-draw::after { transform: scaleX(1); transition: none; }
   .scroll-progress { display: none; }
-  .proj-arrow { opacity: 1; transform: none; }
   .marquee { mask-image: none; -webkit-mask-image: none; }
   .marquee-track {
     animation: none;
