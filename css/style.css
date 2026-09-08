@@ -473,6 +473,38 @@ html.no-js .u-draw::after { transform: scaleX(1); }
   font-weight: 800;
   margin-bottom: clamp(36px, 5vh, 56px);
 }
+.section h2:has(+ .section-sub) { margin-bottom: 14px; }
+
+/* one word per header gets the hero's drawn green underline;
+   it draws when the header scrolls into view */
+.section h2 .hl-draw {
+  position: relative;
+  padding-bottom: 0.04em;
+}
+.section h2 .hl-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.02em;
+  height: 0.055em;
+  background: var(--green);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+.section h2.is-visible .hl-draw::after,
+html.no-js .section h2 .hl-draw::after { transform: scaleX(1); }
+
+/* mono sub-caption under the header: one line of ledger context */
+.section-sub {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  max-width: 64ch;
+  margin: 0 0 clamp(36px, 5vh, 56px);
+}
 
 /* ---------- career timeline band ---------- */
 
@@ -1524,6 +1556,7 @@ main { counter-reset: sec; }
   .work-tab, .skills-more, .xp-tab, .theme-toggle { transition: none; }
   .nav-toggle span { transition: none; }
   .row-in { animation: none; }
+  .section h2 .hl-draw::after { transform: scaleX(1); transition: none; }
 }
 
 /* ---------- responsive ---------- */
