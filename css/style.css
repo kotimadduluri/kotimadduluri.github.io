@@ -840,6 +840,15 @@ html.no-js .work-tabs { display: none; }
   border: 1px solid var(--hairline);
   background: #fff;
 }
+/* small company mark inline with the org line, when the big icon is the app's */
+.proj-org-ic {
+  width: 16px;
+  height: 16px;
+  vertical-align: -3px;
+  margin-right: 6px;
+  border: 1px solid var(--hairline);
+  background: #fff;
+}
 .proj-arrow {
   width: 22px;
   height: 22px;
