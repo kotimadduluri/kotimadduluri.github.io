@@ -942,6 +942,13 @@ article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-
   max-height: 470px;
   object-fit: contain;
 }
+/* flat screen captures get a hairline plate so they read as a screen,
+   not as artwork floating on the paper */
+.proj-media img.shot-plate {
+  border: 1px solid var(--hairline);
+  width: 100%;
+  max-height: none;
+}
 
 /* PrintBeam fact sheet, printed on the same receipt paper as the
    contact form easter egg; every line is a verified fact */
