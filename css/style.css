@@ -858,47 +858,93 @@ html.no-js .work-tabs { display: none; }
 .proj-links a:hover { color: var(--green); border-color: var(--green); }
 .proj-tags { justify-content: flex-end; align-content: start; }
 
-/* flagship rows: the proof line gets a bigger typographic beat */
+/* flagship rows: full case-study beat. Text and product media become
+   equal columns; media alternates sides so the ledger gets a rhythm. */
+.proj-row.flagship {
+  grid-template-columns: 110px minmax(0, 1fr) clamp(300px, 36vw, 540px);
+  grid-template-areas: "year main media";
+  gap: 24px 48px;
+  padding: 52px 0;
+}
+.proj-row.flagship .proj-year { grid-area: year; }
+.proj-row.flagship .proj-main { grid-area: main; }
+.proj-row.flagship .proj-media { grid-area: media; }
+article.proj-row.flagship:nth-of-type(even) {
+  grid-template-columns: 110px clamp(300px, 36vw, 540px) minmax(0, 1fr);
+  grid-template-areas: "year media main";
+}
 .proj-row.flagship .proj-outcome {
   font-size: 0.95rem;
   letter-spacing: 0.01em;
 }
+.proj-row.flagship .proj-tags {
+  justify-content: flex-start;
+  margin-top: 16px;
+}
 
-/* real product imagery: sharp screenshot plates, cutouts float free */
-.proj-shots {
+/* real product imagery: device cutouts float free on the paper */
+.proj-media {
+  margin: 0;
+  min-width: 0;
   display: flex;
   align-items: flex-end;
-  gap: 14px;
-  margin-top: 20px;
+  justify-content: flex-end;
+  gap: 16px;
 }
-.proj-shots img {
-  height: 280px;
+article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-start; }
+.proj-media img {
+  flex: 0 1 auto;
+  min-width: 0;
   width: auto;
-  border: 1px solid var(--hairline);
-}
-.proj-shots img.shot-cutout {
-  border: 0;
-}
-@media (max-width: 800px) {
-  .proj-shots { flex-wrap: wrap; }
-  .proj-shots img { height: 210px; }
+  max-width: 100%;
+  height: auto;
+  max-height: 470px;
+  object-fit: contain;
 }
 
-/* PrintBeam install line: runnable proof, ledger-stamped */
-.proj-code {
-  margin: 14px 0 0;
-  max-width: 100%;
-  overflow-x: auto;
+/* PrintBeam fact sheet, printed on the same receipt paper as the
+   contact form easter egg; every line is a verified fact */
+.pb-receipt {
+  margin-top: 0;
+  width: min(340px, 100%);
 }
-.proj-code code {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  color: var(--ink);
-  background: var(--green-soft);
-  border: 1px solid var(--hairline);
-  padding: 8px 12px;
-  white-space: nowrap;
+.pb-receipt::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  height: 6px;
+  background: conic-gradient(from -45deg at 50% 100%, #f2f0e6 90deg, transparent 0) 0 100% / 12px 6px repeat-x;
+}
+.pbr-code {
+  font-size: 0.68rem;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  word-break: break-all;
+  margin: 0;
+}
+@media (max-width: 1000px) {
+  .proj-row.flagship,
+  article.proj-row.flagship:nth-of-type(even) {
+    grid-template-columns: 110px minmax(0, 1fr);
+    grid-template-areas: "year main" "media media";
+    gap: 24px;
+  }
+  .proj-media,
+  article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-start; }
+  .proj-media img { max-height: 340px; }
+}
+@media (max-width: 800px) {
+  .proj-row.flagship,
+  article.proj-row.flagship:nth-of-type(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "year" "main" "media";
+    gap: 8px;
+    padding: 36px 0;
+  }
+  .proj-media { flex-wrap: wrap; margin-top: 12px; }
+  .proj-media img { max-height: 300px; }
 }
 
 /* ---------- pull stat band ---------- */
