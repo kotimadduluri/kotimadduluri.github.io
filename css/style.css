@@ -928,8 +928,16 @@ article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-
   max-height: 470px;
   object-fit: contain;
 }
-/* caption for media that illustrates a platform rather than my own build */
-.proj-media { flex-wrap: wrap; }
+/* paired screens are a set: they shrink together, they never break onto
+   two lines. only a captioned figure wraps, so the caption can sit below. */
+.proj-media { flex-wrap: nowrap; }
+.proj-media:has(.proj-media-cap) { flex-wrap: wrap; }
+/* exactly two screens: each takes half the column minus the gap, so the
+   pair holds its side-by-side reading down to the narrowest phone */
+.proj-media img:first-of-type:nth-last-of-type(2),
+.proj-media img:first-of-type:nth-last-of-type(2) ~ img {
+  max-width: calc(50% - 8px);
+}
 .proj-media-cap {
   flex: 1 0 100%;
   font-family: var(--mono);
@@ -988,7 +996,7 @@ article.proj-row.flagship:nth-of-type(even) .proj-media { justify-content: flex-
     gap: 8px;
     padding: 36px 0;
   }
-  .proj-media { flex-wrap: wrap; margin-top: 12px; }
+  .proj-media { margin-top: 12px; }
   .proj-media img { max-height: 300px; }
 }
 
