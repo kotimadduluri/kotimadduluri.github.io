@@ -226,12 +226,6 @@
     var shown = 0;
     workRows.forEach(function (row) {
       var show = row.getAttribute("data-track") === track;
-      if (show && row.hidden) {
-        row.classList.remove("row-in");
-        void row.offsetWidth;
-        row.style.setProperty("--i", Math.min(shown, 4));
-        row.classList.add("row-in");
-      }
       if (show) shown++;
       row.hidden = !show;
     });

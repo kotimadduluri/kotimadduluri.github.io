@@ -60,6 +60,10 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
+/* the work tabs hide rows with the hidden attribute; every display value
+   below would otherwise win over it */
+[hidden] { display: none !important; }
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 92px;
