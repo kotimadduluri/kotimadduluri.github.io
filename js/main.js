@@ -128,8 +128,8 @@
     sections.forEach(function (s) { spy.observe(s); });
   }
 
-  /* ---------- reveal-on-scroll (.reveal and .code-card) ---------- */
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal, .code-card"));
+  /* ---------- reveal-on-scroll ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
 
   if (reduceMotion || !hasIO) {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
@@ -144,40 +144,6 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
     revealEls.forEach(function (el) { revealer.observe(el); });
   }
-
-  /* ---------- stat count-up ---------- */
-  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat-num[data-count], .fact-num[data-count]"));
-
-  function countUp(el) {
-    var target = parseInt(el.getAttribute("data-count"), 10);
-    if (isNaN(target)) return;
-    var prefix = el.getAttribute("data-prefix") || "";
-    var suffix = el.getAttribute("data-suffix") || "";
-    var duration = 1200;
-    var start = null;
-    function frame(now) {
-      if (start === null) start = now;
-      var t = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
-      el.textContent = prefix + Math.round(eased * target) + suffix;
-      if (t < 1) requestAnimationFrame(frame);
-      else el.textContent = prefix + target + suffix;
-    }
-    requestAnimationFrame(frame);
-  }
-
-  if (!reduceMotion && hasIO && stats.length) {
-    var statObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          statObserver.unobserve(entry.target);
-          countUp(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-    stats.forEach(function (el) { statObserver.observe(el); });
-  }
-  // Reduced motion / no IO: leave the hardcoded fallback text untouched.
 
   /* ---------- contact form → mailto + printed receipt ---------- */
   var form = document.getElementById("contact-form");
@@ -232,326 +198,6 @@
     });
   }
 
-  /* ---------- masthead dot matrix (cursor-reactive, fine pointers) ---------- */
-  var canvas = document.querySelector(".dot-grid");
-  var finePointer = matchMedia("(pointer: fine)").matches;
-  // shared flag: cursor effects idle whenever the masthead is off screen
-  var mastOnScreen = true;
-
-  if (canvas && !reduceMotion) {
-    var ctx = canvas.getContext("2d");
-    var masthead = canvas.parentElement;
-    var dots = [];
-    var mouse = { x: -9999, y: -9999 };
-    var running = false;
-    var rafId = null;
-    var SPACING = 26;
-    var RADIUS = 130;
-    var gridW = 0, gridH = 0, cols = 0, rowsN = 0;
-    var docLeft = 0, docTop = 0;
-    var baseColor = "#96988c", accentColor = "#3ddc84";
-    var staticLayer = null;
-
-    function readColors() {
-      var cs = getComputedStyle(document.documentElement);
-      baseColor = cs.getPropertyValue("--muted").trim() || "#96988c";
-      accentColor = cs.getPropertyValue("--green").trim() || "#3ddc84";
-    }
-
-    // the resting field is prerendered once; frames only redraw dots near the cursor
-    function buildStatic() {
-      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      staticLayer = document.createElement("canvas");
-      staticLayer.width = canvas.width;
-      staticLayer.height = canvas.height;
-      var sctx = staticLayer.getContext("2d");
-      sctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      sctx.globalAlpha = 0.16;
-      sctx.fillStyle = baseColor;
-      sctx.beginPath();
-      for (var i = 0; i < dots.length; i++) {
-        sctx.moveTo(dots[i].x + 1, dots[i].y);
-        sctx.arc(dots[i].x, dots[i].y, 1, 0, Math.PI * 2);
-      }
-      sctx.fill();
-    }
-
-    function buildGrid() {
-      var rect = masthead.getBoundingClientRect();
-      docLeft = rect.left + window.scrollX;
-      docTop = rect.top + window.scrollY;
-      var dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-      gridW = rect.width;
-      gridH = rect.height;
-      canvas.width = gridW * dpr;
-      canvas.height = gridH * dpr;
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      dots = [];
-      cols = 0;
-      rowsN = 0;
-      for (var y = SPACING; y < gridH; y += SPACING) {
-        rowsN++;
-        var rowCount = 0;
-        for (var x = SPACING; x < gridW; x += SPACING) {
-          dots.push({ x: x, y: y });
-          rowCount++;
-        }
-        cols = rowCount;
-      }
-      readColors();
-      buildStatic();
-    }
-
-    var smx = -9999, smy = -9999;
-    function draw() {
-      ctx.clearRect(0, 0, gridW, gridH);
-      if (staticLayer) ctx.drawImage(staticLayer, 0, 0, gridW, gridH);
-      // damped pointer: the field trails the cursor instead of snapping to it
-      if (smx < -5000) { smx = mouse.x; smy = mouse.y; }
-      smx += (mouse.x - smx) * 0.18;
-      smy += (mouse.y - smy) * 0.18;
-      // touch only the grid window around the cursor, not all ~2000 dots
-      var r0 = Math.max(0, Math.floor((smy - RADIUS) / SPACING) - 1);
-      var r1 = Math.min(rowsN - 1, Math.ceil((smy + RADIUS) / SPACING));
-      var c0 = Math.max(0, Math.floor((smx - RADIUS) / SPACING) - 1);
-      var c1 = Math.min(cols - 1, Math.ceil((smx + RADIUS) / SPACING));
-      for (var ry = r0; ry <= r1; ry++) {
-        for (var cx = c0; cx <= c1; cx++) {
-          var d = dots[ry * cols + cx];
-          if (!d) continue;
-          var dx = d.x - smx;
-          var dy = d.y - smy;
-          var dist = Math.hypot(dx, dy);
-          var t = Math.max(0, 1 - dist / RADIUS);
-          if (t <= 0.01) continue;
-          var push = t * t * 10;
-          var px = dist > 0 ? d.x + (dx / dist) * push : d.x;
-          var py = dist > 0 ? d.y + (dy / dist) * push : d.y;
-          ctx.globalAlpha = 0.16 + t * 0.7;
-          ctx.fillStyle = t > 0.05 ? accentColor : baseColor;
-          ctx.beginPath();
-          ctx.arc(px, py, 1 + t * 1.6, 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-      ctx.globalAlpha = 1;
-      // once the field has caught up with the cursor, stop burning frames;
-      // any pointermove starts the loop again
-      var settled = Math.abs(mouse.x - smx) + Math.abs(mouse.y - smy) < 0.4;
-      if (running && !settled) {
-        rafId = requestAnimationFrame(draw);
-      } else {
-        running = false;
-        rafId = null;
-      }
-    }
-
-    function start() {
-      if (!running) { running = true; rafId = requestAnimationFrame(draw); }
-    }
-    function stop() {
-      running = false;
-      if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
-    }
-
-    buildGrid();
-    // draw one static frame even without pointer interaction
-    draw();
-
-    if (finePointer) {
-      masthead.addEventListener("pointermove", function (e) {
-        // cached document offsets: no layout flush per event
-        mouse.x = e.clientX + window.scrollX - docLeft;
-        mouse.y = e.clientY + window.scrollY - docTop;
-        if (mastOnScreen) start();
-      });
-      masthead.addEventListener("pointerleave", function () {
-        mouse.x = -9999;
-        mouse.y = -9999;
-        // the loop eases the field back out and stops itself once settled
-        if (mastOnScreen) start();
-      });
-    }
-
-    if (hasIO) {
-      new IntersectionObserver(function (entries) {
-        mastOnScreen = entries[entries.length - 1].isIntersecting;
-        if (!mastOnScreen) stop();
-      }, { rootMargin: "80px" }).observe(masthead);
-    }
-
-    // theme switches recolor the prerendered field
-    new MutationObserver(function () {
-      readColors();
-      buildStatic();
-      draw();
-    }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
-
-    var resizeTimer = null;
-    window.addEventListener("resize", function () {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function () {
-        buildGrid();
-        draw();
-      }, 150);
-    });
-  }
-
-  /* ---------- security microprint behind the name ---------- */
-  // Skills set as banknote-style microprint; the cursor acts like a UV lamp.
-  var nameWrap = document.querySelector(".name-wrap");
-  if (nameWrap) {
-    var printLayers = Array.prototype.slice.call(nameWrap.querySelectorAll(".microprint"));
-    var SKILLS = [
-      "Kotlin", "Jetpack Compose", "KMP", "CMP", "Coroutines", "Flow",
-      "MVVM", "Clean Architecture", "Hilt", "Koin", "Ktor", "Retrofit",
-      "NFC", "BLE", "MQTT", "GitHub Actions", "React", "TypeScript",
-      "Node.js", "PostgreSQL", "Firebase"
-    ];
-
-    var buildPrint = function () {
-      var rows = Math.ceil((nameWrap.offsetHeight + 28) / 22) + 1;
-      var markup = "";
-      for (var i = 0; i < rows; i++) {
-        var shift = (i * 5) % SKILLS.length;
-        var line = SKILLS.slice(shift).concat(SKILLS.slice(0, shift)).join(" · ");
-        markup += "<div>" + line + " · " + line + "</div>";
-      }
-      printLayers.forEach(function (layer) { layer.innerHTML = markup; });
-    };
-    buildPrint();
-
-    // cache the wrap's document offsets so pointermove never forces layout
-    var wrapLeft = 0, wrapTop = 0;
-    var measureWrap = function () {
-      var r = nameWrap.getBoundingClientRect();
-      wrapLeft = r.left + window.scrollX;
-      wrapTop = r.top + window.scrollY;
-    };
-    measureWrap();
-
-    var printResizeTimer = null;
-    window.addEventListener("resize", function () {
-      clearTimeout(printResizeTimer);
-      printResizeTimer = setTimeout(function () {
-        buildPrint();
-        measureWrap();
-      }, 150);
-    });
-
-    if (finePointer) {
-      var mast = nameWrap.closest(".masthead") || nameWrap;
-      // damped UV lamp: the glow trails the cursor
-      var uvTX = -999, uvTY = -999, uvX = -999, uvY = -999, uvRaf = null;
-      function uvTick() {
-        uvX += (uvTX - uvX) * 0.22;
-        uvY += (uvTY - uvY) * 0.22;
-        nameWrap.style.setProperty("--ux", uvX.toFixed(1) + "px");
-        nameWrap.style.setProperty("--uy", uvY.toFixed(1) + "px");
-        if (Math.abs(uvTX - uvX) + Math.abs(uvTY - uvY) > 0.5) {
-          uvRaf = requestAnimationFrame(uvTick);
-        } else {
-          uvRaf = null;
-        }
-      }
-      mast.addEventListener("pointermove", function (e) {
-        if (!mastOnScreen) return;
-        uvTX = e.clientX + window.scrollX - wrapLeft;
-        uvTY = e.clientY + window.scrollY - wrapTop;
-        if (uvX < -500) { uvX = uvTX; uvY = uvTY; }
-        if (!uvRaf) uvRaf = requestAnimationFrame(uvTick);
-      });
-      mast.addEventListener("pointerleave", function () {
-        if (uvRaf) { cancelAnimationFrame(uvRaf); uvRaf = null; }
-        uvTX = uvX = -999; uvTY = uvY = -999;
-        nameWrap.style.setProperty("--ux", "-999px");
-        nameWrap.style.setProperty("--uy", "-999px");
-      });
-    }
-  }
-
-  /* ---------- experience tabs ---------- */
-  var xpTabs = Array.prototype.slice.call(document.querySelectorAll(".xp-tab"));
-  var xpPanels = Array.prototype.slice.call(document.querySelectorAll(".xp-panel"));
-
-  function selectXp(idx, focusTab) {
-    if (!xpTabs[idx]) return;
-    xpTabs.forEach(function (tab, j) {
-      var on = j === idx;
-      tab.classList.toggle("is-active", on);
-      tab.setAttribute("aria-selected", String(on));
-      tab.tabIndex = on ? 0 : -1;
-    });
-    xpPanels.forEach(function (panel, j) {
-      panel.classList.toggle("is-active", j === idx);
-      panel.classList.remove("panel-in");
-    });
-    // keyboard-driven tab changes never animate (rapid arrow cycling must feel instant)
-    if (!reduceMotion && !focusTab && xpPanels[idx]) {
-      void xpPanels[idx].offsetWidth;
-      xpPanels[idx].classList.add("panel-in");
-    }
-    if (focusTab) xpTabs[idx].focus();
-  }
-
-  xpTabs.forEach(function (tab, i) {
-    tab.addEventListener("click", function () { selectXp(i); });
-  });
-
-  var xpRail = document.querySelector(".xp-rail");
-  if (xpRail) {
-    xpRail.addEventListener("keydown", function (e) {
-      var current = xpTabs.indexOf(document.activeElement);
-      if (current === -1) return;
-      var next = null;
-      if (e.key === "ArrowDown" || e.key === "ArrowRight") next = Math.min(current + 1, xpTabs.length - 1);
-      else if (e.key === "ArrowUp" || e.key === "ArrowLeft") next = Math.max(current - 1, 0);
-      else if (e.key === "Home") next = 0;
-      else if (e.key === "End") next = xpTabs.length - 1;
-      if (next !== null) {
-        e.preventDefault();
-        selectXp(next, true);
-      }
-    });
-  }
-
-  /* ---------- timeline: hover sync + click opens that company's tab ---------- */
-  var tlLanes = Array.prototype.slice.call(document.querySelectorAll(".tl-lane"));
-
-  if (tlLanes.length === 2) {
-    var laneA = tlLanes[0].children, laneB = tlLanes[1].children;
-    // lanes and the tab rail both run newest-first
-    var tabForLane = function (i) { return i; };
-    var setHot = function (i, on) {
-      if (laneA[i]) laneA[i].classList.toggle("is-hot", on);
-      if (laneB[i]) laneB[i].classList.toggle("is-hot", on);
-      var tab = xpTabs[tabForLane(i)];
-      if (tab) tab.classList.toggle("is-hot", on);
-    };
-
-    tlLanes.forEach(function (lane) {
-      Array.prototype.forEach.call(lane.children, function (span, i) {
-        if (finePointer) {
-          span.addEventListener("pointerenter", function () { setHot(i, true); });
-          span.addEventListener("pointerleave", function () { setHot(i, false); });
-        }
-        span.addEventListener("click", function () {
-          selectXp(tabForLane(i));
-          var tabs = document.querySelector(".xp-tabs");
-          if (tabs) tabs.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "nearest" });
-        });
-      });
-    });
-
-    if (finePointer) {
-      xpTabs.forEach(function (tab, j) {
-        var laneIdx = j;
-        tab.addEventListener("pointerenter", function () { setHot(laneIdx, true); });
-        tab.addEventListener("pointerleave", function () { setHot(laneIdx, false); });
-      });
-    }
-  }
-
   /* ---------- skills disclosure ---------- */
   var skillsTable = document.querySelector(".skills-table");
   var skillsMore = document.querySelector(".skills-more");
@@ -563,21 +209,12 @@
       skillsMore.setAttribute("aria-expanded", collapsed ? "false" : "true");
       skillsMore.firstChild.textContent = collapsed ? "Show the full stack " : "Show less ";
       skillsMore.querySelector(".skills-more-n").hidden = !collapsed;
-      if (!collapsed) {
-        var revealed = Array.prototype.slice.call(skillsTable.querySelectorAll(".skills-row")).slice(5);
-        revealed.forEach(function (row, i) {
-          row.classList.remove("row-in");
-          void row.offsetWidth;
-          row.style.setProperty("--i", i);
-          row.classList.add("row-in");
-        });
-      }
     });
   }
 
   /* ---------- selected work filter tabs ---------- */
   var workTabs = Array.prototype.slice.call(document.querySelectorAll(".work-tab"));
-  var workRows = Array.prototype.slice.call(document.querySelectorAll("#work .proj-row"));
+  var workRows = Array.prototype.slice.call(document.querySelectorAll("#work .proj-band"));
   function selectWork(tab) {
     var track = tab.getAttribute("data-track");
     workTabs.forEach(function (t) {
@@ -626,7 +263,7 @@
       if (!target) return;
       e.preventDefault();
       // rows hidden behind the other work tab: switch tabs first
-      if (target.classList.contains("proj-row") && target.hidden) {
+      if (target.classList.contains("proj-band") && target.hidden) {
         var track = target.getAttribute("data-track");
         var tab = workTabs.filter(function (t) {
           return t.getAttribute("data-track") === track;
@@ -635,7 +272,7 @@
       }
       target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
       // one-beat highlighter pass so the eye lands on the right row
-      if (target.classList.contains("proj-row")) {
+      if (target.classList.contains("proj-band")) {
         target.classList.remove("is-flashed");
         void target.offsetWidth;
         target.classList.add("is-flashed");
@@ -647,24 +284,6 @@
       }
     });
   });
-
-  /* ---------- magnetic buttons (fine pointers) ---------- */
-  if (finePointer && !reduceMotion) {
-    var magnets = Array.prototype.slice.call(document.querySelectorAll(".btn"));
-    magnets.forEach(function (btn) {
-      btn.addEventListener("pointermove", function (e) {
-        var rect = btn.getBoundingClientRect();
-        var relX = (e.clientX - rect.left) / rect.width - 0.5;
-        var relY = (e.clientY - rect.top) / rect.height - 0.5;
-        btn.style.setProperty("--mx", (relX * 6).toFixed(1) + "px");
-        btn.style.setProperty("--my", (relY * 4).toFixed(1) + "px");
-      });
-      btn.addEventListener("pointerleave", function () {
-        btn.style.setProperty("--mx", "0px");
-        btn.style.setProperty("--my", "0px");
-      });
-    });
-  }
 
   /* ---------- command palette (⌘K / Ctrl+K) ---------- */
   var cmdk = document.getElementById("cmdk");
