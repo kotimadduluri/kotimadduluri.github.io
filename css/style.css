@@ -1203,6 +1203,15 @@ main { counter-reset: sec; }
   .about-row { grid-template-columns: minmax(0, 1fr); }
   .contact-grid { grid-template-columns: minmax(0, 1fr); }
   .skills-row { grid-template-columns: minmax(0, 1fr); }
+  .domain-row { grid-template-columns: minmax(0, 1fr); }
+  .domain-where { grid-column: auto; text-align: left; }
+
+  /* 12 columns will not fit a phone: let the chart scroll instead of
+     crushing every company label to an ellipsis */
+  .tl { overflow-x: auto; overscroll-behavior-x: contain; }
+  .tl-lane, .tl-years { min-width: 760px; }
+  /* the cell is already signal-coloured; the dot only steals label width */
+  .tl-live { display: none; }
   .tl-span { min-height: 46px; padding: 6px 8px; font-size: 0.64rem; }
   .tl-span span { display: none; }
 }
@@ -1215,7 +1224,7 @@ main { counter-reset: sec; }
     gap: 14px;
   }
   .proj-idx { padding-top: 0; }
-  .proj-idx b { display: inline; }
+  .proj-idx b { display: inline; margin-right: 8px; }
   .mast-name { letter-spacing: -0.035em; }
   .spec { grid-template-columns: 72px minmax(0, 1fr); }
   .btn { flex: 1 1 auto; justify-content: center; }
