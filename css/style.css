@@ -365,16 +365,7 @@ p { margin: 0; }
   padding-right: 24px;
 }
 .mast-spec dd { text-align: right; }
-.mast-spec .is-live { color: var(--signal); }
 
-.live-dot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: var(--signal);
-  margin-right: 7px;
-  vertical-align: 1px;
-}
 
 .mast-actions {
   display: flex;
