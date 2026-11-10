@@ -43,23 +43,21 @@
       border-bottom: 1px solid var(--hairline);
     }
     .cv-bar a:not(.btn) { min-width: 0; overflow-wrap: anywhere; color: var(--muted); text-decoration: none; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .cv-bar a:not(.btn):hover { color: var(--signal); }
+    .cv-bar a:not(.btn):hover, .cv-bar a:not(.btn):focus-visible { color: var(--signal); }
     .cv-bar .btn { font-size: 0.9rem; padding: 10px 18px; white-space: nowrap; flex: none; }
     .cv-head h1 { font-family: var(--display); font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; line-height: 1.05; margin-bottom: 8px; }
-    .cv-role { color: var(--signal); font-weight: 600; margin-bottom: 6px; }
+    .cv-role { color: var(--ink); font-weight: 600; margin-bottom: 6px; }
     .cv-contact { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 36px; }
     .cv-contact a { color: var(--muted); }
-    .cv-contact a:hover { color: var(--signal); }
+    .cv-contact a:hover, .cv-contact a:focus-visible { color: var(--signal); }
     .cv-section { margin-bottom: 40px; }
     .cv-section > h2 {
-      font-family: var(--mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--signal);
-      border-top: 2px solid var(--rule);
-      padding-top: 10px;
+      font-family: var(--sans);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      border-top: 1px solid var(--hairline);
+      padding-top: 12px;
       margin-bottom: 18px;
     }
     .cv-section p, .cv-section li { color: var(--muted); font-size: 0.95rem; }
@@ -69,11 +67,11 @@
     .cv-skills dd { margin: 0; }
     .cv-job { margin-bottom: 28px; }
     .cv-job h3 { font-family: var(--display); font-size: 1.15rem; font-weight: 800; }
-    .cv-job h3 span { color: var(--signal); font-style: italic; }
-    .cv-job-meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 10px; }
+    .cv-job h3 span { color: var(--ink); font-weight: 500; }
+    .cv-job-meta { font-family: var(--mono); font-size: 0.85rem; color: var(--muted); margin-bottom: 10px; }
     .cv-job ul { list-style: none; display: grid; gap: 7px; }
     .cv-job li { padding-left: 18px; position: relative; }
-    .cv-job li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 8px; height: 2px; background: var(--signal); }
+    .cv-job li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 8px; height: 2px; background: var(--ink); }
     .cv-edu li { padding-left: 0; display: flex; justify-content: space-between; gap: 16px; }
     .cv-edu li::before { display: none; }
     .cv-edu strong { color: var(--ink); }

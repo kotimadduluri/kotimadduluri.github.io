@@ -89,11 +89,11 @@
   }
 
   /* ---------- scrolled nav state (rAF-throttled) ---------- */
-  var navWrap = document.querySelector(".nav-wrap");
-  if (navWrap) {
+  var siteHeader = document.querySelector(".site-header");
+  if (siteHeader) {
     var ticking = false;
     var updateNav = function () {
-      navWrap.classList.toggle("is-scrolled", window.scrollY > 24);
+      siteHeader.classList.toggle("is-scrolled", window.scrollY > 24);
       ticking = false;
     };
     window.addEventListener("scroll", function () {
