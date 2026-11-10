@@ -16,13 +16,13 @@
   <meta property="og:image" content="https://kotimadduluri.github.io/assets/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Koti Madduluri, Senior Android Engineer. Payments, EPOS and digital banking. London, UK." />
+  <meta property="og:image:alt" content="Koti Madduluri, Senior Android &amp; Full Stack Engineer. I build the Android behind payments: card terminals, EPOS tills and digital banking apps." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://kotimadduluri.github.io/assets/og.png" />
   <meta name="twitter:title" content="Koti Madduluri - Senior Android &amp; Full Stack Engineer · Payments" />
   <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments &amp; EPOS. 10+ years, 30+ production apps." />
 
-  <meta name="theme-color" content="#edeeec" />
+  <meta name="theme-color" content="#f3f1ec" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
 
   <link rel="preconnect" href="https://api.fontshare.com" />
@@ -41,12 +41,11 @@
     (function () {
       var stored = null;
       try { stored = localStorage.getItem("theme"); } catch (e) {}
-      // no saved choice: light through the working day, dark after hours
-      var hour = new Date().getHours();
-      var theme = stored || (hour >= 7 && hour < 19 ? "light" : "dark");
+      // no saved choice: follow the OS scheme
+      var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       document.documentElement.setAttribute("data-theme", theme);
       var tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.setAttribute("content", theme === "dark" ? "#0b0c0d" : "#edeeec");
+      if (tc) tc.setAttribute("content", theme === "dark" ? "#0e0d0c" : "#f3f1ec");
     })();
   </script>
 
@@ -58,7 +57,6 @@
     "alternateName": "Koti Madduluri",
     "jobTitle": "Senior Android & Full Stack Engineer",
     "email": "mailto:kotimn@gmail.com",
-    "telephone": "+44 7774 969393",
     "url": "https://kotimadduluri.github.io/",
     "image": "https://kotimadduluri.github.io/assets/og.png",
     "sameAs": [
@@ -90,7 +88,6 @@
   <defs>
     <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
     <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
-    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
     <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
@@ -134,32 +131,32 @@
   <!-- ============ MASTHEAD ============ -->
   <section class="masthead" id="top">
     <div class="container">
-      <h1 class="mast-name" aria-label="Koti Madduluri">
-        <span class="h-line"><span class="h-line-inner">Koti</span></span>
-        <span class="h-line"><span class="h-line-inner" style="--hd:110ms">Madduluri</span></span>
-      </h1>
-
       <div class="mast-grid">
-        <div>
+        <div class="mast-copy">
+          <p class="mast-status reveal"><i class="tl-live" aria-hidden="true"></i>Open to new roles and conversations · London / remote</p>
+          <h1 class="mast-name" aria-label="Koti Madduluri">
+            <span class="h-line"><span class="h-line-inner">Koti</span></span>
+            <span class="h-line"><span class="h-line-inner" style="--hd:110ms">Madduluri</span></span>
+          </h1>
+          <p class="mast-role reveal" style="--d:200ms">Senior Android &amp; Full Stack Engineer</p>
           <p class="mast-thesis reveal" style="--d:280ms">I build the Android behind <em>payments</em>: <a class="copy-link" href="#p-terminal-pay">card terminals</a>, <a class="copy-link" href="#p-lopay-pos">EPOS tills</a> and <a class="copy-link" href="#p-banking">digital banking apps</a>.</p>
           <div class="mast-actions reveal" style="--d:360ms">
             <a class="btn btn-primary" href="#work">View my work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
             <a class="btn btn-secondary" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
+            <a class="text-link" href="mailto:kotimn@gmail.com">Email me</a>
           </div>
         </div>
 
-        <dl class="mast-spec reveal" style="--d:200ms">
-          <dt>Role</dt>
-          <dd>Senior Android &amp; Full Stack Engineer</dd>
-          <dt>Focus</dt>
-          <dd>Payments · EPOS · Banking</dd>
-          <dt>Also</dt>
-          <dd>Healthcare · IoT · ML · EdTech</dd>
-          <dt>Certified</dt>
-          <dd>Backbase, 2023</dd>
-          <dt>Based</dt>
-          <dd>Crawley / London, UK</dd>
-        </dl>
+        <figure class="mast-stage stage">
+          <img src="assets/shots/lopay-terminal-hw.webp" width="640" height="661" fetchpriority="high" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" />
+          <div class="receipt receipt-slip" aria-label="Now shipping">
+            <p class="receipt-center receipt-status">*** NOW SHIPPING ***</p>
+            <hr class="receipt-rule" />
+            <div class="receipt-row"><span>Lopay EPOS</span><span>Now</span></div>
+            <div class="receipt-row"><span>Terminal Pay</span><span>Now</span></div>
+            <div class="receipt-row"><span>PrintBeam</span><span>0.1.0-alpha04</span></div>
+          </div>
+        </figure>
       </div>
 
       <ul class="fact-strip reveal" style="--d:420ms" aria-label="Career facts">
@@ -170,7 +167,7 @@
       </ul>
 
       <div class="integrations reveal">
-        <p class="integrations-label meta">Integrations shipped in production</p>
+        <p class="integrations-label meta">Shipped against</p>
         <ul class="integrations-list">
           <li>Verifone</li><li>Ingenico</li><li>PAX</li><li>Castles</li><li>Stripe</li><li>Backbase</li><li>Zelle</li><li>Glia</li><li>Payveris</li><li>ThreatMetrix</li><li>ShuftiPro</li>
         </ul>
@@ -196,8 +193,8 @@
 
       <div class="proj-list" id="proj-list" role="tabpanel" aria-label="Selected work list">
 
-        <article class="proj-band reveal" id="p-lopay-pos" data-track="company">
-          <p class="proj-idx"><b>01</b>Now</p>
+        <article class="proj-band proj-band--feature reveal" id="p-lopay-pos" data-track="company">
+          <p class="proj-idx">Now</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/lopay.png" alt="" width="44" height="44" loading="lazy" />
@@ -218,13 +215,13 @@
               </p></dd>
             </dl>
           </div>
-          <figure class="proj-media">
-            <img src="assets/shots/lopay-terminal-hw.png" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" loading="lazy" width="640" height="661" />
+          <figure class="proj-media stage">
+            <img src="assets/shots/lopay-terminal-hw.webp" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" loading="lazy" width="640" height="661" />
           </figure>
         </article>
 
-        <article class="proj-band reveal" id="p-terminal-pay" data-track="company">
-          <p class="proj-idx"><b>02</b>Now</p>
+        <article class="proj-band proj-band--feature reveal" id="p-terminal-pay" data-track="company">
+          <p class="proj-idx">Now</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/terminal-pay.png" alt="" width="44" height="44" loading="lazy" />
@@ -246,14 +243,14 @@
               </p></dd>
             </dl>
           </div>
-          <figure class="proj-media">
-            <img src="assets/shots/terminal-pay-2.png" alt="Terminal Pay charge screen taking a 10 pound card payment" loading="lazy" width="412" height="836" />
-            <img src="assets/shots/terminal-pay-1.png" alt="Terminal Pay pairing screen connecting a Stripe account" loading="lazy" width="411" height="836" />
+          <figure class="proj-media stage">
+            <img src="assets/shots/terminal-pay-2.webp" alt="Terminal Pay charge screen taking a 10 pound card payment" loading="lazy" width="412" height="836" />
+            <img src="assets/shots/terminal-pay-1.webp" alt="Terminal Pay pairing screen connecting a Stripe account" loading="lazy" width="411" height="836" />
           </figure>
         </article>
 
         <article class="proj-band reveal" id="p-printbeam" data-track="personal">
-          <p class="proj-idx"><b>03</b>2026</p>
+          <p class="proj-idx">2026</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/printbeam.svg" alt="" width="44" height="44" loading="lazy" />
@@ -296,7 +293,7 @@
         </article>
 
         <article class="proj-band reveal" id="p-locodrop" data-track="personal">
-          <p class="proj-idx"><b>04</b>2026</p>
+          <p class="proj-idx">2026</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/locodrop.png" alt="" width="44" height="44" loading="lazy" />
@@ -318,12 +315,12 @@
             </dl>
           </div>
           <figure class="proj-media">
-            <img class="shot-plate" src="assets/shots/locodrop-mesh.png" alt="LocoDrop device mesh: iPhone, Android, Windows, Mac and Linux linked directly over the local network, files encrypted in transit" loading="lazy" width="1120" height="643" />
+            <img class="shot-plate" src="assets/shots/locodrop-mesh.webp" alt="LocoDrop device mesh: iPhone, Android, Windows, Mac and Linux linked directly over the local network, files encrypted in transit" loading="lazy" width="1120" height="643" />
           </figure>
         </article>
 
         <article class="proj-band reveal" data-track="company">
-          <p class="proj-idx"><b>05</b>2023</p>
+          <p class="proj-idx">2023</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/payment-loyalty.png" alt="" width="44" height="44" loading="lazy" />
@@ -345,12 +342,12 @@
             </dl>
           </div>
           <figure class="proj-media">
-            <img src="assets/shots/payment-loyalty-terminals.png" alt="Payment Loyalty offers running on Verifone, Castles and PAX payment terminals" loading="lazy" width="819" height="900" />
+            <img src="assets/shots/payment-loyalty-terminals.webp" alt="Payment Loyalty offers running on Verifone, Castles and PAX payment terminals" loading="lazy" width="819" height="900" />
           </figure>
         </article>
 
         <article class="proj-band reveal" id="p-banking" data-track="company">
-          <p class="proj-idx"><b>06</b>2021</p>
+          <p class="proj-idx">2021</p>
           <div class="proj-spec">
             <div class="proj-head">
               <img class="proj-app-ic" src="assets/apps/backbase.png" alt="" width="44" height="44" loading="lazy" />
@@ -368,89 +365,63 @@
             </dl>
           </div>
           <figure class="proj-media">
-            <img src="assets/shots/backbase-journeys.png" alt="Backbase platform banking journeys: family banking, spending dashboard, savings plans and a loan offer" loading="lazy" width="1064" height="1080" />
+            <img src="assets/shots/backbase-journeys.webp" alt="Backbase platform banking journeys: family banking, spending dashboard, savings plans and a loan offer" loading="lazy" width="1064" height="1080" />
             <figcaption class="proj-media-cap">Backbase platform journeys</figcaption>
           </figure>
         </article>
 
-        <article class="proj-band reveal" data-track="company">
-          <p class="proj-idx"><b>07</b>2020</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/sensen.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Gemineye</h3>
-                <p class="proj-org">Sensen Networks</p>
+        <div class="proj-earlier" data-group>
+          <h3 class="proj-earlier-title">Earlier work</h3>
+          <div class="proj-cards">
+            <article class="proj-card reveal" data-track="company">
+              <figure class="proj-card-media">
+                <img class="shot-plate" src="assets/shots/gemineye-zone.webp" alt="Gemineye detection zone marked out over the live camera view on an Android device" loading="lazy" width="485" height="230" />
+              </figure>
+              <div class="proj-head">
+                <img class="proj-app-ic" src="assets/apps/sensen.png" alt="" width="44" height="44" loading="lazy" />
+                <div>
+                  <h4>Gemineye</h4>
+                  <p class="proj-org">Sensen Networks · <span class="proj-year">2020</span></p>
+                </div>
               </div>
-            </div>
-            <p class="proj-desc">Smart city IoT platform with on-device vehicle number-plate detection and recognition built on TensorFlow Lite and ML Kit: operators mark a detection zone on the camera view and the phone reads plates inside it.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Kotlin</li><li>TensorFlow Lite</li><li>ML Kit</li><li>Retrofit</li><li>Coroutines</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Significantly improved recognition accuracy; ANRs dropped noticeably</dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <img class="shot-plate" src="assets/shots/gemineye-zone.png" alt="Gemineye detection zone marked out over the live camera view on an Android device" loading="lazy" width="485" height="230" />
-          </figure>
-        </article>
+              <p class="proj-card-outcome">Significantly improved recognition accuracy; ANRs dropped noticeably</p>
+            </article>
 
-        <article class="proj-band reveal" id="p-tsavaari" data-track="company">
-          <p class="proj-idx"><b>08</b>2017</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/tsavaari.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>TSavaari</h3>
-                <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies</p>
+            <article class="proj-card reveal" id="p-tsavaari" data-track="company" style="--d:80ms">
+              <figure class="proj-card-media">
+                <img src="assets/shots/tsavaari-home.webp" alt="TSavaari home screen with metro services: ticket booking, card recharge, fare calculator and metro map" loading="lazy" width="560" height="1244" />
+              </figure>
+              <div class="proj-head">
+                <img class="proj-app-ic" src="assets/apps/tsavaari.png" alt="" width="44" height="44" loading="lazy" />
+                <div>
+                  <h4>TSavaari</h4>
+                  <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies · <span class="proj-year">2017</span></p>
+                </div>
               </div>
-            </div>
-            <p class="proj-desc">The official app of Hyderabad Metro Rail: journey planning that folds metro, MMTS trains and city buses into one trip, built to Material Design standards alongside the payment gateway integrations of the same years.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Java</li><li>Material Design</li><li>REST APIs</li><li>Payment Gateway SDKs</li><li>Maps SDK</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">1,000,000+ downloads on Google Play</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
+              <p class="proj-card-outcome">1,000,000+ downloads on Google Play</p>
+              <p class="proj-links">
                 <a href="https://play.google.com/store/apps/details?id=com.minfy.tsavaari" target="_blank" rel="noopener noreferrer">Google Play &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <img src="assets/shots/tsavaari-home.png" alt="TSavaari home screen with metro services: ticket booking, card recharge, fare calculator and metro map" loading="lazy" width="560" height="1244" />
-            <img src="assets/shots/tsavaari-journey.png" alt="TSavaari journey planner choosing origin and destination" loading="lazy" width="560" height="1244" />
-          </figure>
-        </article>
+              </p>
+            </article>
 
-        <article class="proj-band reveal" id="p-troop" data-track="company">
-          <p class="proj-idx"><b>09</b>2017</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/troop-messenger.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Troop Messenger</h3>
-                <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies</p>
+            <article class="proj-card reveal" id="p-troop" data-track="company" style="--d:160ms">
+              <figure class="proj-card-media">
+                <img src="assets/shots/troop-chats.webp" alt="Troop Messenger conversation list" loading="lazy" width="560" height="971" />
+              </figure>
+              <div class="proj-head">
+                <img class="proj-app-ic" src="assets/apps/troop-messenger.png" alt="" width="44" height="44" loading="lazy" />
+                <div>
+                  <h4>Troop Messenger</h4>
+                  <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies · <span class="proj-year">2017</span></p>
+                </div>
               </div>
-            </div>
-            <p class="proj-desc">Tvisha's team chat product for business: 1:1 and group conversations, file exchange and live location sharing on the map, part of the real-time communication work where my career started.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Java</li><li>Realtime Sockets</li><li>REST APIs</li><li>Maps SDK</li><li>FCM Push</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Shipped 2017; still live on Google Play and the App Store</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
+              <p class="proj-card-outcome">Shipped 2017; still live on Google Play and the App Store</p>
+              <p class="proj-links">
                 <a href="https://www.troopmessenger.com" target="_blank" rel="noopener noreferrer">troopmessenger.com &#8599;</a>
-              </p></dd>
-            </dl>
+              </p>
+            </article>
           </div>
-          <figure class="proj-media">
-            <img src="assets/shots/troop-chats.png" alt="Troop Messenger conversation list" loading="lazy" width="560" height="971" />
-            <img src="assets/shots/troop-map.png" alt="Troop Messenger chat sharing a live location on a map" loading="lazy" width="560" height="971" />
-          </figure>
-        </article>
+        </div>
       </div>
     </div>
   </section>
@@ -465,6 +436,10 @@
         </div>
         <p class="section-sub reveal">Six companies, one through-line: payments, since 2015.</p>
       </div>
+
+      <blockquote class="pull-quote reveal">
+        <p>I care about code that survives the real world, on real hardware, in front of real customers.</p>
+      </blockquote>
 
       <div class="tl reveal" role="img" aria-label="Career timeline, most recent first: Lopay 2026 to present, payments and EPOS. Payment Loyalty 2023 to 2026, loyalty. Mobiquity 2021 to 2023, digital banking. Sensen Networks 2020 to 2021, smart city IoT. Iconma 2017 to 2020, EdTech and enterprise. Tvisha Technologies 2015 to 2017, travel and real-time communication.">
         <div class="tl-lane" aria-hidden="true">
@@ -675,7 +650,6 @@
             <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:kotimn@gmail.com">kotimn@gmail.com</a></li>
             <li><svg class="ic icon-fill" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer">linkedin.com/in/koti-madduluri</a></li>
             <li><svg class="ic icon-fill" aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/kotimadduluri" target="_blank" rel="noopener noreferrer">github.com/kotimadduluri</a></li>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg><a href="tel:+447774969393">+44 7774 969393</a></li>
             <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Crawley / London, UK</span></li>
           </ul>
         </div>

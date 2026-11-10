@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CV · Koti Madduluri · Senior Android Engineer</title>
-  <meta name="description" content="CV of Koteswara Rao 'Koti' Madduluri, Senior Android Engineer. Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK." />
+  <title>CV · Koti Madduluri · Senior Android &amp; Full Stack Engineer</title>
+  <meta name="description" content="CV of Koteswara Rao 'Koti' Madduluri, Senior Android &amp; Full Stack Engineer. Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK." />
   <link rel="canonical" href="https://kotimadduluri.github.io/cv/" />
   <meta property="og:type" content="profile" />
-  <meta property="og:title" content="CV · Koti Madduluri · Senior Android Engineer" />
+  <meta property="og:title" content="CV · Koti Madduluri · Senior Android &amp; Full Stack Engineer" />
   <meta property="og:description" content="Live CV: Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK." />
   <meta property="og:url" content="https://kotimadduluri.github.io/cv/" />
   <meta property="og:image" content="https://kotimadduluri.github.io/assets/og.png" />
@@ -17,15 +17,19 @@
     (function () {
       var stored = null;
       try { stored = localStorage.getItem("theme"); } catch (e) {}
-      // no saved choice: light through the working day, dark after hours
-      var hour = new Date().getHours();
-      var theme = stored || (hour >= 7 && hour < 19 ? "light" : "dark");
+      // no saved choice: follow the OS scheme
+      var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
       document.documentElement.setAttribute("data-theme", theme);
     })();
   </script>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-  <link href="https://api.fontshare.com/v2/css?f[]=zodiak@700,800&amp;f[]=general-sans@400,500,600&amp;display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://api.fontshare.com" />
+  <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Fontshare drops the second family when these are combined in one request -->
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&amp;display=swap" rel="stylesheet" />
+  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
     .cv-wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -38,14 +42,14 @@
       margin-bottom: 32px;
       border-bottom: 1px solid var(--hairline);
     }
-    .cv-bar a:not(.btn) { color: var(--muted); text-decoration: none; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .cv-bar a:not(.btn):hover { color: var(--green); }
-    .cv-bar .btn { font-size: 0.85rem; padding: 10px 18px; }
-    .cv-head h1 { font-family: var(--serif); font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; line-height: 1.05; margin-bottom: 8px; }
-    .cv-role { color: var(--green); font-weight: 600; margin-bottom: 6px; }
+    .cv-bar a:not(.btn) { min-width: 0; overflow-wrap: anywhere; color: var(--muted); text-decoration: none; font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .cv-bar a:not(.btn):hover { color: var(--signal); }
+    .cv-bar .btn { font-size: 0.9rem; padding: 10px 18px; white-space: nowrap; flex: none; }
+    .cv-head h1 { font-family: var(--display); font-size: clamp(2rem, 6vw, 3rem); font-weight: 800; line-height: 1.05; margin-bottom: 8px; }
+    .cv-role { color: var(--signal); font-weight: 600; margin-bottom: 6px; }
     .cv-contact { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 36px; }
     .cv-contact a { color: var(--muted); }
-    .cv-contact a:hover { color: var(--green); }
+    .cv-contact a:hover { color: var(--signal); }
     .cv-section { margin-bottom: 40px; }
     .cv-section > h2 {
       font-family: var(--mono);
@@ -53,7 +57,7 @@
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--green);
+      color: var(--signal);
       border-top: 2px solid var(--rule);
       padding-top: 10px;
       margin-bottom: 18px;
@@ -64,26 +68,21 @@
     .cv-skills dt { font-weight: 600; color: var(--ink); font-size: 0.9rem; }
     .cv-skills dd { margin: 0; }
     .cv-job { margin-bottom: 28px; }
-    .cv-job h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 800; }
-    .cv-job h3 span { color: var(--green); font-style: italic; }
+    .cv-job h3 { font-family: var(--display); font-size: 1.15rem; font-weight: 800; }
+    .cv-job h3 span { color: var(--signal); font-style: italic; }
     .cv-job-meta { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 10px; }
     .cv-job ul { list-style: none; display: grid; gap: 7px; }
     .cv-job li { padding-left: 18px; position: relative; }
-    .cv-job li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 8px; height: 2px; background: var(--green); }
+    .cv-job li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 8px; height: 2px; background: var(--signal); }
     .cv-edu li { padding-left: 0; display: flex; justify-content: space-between; gap: 16px; }
     .cv-edu li::before { display: none; }
     .cv-edu strong { color: var(--ink); }
     @media (max-width: 640px) {
+      .cv-bar .btn { padding: 10px 14px; }
       .cv-skills div { grid-template-columns: 1fr; gap: 2px; }
       .cv-edu li { flex-direction: column; gap: 2px; }
     }
     @media print {
-      :root, [data-theme="dark"] {
-        --paper: #ffffff; --paper-raised: #ffffff; --ink: #191919;
-        --muted: #3d3d3d; --hairline: #cccccc; --rule: #191919;
-        --green: #1e5c45; --green-strong: #1e5c45; --green-soft: transparent;
-      }
-      body { background: #ffffff; }
       .cv-bar { display: none; }
       .cv-wrap { padding: 0; max-width: none; }
       .cv-section { break-inside: avoid-page; }
@@ -103,7 +102,6 @@
     <p class="cv-role">Senior Android Engineer · Kotlin &amp; Jetpack Compose · Full-Stack (React, Node.js)</p>
     <div class="cv-contact">
       <span>London, UK</span>
-      <a href="tel:+447774969393">+44 7774 969393</a>
       <a href="mailto:kotimn@gmail.com">kotimn@gmail.com</a>
       <a href="https://linkedin.com/in/koti-madduluri">linkedin.com/in/koti-madduluri</a>
       <a href="https://kotimadduluri.github.io">kotimadduluri.github.io</a>

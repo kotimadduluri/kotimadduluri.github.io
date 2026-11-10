@@ -20,7 +20,7 @@
 
   function applyTheme(theme) {
     html.setAttribute("data-theme", theme);
-    if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#101210" : "#f5f4ef");
+    if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#0e0d0c" : "#f3f1ec");
     if (themeToggle) {
       themeToggle.setAttribute(
         "aria-label",
@@ -214,7 +214,9 @@
 
   /* ---------- selected work filter tabs ---------- */
   var workTabs = Array.prototype.slice.call(document.querySelectorAll(".work-tab"));
-  var workRows = Array.prototype.slice.call(document.querySelectorAll("#work .proj-band"));
+  // any filterable item (band or card); a group hides when all its items do
+  var workRows = Array.prototype.slice.call(document.querySelectorAll("#proj-list [data-track]"));
+  var workGroups = Array.prototype.slice.call(document.querySelectorAll("#proj-list [data-group]"));
   function selectWork(tab) {
     var track = tab.getAttribute("data-track");
     workTabs.forEach(function (t) {
@@ -223,11 +225,11 @@
       t.setAttribute("aria-selected", on ? "true" : "false");
       t.tabIndex = on ? 0 : -1;
     });
-    var shown = 0;
     workRows.forEach(function (row) {
-      var show = row.getAttribute("data-track") === track;
-      if (show) shown++;
-      row.hidden = !show;
+      row.hidden = row.getAttribute("data-track") !== track;
+    });
+    workGroups.forEach(function (group) {
+      group.hidden = !group.querySelector("[data-track]:not([hidden])");
     });
   }
   workTabs.forEach(function (tab, i) {
@@ -257,7 +259,7 @@
       if (!target) return;
       e.preventDefault();
       // rows hidden behind the other work tab: switch tabs first
-      if (target.classList.contains("proj-band") && target.hidden) {
+      if (target.hasAttribute("data-track") && target.hidden) {
         var track = target.getAttribute("data-track");
         var tab = workTabs.filter(function (t) {
           return t.getAttribute("data-track") === track;
@@ -266,12 +268,12 @@
       }
       target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
       // one-beat highlighter pass so the eye lands on the right row
-      if (target.classList.contains("proj-band")) {
+      if (target.hasAttribute("data-track")) {
         target.classList.remove("is-flashed");
         void target.offsetWidth;
         target.classList.add("is-flashed");
         target.addEventListener("animationend", function onFlashEnd(ev) {
-          if (ev.animationName !== "row-flash") return;
+          if (ev.animationName !== "band-flash") return;
           target.classList.remove("is-flashed");
           target.removeEventListener("animationend", onFlashEnd);
         });
@@ -370,6 +372,7 @@
       if (li) runCmd(li);
     });
 
+    var finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
     if (finePointer) {
       cmdk.addEventListener("pointermove", function (e) {
         var li = e.target.closest(".cmdk-list li");
