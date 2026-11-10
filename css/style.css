@@ -3,7 +3,7 @@
    Art direction: TILL ROLL. Warm paper and charcoal grounds, ink type,
    hairline rules, product hardware on tonal stages, a printed receipt as
    the signature. Achromatic by rule - the product screenshots are the
-   only colour on the page. A single signal orange is reserved for live
+   only colour on the page. A single carbon-ink blue signal is reserved for live
    status and focus, nothing else.
    Cabinet Grotesk (display, mixed case) + General Sans (body) +
    JetBrains Mono (real data only: dates, versions, stacks, the receipt).
@@ -23,8 +23,8 @@
   /* 3:1 against every ground: WCAG 1.4.11 for interactive control borders */
   --border-ui: #6e6961;
   --rule: #eeece8;
-  --signal: #ff6b2c;
-  --signal-quiet: rgba(255, 107, 44, 0.14);
+  --signal: #8fa3ff;
+  --signal-quiet: rgba(143, 163, 255, 0.14);
   --fill: #eeece8;
   --on-fill: #0e0d0c;
   /* receipt paper stays paper in both themes */
@@ -50,16 +50,15 @@
 [data-theme="light"] {
   --bg: #f3f1ec;
   --surface: #fbfaf7;
-  /* #ebe8e1 left the signal orange at 4.40:1; this keeps it at 4.5 */
-  --surface-2: #eeebe4;
+  --surface-2: #ebe8e1;
   --ink: #141310;
   --muted: #5c574e;
   --hairline: #dcd8cf;
   --hairline-strong: #bfb9ad;
   --border-ui: #8a8478;
   --rule: #141310;
-  --signal: #c23a0c;
-  --signal-quiet: rgba(194, 58, 12, 0.10);
+  --signal: #2b47c9;
+  --signal-quiet: rgba(43, 71, 201, 0.10);
   --fill: #141310;
   --on-fill: #f3f1ec;
   --contact-shadow: rgba(60, 48, 30, 0.28);
@@ -1359,7 +1358,7 @@ p { margin: 0; }
   /* print on white in either theme */
   :root, [data-theme] {
     --bg: #ffffff; --surface: #ffffff; --surface-2: #ffffff;
-    --ink: #141310; --muted: #5c574e; --hairline: #dcd8cf; --rule: #141310; --signal: #c23a0c;
+    --ink: #141310; --muted: #5c574e; --hairline: #dcd8cf; --rule: #141310; --signal: #2b47c9;
   }
   .site-header, .scroll-progress, .cmdk, .contact-form, .nav-toggle { display: none; }
   body { background: #fff; color: #000; }
