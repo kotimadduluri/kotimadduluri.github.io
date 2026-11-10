@@ -1,389 +1,231 @@
-// Koti Madduluri — portfolio. Vanilla JS, no dependencies.
+/* v2 mock behaviour. No dependencies: IntersectionObserver for reveals and the active nav,
+   View Transitions for the work filter where supported, one scramble word in the contact line. */
 (function () {
   "use strict";
-
-  var html = document.documentElement;
-  html.classList.remove("no-js");
-
-  // trigger hero entrance on the next frame, once styles are applied
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () { html.classList.add("is-loaded"); });
-  });
-
-  var reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var d = document.documentElement;
+  // First thing: reveal and collapse CSS keys off this class, so if this file never runs, nothing stays hidden.
+  d.classList.add("js-ready");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)");
   var hasIO = "IntersectionObserver" in window;
 
-  /* ---------- theme toggle ---------- */
-  var themeToggle = document.querySelector(".theme-toggle");
-
+  /* ---------- theme (same `theme` key as the live site) ---------- */
   var themeMeta = document.querySelector('meta[name="theme-color"]');
+  document.querySelector(".theme-btn").addEventListener("click", function () {
+    var t = d.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    d.setAttribute("data-theme", t);
+    themeMeta.setAttribute("content", t === "dark" ? "#0d0d0c" : "#fafaf9");
+    try { localStorage.setItem("theme", t); } catch (e) { /* storage blocked: theme still applies this visit */ }
+  });
 
-  function applyTheme(theme) {
-    html.setAttribute("data-theme", theme);
-    if (themeMeta) themeMeta.setAttribute("content", theme === "dark" ? "#0e0d0c" : "#f3f1ec");
-    if (themeToggle) {
-      themeToggle.setAttribute(
-        "aria-label",
-        theme === "dark" ? "Switch to light mode" : "Switch to dark mode"
-      );
-    }
-  }
-
-  applyTheme(html.getAttribute("data-theme") || "light");
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", function () {
-      var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      try { localStorage.setItem("theme", next); } catch (err) {}
-
-      // circle-reveal the new theme from the toggle (state transition)
-      var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!document.startViewTransition || reduce) {
-        applyTheme(next);
-        return;
-      }
-      var rect = themeToggle.getBoundingClientRect();
-      var cx = rect.left + rect.width / 2;
-      var cy = rect.top + rect.height / 2;
-      var radius = Math.hypot(
-        Math.max(cx, window.innerWidth - cx),
-        Math.max(cy, window.innerHeight - cy)
-      );
-      var transition = document.startViewTransition(function () { applyTheme(next); });
-      transition.ready.then(function () {
-        document.documentElement.animate(
-          { clipPath: ["circle(0px at " + cx + "px " + cy + "px)", "circle(" + radius + "px at " + cx + "px " + cy + "px)"] },
-          { duration: 450, easing: "cubic-bezier(0.16, 1, 0.3, 1)", pseudoElement: "::view-transition-new(root)" }
-        );
-      }).catch(function () {});
-    });
-  }
-
-
-  /* ---------- mobile nav ---------- */
-  var navToggle = document.querySelector(".nav-toggle");
-  var navMenu = document.getElementById("nav-menu");
-
-  function closeMenu() {
-    if (!navMenu || !navToggle) return;
-    navMenu.classList.remove("is-open");
-    navToggle.setAttribute("aria-expanded", "false");
-  }
-
-  if (navToggle && navMenu) {
-    navToggle.addEventListener("click", function () {
-      var open = navMenu.classList.toggle("is-open");
-      navToggle.setAttribute("aria-expanded", String(open));
-    });
-
-    navMenu.addEventListener("click", function (e) {
-      if (e.target.closest("a")) closeMenu();
-    });
-
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && navMenu.classList.contains("is-open")) {
-        closeMenu();
-        navToggle.focus();
-      }
-    });
-  }
-
-  /* ---------- scrolled nav state (rAF-throttled) ---------- */
-  var siteHeader = document.querySelector(".site-header");
-  if (siteHeader) {
-    var ticking = false;
-    var updateNav = function () {
-      siteHeader.classList.toggle("is-scrolled", window.scrollY > 24);
-      ticking = false;
-    };
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(updateNav);
-      }
-    }, { passive: true });
-    updateNav();
-  }
-
-  /* ---------- scrollspy ---------- */
-  var sections = Array.prototype.slice.call(document.querySelectorAll("section[id]"));
-  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-menu a[href^="#"]'));
-
-  function setActiveLink(id) {
-    navLinks.forEach(function (link) {
-      if (link.getAttribute("href") === "#" + id) {
-        link.setAttribute("aria-current", "true");
-      } else {
-        link.removeAttribute("aria-current");
-      }
-    });
-  }
-
-  if (hasIO && sections.length && navLinks.length) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) setActiveLink(entry.target.id);
-      });
-    }, { rootMargin: "-40% 0px -55% 0px" });
-    sections.forEach(function (s) { spy.observe(s); });
-  }
-
-  /* ---------- reveal-on-scroll ---------- */
-  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
-
-  if (reduceMotion || !hasIO) {
-    revealEls.forEach(function (el) { el.classList.add("is-visible"); });
-  } else if (revealEls.length) {
+  /* ---------- reveals ---------- */
+  var revealEls = document.querySelectorAll("[data-reveal], [data-lines], .iso");
+  if (hasIO) {
     var revealer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealer.unobserve(entry.target);
-        }
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        revealer.unobserve(e.target);
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
     revealEls.forEach(function (el) { revealer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
   }
 
-  /* ---------- contact form → mailto + printed receipt ---------- */
-  var form = document.getElementById("contact-form");
-  var receiptEl = document.getElementById("receipt");
-
-  function receiptRow(label, value) {
-    var row = document.createElement("div");
-    row.className = "receipt-row";
-    var l = document.createElement("span");
-    l.textContent = label;
-    var v = document.createElement("span");
-    v.textContent = value;
-    row.appendChild(l);
-    row.appendChild(v);
-    return row;
+  /* ---------- header state ---------- */
+  var hdr = document.getElementById("hdr");
+  var sentinel = document.createElement("div");
+  sentinel.setAttribute("aria-hidden", "true");
+  sentinel.style.cssText = "position:absolute;top:0;left:0;width:1px;height:24px;pointer-events:none";
+  document.body.prepend(sentinel);
+  if (hasIO) {
+    new IntersectionObserver(function (entries) {
+      hdr.classList.toggle("scrolled", !entries[0].isIntersecting);
+    }).observe(sentinel);
   }
 
-  function printReceipt(name) {
-    if (!receiptEl) return;
-    receiptEl.textContent = "";
-    var head = document.createElement("p");
-    head.className = "receipt-center";
-    head.textContent = "KM · London, UK";
-    receiptEl.appendChild(head);
-    receiptEl.appendChild(Object.assign(document.createElement("hr"), { className: "receipt-rule" }));
-    receiptEl.appendChild(receiptRow("Item", "1 × message"));
-    if (name) receiptEl.appendChild(receiptRow("From", name));
-    var status = receiptRow("Status", "Approved");
-    status.className += " receipt-status";
-    receiptEl.appendChild(status);
-    receiptEl.appendChild(receiptRow("Auth code", "KM-" + Date.now().toString(36).slice(-4)));
-    receiptEl.appendChild(Object.assign(document.createElement("hr"), { className: "receipt-rule" }));
-    var foot = document.createElement("p");
-    foot.className = "receipt-center";
-    foot.textContent = "Thank you · I reply within a day";
-    receiptEl.appendChild(foot);
-    receiptEl.closest(".receipt-slot").classList.add("is-printed");
-  }
-
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var name = form.elements.name ? form.elements.name.value.trim() : "";
-      var subject = form.elements.subject ? form.elements.subject.value.trim() : "";
-      var message = form.elements.message ? form.elements.message.value.trim() : "";
-      var body = message + "\n\n- " + name;
-      printReceipt(name);
-      window.location.href =
-        "mailto:kotimn@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(body);
-    });
-  }
-
-  /* ---------- skills disclosure ---------- */
-  var skillsTable = document.querySelector(".skills-table");
-  var skillsMore = document.querySelector(".skills-more");
-  if (skillsTable && skillsMore) {
-    skillsTable.classList.add("is-collapsed");
-    skillsMore.hidden = false;
-    skillsMore.addEventListener("click", function () {
-      var collapsed = skillsTable.classList.toggle("is-collapsed");
-      skillsMore.setAttribute("aria-expanded", collapsed ? "false" : "true");
-      skillsMore.firstChild.textContent = collapsed ? "Show the full stack " : "Show less ";
-      skillsMore.querySelector(".skills-more-n").hidden = !collapsed;
-    });
-  }
-
-  /* ---------- selected work filter tabs ---------- */
-  var workTabs = Array.prototype.slice.call(document.querySelectorAll(".work-tab"));
-  // any filterable item (band or card); a group hides when all its items do
-  var workRows = Array.prototype.slice.call(document.querySelectorAll("#proj-list [data-track]"));
-  var workGroups = Array.prototype.slice.call(document.querySelectorAll("#proj-list [data-group]"));
-  function selectWork(tab) {
-    var track = tab.getAttribute("data-track");
-    workTabs.forEach(function (t) {
-      var on = t === tab;
-      t.classList.toggle("is-active", on);
-      t.setAttribute("aria-selected", on ? "true" : "false");
-      t.tabIndex = on ? 0 : -1;
-    });
-    workRows.forEach(function (row) {
-      row.hidden = row.getAttribute("data-track") !== track;
-    });
-    workGroups.forEach(function (group) {
-      group.hidden = !group.querySelector("[data-track]:not([hidden])");
-    });
-  }
-  workTabs.forEach(function (tab, i) {
-    tab.addEventListener("click", function () { selectWork(tab); });
-    tab.addEventListener("keydown", function (e) {
-      var next = null;
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = workTabs[(i + 1) % workTabs.length];
-      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = workTabs[(i - 1 + workTabs.length) % workTabs.length];
-      else if (e.key === "Home") next = workTabs[0];
-      else if (e.key === "End") next = workTabs[workTabs.length - 1];
-      if (next) {
-        e.preventDefault();
-        next.focus();
-        selectWork(next);
-      }
+  /* ---------- active nav + phone menu ---------- */
+  var menu = document.getElementById("nav-menu");
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll("#nav-menu a, .hdr-end a[href^='#']"));
+  navLinks.forEach(function (a) {
+    a.addEventListener("click", function () {
+      if (menu.hidePopover && menu.matches(":popover-open")) menu.hidePopover();
     });
   });
-  if (workTabs.length) selectWork(workTabs[0]);
-
-  /* ---------- in-copy ledger links: prose that jumps to the proof ---------- */
-  var copyLinks = Array.prototype.slice.call(document.querySelectorAll("a.copy-link"));
-  copyLinks.forEach(function (link) {
-    link.addEventListener("click", function (e) {
-      var hash = link.getAttribute("href");
-      if (!hash || hash.charAt(0) !== "#") return;
-      var target = document.querySelector(hash);
-      if (!target) return;
-      e.preventDefault();
-      // rows hidden behind the other work tab: switch tabs first
-      if (target.hasAttribute("data-track") && target.hidden) {
-        var track = target.getAttribute("data-track");
-        var tab = workTabs.filter(function (t) {
-          return t.getAttribute("data-track") === track;
-        })[0];
-        if (tab) selectWork(tab);
-      }
-      target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "center" });
-      // one-beat highlighter pass so the eye lands on the right row
-      if (target.hasAttribute("data-track")) {
-        target.classList.remove("is-flashed");
-        void target.offsetWidth;
-        target.classList.add("is-flashed");
-        target.addEventListener("animationend", function onFlashEnd(ev) {
-          if (ev.animationName !== "band-flash") return;
-          target.classList.remove("is-flashed");
-          target.removeEventListener("animationend", onFlashEnd);
+  if (hasIO) {
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        navLinks.forEach(function (a) {
+          if (a.getAttribute("href") === "#" + e.target.id) a.setAttribute("aria-current", "true");
+          else a.removeAttribute("aria-current");
         });
-      }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    // The hero has no link, so reaching it clears aria-current.
+    ["#top", "#work", "#career", "#skills", "#contact"].forEach(function (id) {
+      var s = document.querySelector(id);
+      if (s) spy.observe(s);
+    });
+  }
+
+  /* ---------- work filter ---------- */
+  var tiles = Array.prototype.slice.call(document.querySelectorAll("#tiles .tile"));
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".filters .chip-btn"));
+  var status = document.getElementById("tiles-status");
+  tiles.forEach(function (t, i) { t.style.viewTransitionName = "tile-" + i; });
+
+  function applyFilter(f, label) {
+    var shown = 0;
+    tiles.forEach(function (t) {
+      var match = f === "all" || t.getAttribute("data-tags").split(" ").indexOf(f) !== -1;
+      t.hidden = !match;
+      if (match) shown++;
+    });
+    chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c.getAttribute("data-f") === f)); });
+    status.textContent = f === "all"
+      ? "Showing all " + shown + " projects"
+      : "Showing " + shown + (shown === 1 ? " project" : " projects") + " in " + label;
+  }
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var f = c.getAttribute("data-f");
+      var run = function () { applyFilter(f, c.textContent); };
+      if (document.startViewTransition && !reduce.matches) document.startViewTransition(run);
+      else run();
     });
   });
 
-  /* ---------- command palette (⌘K / Ctrl+K) ---------- */
-  var cmdk = document.getElementById("cmdk");
-  var cmdkHint = document.querySelector(".cmdk-hint");
+  /* ---------- stack disclosure ---------- */
+  var stack = document.getElementById("stack");
+  var more = document.querySelector(".stack-more");
+  more.hidden = false;
+  more.addEventListener("click", function () {
+    var open = stack.classList.toggle("open");
+    more.setAttribute("aria-expanded", String(open));
+    more.textContent = open ? "Show less" : "Show the full stack";
+  });
 
-  if (cmdk) {
-    var cmdkInput = cmdk.querySelector(".cmdk-input");
-    var cmdkItems = Array.prototype.slice.call(cmdk.querySelectorAll(".cmdk-list li"));
-    var cmdkPrevFocus = null;
-    var activeIdx = 0;
+  /* ---------- contact word: scramble to the next word, only while seen ---------- */
+  var cycle = document.getElementById("cycle");
+  var words = ["hire", "Android app", "product"];
+  var glyphs = "abcdeghknopqrsuvxyz"; // no m or w: random frames stay inside the held width
+  var wi = 0, timer = null, seen = false;
 
-    var visibleItems = function () {
-      return cmdkItems.filter(function (li) { return !li.hidden; });
-    };
+  // Fix the box at the widest word so a swap or a scramble frame never moves the line.
+  function holdWidth() {
+    var w = 0, was = cycle.textContent;
+    cycle.style.width = "auto";
+    words.forEach(function (word) { cycle.textContent = word; w = Math.max(w, cycle.getBoundingClientRect().width); });
+    cycle.textContent = was;
+    cycle.style.width = Math.ceil(w) + "px";
+  }
+  holdWidth();
+  if (document.fonts) document.fonts.ready.then(holdWidth);
+  addEventListener("resize", holdWidth);
 
-    var setActive = function (li) {
-      cmdkItems.forEach(function (el) { el.classList.toggle("is-active", el === li); });
-      if (li) li.scrollIntoView({ block: "nearest" });
-    };
-
-    var openCmdk = function () {
-      cmdkPrevFocus = document.activeElement;
-      cmdk.hidden = false;
-      cmdkInput.value = "";
-      cmdkItems.forEach(function (li) { li.hidden = false; });
-      setActive(cmdkItems[0]);
-      cmdkInput.focus();
-      document.documentElement.style.overflow = "hidden";
-    };
-
-    var closeCmdk = function () {
-      cmdk.hidden = true;
-      document.documentElement.style.overflow = "";
-      if (cmdkPrevFocus && cmdkPrevFocus.focus) cmdkPrevFocus.focus();
-    };
-
-    var runCmd = function (li) {
-      if (!li) return;
-      var action = li.getAttribute("data-action");
-      closeCmdk();
-      if (action === "goto") {
-        var target = document.querySelector(li.getAttribute("data-target"));
-        if (target) target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
-      } else if (action === "cv") {
-        var a = document.createElement("a");
-        a.href = "assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf";
-        a.download = "";
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      } else if (action === "cvpage") {
-        window.location.href = "cv/";
-      } else if (action === "email") {
-        if (navigator.clipboard) navigator.clipboard.writeText("kotimn@gmail.com").catch(function () {});
-      } else if (action === "linkedin") {
-        window.open("https://linkedin.com/in/koti-madduluri", "_blank", "noopener");
-      } else if (action === "github") {
-        window.open("https://github.com/kotimadduluri", "_blank", "noopener");
-      } else if (action === "theme" && themeToggle) {
-        themeToggle.click();
+  function scrambleTo(to) {
+    var start = performance.now(), dur = 500, last = -1;
+    function frame(now) {
+      var p = Math.min(1, (now - start) / dur);
+      var step = Math.floor((now - start) / 70); // new random letters every 70ms, not every frame
+      if (p < 1 && step !== last) {
+        last = step;
+        var out = "";
+        for (var i = 0; i < to.length; i++) {
+          var c = to.charAt(i);
+          out += c === " " || i / to.length < p ? c : glyphs.charAt((Math.random() * glyphs.length) | 0);
+        }
+        cycle.textContent = out;
       }
-    };
-
-    document.addEventListener("keydown", function (e) {
-      if ((e.metaKey || e.ctrlKey) && (e.key === "k" || e.key === "K")) {
-        e.preventDefault();
-        cmdk.hidden ? openCmdk() : closeCmdk();
-        return;
-      }
-      if (cmdk.hidden) return;
-      var vis = visibleItems();
-      var idx = vis.indexOf(cmdk.querySelector(".cmdk-list li.is-active"));
-      if (e.key === "Escape") { e.preventDefault(); closeCmdk(); }
-      else if (e.key === "ArrowDown") { e.preventDefault(); setActive(vis[Math.min(idx + 1, vis.length - 1)]); }
-      else if (e.key === "ArrowUp") { e.preventDefault(); setActive(vis[Math.max(idx - 1, 0)]); }
-      else if (e.key === "Enter") { e.preventDefault(); runCmd(vis[idx]); }
-    });
-
-    cmdkInput.addEventListener("input", function () {
-      var q = cmdkInput.value.trim().toLowerCase();
-      cmdkItems.forEach(function (li) {
-        li.hidden = q !== "" && li.textContent.toLowerCase().indexOf(q) === -1;
-      });
-      setActive(visibleItems()[0] || null);
-    });
-
-    cmdk.addEventListener("click", function (e) {
-      if (e.target.closest("[data-cmdk-close]")) { closeCmdk(); return; }
-      var li = e.target.closest(".cmdk-list li");
-      if (li) runCmd(li);
-    });
-
-    var finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (finePointer) {
-      cmdk.addEventListener("pointermove", function (e) {
-        var li = e.target.closest(".cmdk-list li");
-        if (li && !li.classList.contains("is-active")) setActive(li);
-      });
+      if (p < 1) requestAnimationFrame(frame);
+      else cycle.textContent = to;
     }
+    requestAnimationFrame(frame);
+  }
+  function syncCycle() {
+    var run = seen && !document.hidden && !reduce.matches;
+    if (run && !timer) {
+      timer = setInterval(function () { wi = (wi + 1) % words.length; scrambleTo(words[wi]); }, 4500);
+    } else if (!run && timer) {
+      clearInterval(timer); timer = null;
+    }
+  }
+  if (hasIO) {
+    new IntersectionObserver(function (entries) { seen = entries[0].isIntersecting; syncCycle(); }).observe(cycle);
+  }
+  document.addEventListener("visibilitychange", syncCycle);
+  reduce.addEventListener("change", syncCycle);
 
-    if (cmdkHint) cmdkHint.addEventListener("click", openCmdk);
+  /* ---------- copy email ---------- */
+  var copyBtn = document.querySelector(".copy-btn");
+  var copyNote = document.getElementById("copy-note");
+  if (navigator.clipboard) {
+    copyBtn.hidden = false;
+    copyBtn.addEventListener("click", function () {
+      navigator.clipboard.writeText("kotimn@gmail.com").then(function () {
+        copyBtn.textContent = "Copied";
+        copyNote.textContent = "Email address copied.";
+        setTimeout(function () { copyBtn.textContent = "Copy email"; copyNote.textContent = ""; }, 2400);
+      }, function () {
+        copyNote.textContent = "Could not copy. The address is kotimn@gmail.com.";
+      });
+    });
   }
 
-  /* ---------- footer year ---------- */
-  var year = document.getElementById("year");
-  if (year) year.textContent = String(new Date().getFullYear());
+  /* ---------- hero parallax (fine pointer, motion allowed, at most 2deg) ---------- */
+  var plane = document.getElementById("iso-plane");
+  var hero = document.getElementById("top");
+  function resetTilt() {
+    plane.style.setProperty("--px", "0");
+    plane.style.setProperty("--py", "0");
+  }
+  if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    var raf = 0, px = 0, py = 0, rect = null;
+    function measure() { rect = hero.getBoundingClientRect(); }
+    hero.addEventListener("pointerenter", measure);
+    addEventListener("resize", function () { rect = null; });
+    addEventListener("scroll", function () { rect = null; }, { passive: true });
+    hero.addEventListener("pointermove", function (e) {
+      if (reduce.matches) return;
+      if (!rect) measure();
+      px = (e.clientX - rect.left) / rect.width * 2 - 1;
+      py = (e.clientY - rect.top) / rect.height * 2 - 1;
+      if (!raf) raf = requestAnimationFrame(function () {
+        raf = 0;
+        plane.style.setProperty("--px", px.toFixed(3));
+        plane.style.setProperty("--py", py.toFixed(3));
+      });
+    });
+    hero.addEventListener("pointerleave", resetTilt);
+  }
+  reduce.addEventListener("change", function () { if (reduce.matches) resetTilt(); });
+
+  /* ---------- contact form: builds a mailto link, as js/main.js does ---------- */
+  var form = document.getElementById("contact-form");
+  var note = document.getElementById("form-note");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = form.elements.name ? form.elements.name.value.trim() : "";
+    var subject = form.elements.subject ? form.elements.subject.value.trim() : "";
+    var message = form.elements.message ? form.elements.message.value.trim() : "";
+    var body = message + "\n\n- " + name;
+    note.textContent = "Your email app should open with this message ready. If it does not, write to kotimn@gmail.com.";
+    window.location.href =
+      "mailto:kotimn@gmail.com" +
+      "?subject=" + encodeURIComponent(subject) +
+      "&body=" + encodeURIComponent(body);
+  });
+
+  /* ---------- footer: year and UK clock ---------- */
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+  var clock = document.getElementById("clock");
+  var fmt = new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit" });
+  function tick() {
+    var t = fmt.format(new Date());
+    clock.textContent = t;
+    clock.setAttribute("datetime", t);
+  }
+  tick();
+  setInterval(tick, 10000);
 })();

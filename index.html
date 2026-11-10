@@ -1,61 +1,51 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Koti Madduluri - Senior Android &amp; Full Stack Engineer · Payments</title>
-  <meta name="description" content="Koti Madduluri - Senior Android &amp; Full Stack Engineer in London, UK. 10+ years across payment terminals, EPOS, digital banking, smart city IoT, on-device ML and EdTech. 30+ production apps." />
+  <title>Koti Madduluri - Senior Android &amp; Full-Stack Engineer</title>
+  <meta name="description" content="Koti Madduluri, Senior Android &amp; full-stack engineer in London, UK. 10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel." />
   <meta name="author" content="Koti Madduluri" />
   <link rel="canonical" href="https://kotimadduluri.github.io/" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Koti Madduluri - Senior Android &amp; Full Stack Engineer · Payments" />
-  <meta property="og:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments &amp; EPOS. 10+ years, 30+ production apps." />
+  <meta property="og:title" content="Koti Madduluri - Senior Android &amp; Full-Stack Engineer" />
+  <meta property="og:description" content="10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel. London, UK." />
   <meta property="og:url" content="https://kotimadduluri.github.io/" />
   <meta property="og:site_name" content="Koti Madduluri" />
   <meta property="og:image" content="https://kotimadduluri.github.io/assets/og.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="Koti Madduluri, Senior Android &amp; Full Stack Engineer. I build the Android behind payments: card terminals, EPOS tills and digital banking apps." />
+  <meta property="og:image:alt" content="Koti Madduluri, Senior Android &amp; full-stack engineer. 10+ years and 30+ production apps across many domains." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://kotimadduluri.github.io/assets/og.png" />
-  <meta name="twitter:title" content="Koti Madduluri - Senior Android &amp; Full Stack Engineer · Payments" />
-  <meta name="twitter:description" content="Kotlin · Jetpack Compose · KMP/CMP - Fintech, Payments &amp; EPOS. 10+ years, 30+ production apps." />
+  <meta name="twitter:title" content="Koti Madduluri - Senior Android &amp; Full-Stack Engineer" />
+  <meta name="twitter:description" content="10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel. London, UK." />
 
-  <meta name="theme-color" content="#f3f1ec" />
+  <meta name="theme-color" content="#fafaf9" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Fontshare drops the second family when these are combined in one request -->
-  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
-  <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@700,800&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Set theme before first paint to avoid a flash of the wrong mode -->
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/home.css" />
   <script>
+    // Theme before first paint. Same `theme` key as the live site.
     (function () {
-      var stored = null;
-      try { stored = localStorage.getItem("theme"); } catch (e) {}
-      // no saved choice: follow the OS scheme
-      var theme = stored || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-      document.documentElement.setAttribute("data-theme", theme);
-      var tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.setAttribute("content", theme === "dark" ? "#0e0d0c" : "#f3f1ec");
+      var d = document.documentElement, s = null;
+      try { s = localStorage.getItem("theme"); } catch (e) {}
+      var t = s === "dark" || s === "light" ? s : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      d.setAttribute("data-theme", t);
+      document.querySelector('meta[name="theme-color"]').setAttribute("content", t === "dark" ? "#0d0d0c" : "#fafaf9");
     })();
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Koteswara Rao Madduluri",
     "alternateName": "Koti Madduluri",
-    "jobTitle": "Senior Android & Full Stack Engineer",
+    "jobTitle": "Senior Android & Full-Stack Engineer",
+    "description": "Senior Android and full-stack engineer with 10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel.",
     "email": "mailto:kotimn@gmail.com",
     "url": "https://kotimadduluri.github.io/",
     "image": "https://kotimadduluri.github.io/assets/og.png",
@@ -65,704 +55,490 @@
     ],
     "worksFor": { "@type": "Organization", "name": "Lopay", "url": "https://lopay.com" },
     "alumniOf": { "@type": "CollegeOrUniversity", "name": "Jawaharlal Nehru Technological University" },
-    "knowsAbout": ["Android", "Kotlin", "Jetpack Compose", "Kotlin Multiplatform", "Payments", "EPOS", "Digital Banking", "Healthcare", "Smart City IoT", "On-Device Machine Learning", "EdTech", "React", "Node.js"],
+    "knowsAbout": ["Android", "Kotlin", "Jetpack Compose", "Kotlin Multiplatform", "Digital Banking", "Payments", "Smart City IoT", "EdTech", "Real-Time Messaging", "Travel", "React", "Node.js"],
     "address": { "@type": "PostalAddress", "addressLocality": "London", "addressCountry": "GB" }
   }
   </script>
-
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Koti Madduluri",
     "url": "https://kotimadduluri.github.io/",
-    "description": "Portfolio of Koti Madduluri, Senior Android & Full Stack Engineer. Kotlin, Jetpack Compose, KMP/CMP. Fintech, payments and EPOS. London, UK.",
+    "description": "Portfolio of Koti Madduluri, Senior Android & full-stack engineer. 10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel. London, UK.",
     "author": { "@type": "Person", "name": "Koteswara Rao Madduluri" }
   }
   </script>
 </head>
 <body>
 
-<!-- Inline SVG icon sprite -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
-    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
     <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
     <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+    <symbol id="i-arrow-ne" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
     <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
     <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></symbol>
     <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></symbol>
     <symbol id="i-grad" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
-    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.360-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.7 1.25 3.35.96.1-.75.4-1.250.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.16-1.18 3.16-1.18.63 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></symbol>
     <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05a3.74 3.74 0 0 1 3.37-1.85c3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></symbol>
   </defs>
 </svg>
 
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip" href="#main">Skip to content</a>
 
-<div class="scroll-progress" aria-hidden="true"></div>
-
-<header class="site-header">
-  <nav class="container nav" aria-label="Main navigation">
-    <a class="brand" href="#top">KM<span class="brand-dot">.</span></a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle menu">
-      <span></span><span></span>
-    </button>
-    <ul class="nav-menu" id="nav-menu">
-      <li><a href="#work">Work</a></li>
-      <li><a href="#career">Career</a></li>
-      <li><a href="#expertise">Payments</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="cmdk-hint" aria-label="Open command menu" title="Command menu">
-      <kbd>&#8984;</kbd><kbd>K</kbd>
-    </button>
-    <button class="theme-toggle" aria-label="Switch theme" title="Toggle theme">
-      <svg class="ic icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
-      <svg class="ic icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
-    </button>
-  </nav>
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="brand" href="#top">Koti Madduluri</a>
+    <nav class="nav" aria-label="Main">
+      <ul class="nav-pills" id="nav-menu" popover>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#career">Career</a></li>
+        <li><a href="#skills">Stack</a></li>
+        <li class="nav-contact"><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-end">
+      <button class="icon-btn theme-btn" type="button" aria-label="Switch theme">
+        <svg class="ic ic-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        <svg class="ic ic-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+      </button>
+      <button class="pill menu-btn" type="button" popovertarget="nav-menu">Menu</button>
+      <a class="pill pill-ink" href="#contact">Contact</a>
+    </div>
+  </div>
 </header>
 
 <main id="main">
 
-  <!-- ============ MASTHEAD ============ -->
-  <section class="masthead" id="top">
-    <div class="container">
-      <div class="mast-grid">
-        <div class="mast-copy">
-          <p class="mast-status reveal"><i class="tl-live" aria-hidden="true"></i>Open to new roles and conversations · UK</p>
-          <h1 class="mast-name" aria-label="Koti Madduluri">
-            <span class="h-line"><span class="h-line-inner">Koti</span></span>
-            <span class="h-line"><span class="h-line-inner" style="--hd:110ms">Madduluri</span></span>
-          </h1>
-          <p class="mast-role reveal" style="--d:200ms">Senior Android &amp; Full Stack Engineer</p>
-          <p class="mast-thesis reveal" style="--d:280ms">I build the Android behind <em>payments</em>: <a class="copy-link" href="#p-terminal-pay">card terminals</a>, <a class="copy-link" href="#p-lopay-pos">EPOS tills</a> and <a class="copy-link" href="#p-banking">digital banking apps</a>.</p>
-          <div class="mast-actions reveal" style="--d:360ms">
-            <a class="btn btn-primary" href="#work">View my work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
-            <a class="btn btn-secondary" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
-            <a class="text-link" href="mailto:kotimn@gmail.com">Email me</a>
-          </div>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="status" data-reveal><i class="live" aria-hidden="true"></i>Open to new roles and conversations · UK</p>
+        <h1 class="display" data-lines>
+          <span class="ml display-name"><span style="--i:0">Koti Madduluri</span></span>
+          <span class="ml"><span style="--i:1">Senior</span></span>
+          <span class="ml"><span style="--i:2">Android &amp;</span></span>
+          <span class="ml"><span style="--i:3">full-stack</span></span>
+          <span class="ml"><span style="--i:4">engineer.</span></span>
+        </h1>
+        <p class="lede" data-reveal style="--d:360ms">10+ years and 30+ production apps across banking, payments, smart city IoT, EdTech, real-time messaging and travel.</p>
+        <div class="hero-cta" data-reveal style="--d:440ms">
+          <a class="btn btn-ink" href="#work">View work <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></a>
+          <a class="btn btn-line" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
         </div>
-
-        <figure class="mast-stage stage">
-          <img src="assets/shots/lopay-terminal-hw.webp" width="640" height="661" fetchpriority="high" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" />
-          <div class="receipt receipt-slip" aria-label="Now shipping">
-            <p class="receipt-center receipt-status">*** NOW SHIPPING ***</p>
-            <hr class="receipt-rule" />
-            <div class="receipt-row"><span>Lopay EPOS</span><span>Now</span></div>
-            <div class="receipt-row"><span>Terminal Pay</span><span>Now</span></div>
-            <div class="receipt-row"><span>PrintBeam</span><span>0.1.0-alpha04</span></div>
-          </div>
-        </figure>
       </div>
 
-      <ul class="fact-strip reveal" style="--d:420ms" aria-label="Career facts">
-        <li><span class="fact-num">10+</span><span class="fact-label">Years of experience</span></li>
-        <li><span class="fact-num">30+</span><span class="fact-label">Production apps</span></li>
-        <li><span class="fact-num">6</span><span class="fact-label">Companies</span></li>
-        <li><span class="fact-num">2</span><span class="fact-label">Products in flight</span></li>
-      </ul>
-
-      <div class="integrations reveal">
-        <p class="integrations-label meta">Shipped against</p>
-        <ul class="integrations-list">
-          <li>Verifone</li><li>Ingenico</li><li>PAX</li><li>Castles</li><li>Stripe</li><li>Backbase</li><li>Zelle</li><li>Glia</li><li>Payveris</li><li>ThreatMetrix</li><li>ShuftiPro</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ WORK ============ -->
-  <section class="section" id="work">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="section-n reveal">Products</span>
-          <h2 class="reveal">Products worth showing</h2>
-        </div>
-        <p class="section-sub reveal">Nine of them, newest first: company builds and my own. Every one shipped.</p>
-      </div>
-
-      <div class="work-tabs reveal" role="tablist" aria-label="Work type">
-        <button class="work-tab is-active" id="worktab-company" role="tab" aria-selected="true" aria-controls="proj-list" data-track="company" type="button">Company<span class="work-tab-n">07</span></button>
-        <button class="work-tab" id="worktab-personal" role="tab" aria-selected="false" aria-controls="proj-list" data-track="personal" tabindex="-1" type="button">Hobby<span class="work-tab-n">02</span></button>
-      </div>
-
-      <div class="proj-list" id="proj-list" role="tabpanel" aria-label="Selected work list">
-
-        <article class="proj-band proj-band--feature reveal" id="p-lopay-pos" data-track="company">
-          <p class="proj-idx">Now</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/lopay.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Lopay</h3>
-              </div>
-            </div>
-            <p class="proj-desc">Point of sale inside the Lopay platform used by 50,000+ small businesses in the UK, expanding into the US: product grids, inventory and digital receipts on Stripe payment hardware. Migrating it from XML to Compose alongside a multi-module restructure.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Kotlin</li><li>Jetpack Compose</li><li>Multi-Module MVVM</li><li>Coroutines &amp; Flow</li><li>Stripe Terminal SDK</li><li>Tap to Pay</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Payment flows, EPOS modules and new terminal hardware integrations</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
-                <a href="https://apps.apple.com/us/app/lopay-payments-pos/id1565369434" target="_blank" rel="noopener noreferrer">App Store &#8599;</a>
-                <a href="https://lopay.com/en-gb/point-of-sale" target="_blank" rel="noopener noreferrer">lopay.com &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media stage">
-            <img src="assets/shots/lopay-terminal-hw.webp" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" loading="lazy" width="640" height="661" />
-          </figure>
-        </article>
-
-        <article class="proj-band proj-band--feature reveal" id="p-terminal-pay" data-track="company">
-          <p class="proj-idx">Now</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/terminal-pay.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Terminal Pay</h3>
-                <p class="proj-org"><img class="proj-org-ic" src="assets/apps/lopay.png" alt="" width="15" height="15" loading="lazy" />Lopay</p>
-              </div>
-            </div>
-            <p class="proj-desc">Built for merchants already on Stripe who want card-present payments without switching provider: their own Stripe account becomes a full in-person setup with physical terminals, Tap to Pay, tipping, refunds and printed receipts. Pure Jetpack Compose, multi-module MVVM, NestJS APIs.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Kotlin</li><li>Jetpack Compose</li><li>Multi-Module MVVM</li><li>Stripe Terminal SDK</li><li>Tap to Pay</li><li>NestJS</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Sole owner across Android, iOS and backend</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
-                <a href="https://play.google.com/store/apps/details?id=com.terminalpay" target="_blank" rel="noopener noreferrer">Google Play &#8599;</a>
-                <a href="https://apps.apple.com/us/app/terminal-pay/id6743445028" target="_blank" rel="noopener noreferrer">App Store &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media stage">
-            <img src="assets/shots/terminal-pay-2.webp" alt="Terminal Pay charge screen taking a 10 pound card payment" loading="lazy" width="412" height="836" />
-            <img src="assets/shots/terminal-pay-1.webp" alt="Terminal Pay pairing screen connecting a Stripe account" loading="lazy" width="411" height="836" />
-          </figure>
-        </article>
-
-        <article class="proj-band reveal" id="p-printbeam" data-track="personal">
-          <p class="proj-idx">2026</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/printbeam.svg" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>PrintBeam</h3>
-                <p class="proj-org">Own SDK release</p>
-              </div>
-            </div>
-            <p class="proj-desc">Every receipt printer speaks ESC/POS, yet every platform needs its own integration; PrintBeam collapses that into one API over network and Bluetooth LE, on Android, iOS and Kotlin Multiplatform. Shipped as hosted Maven artifacts and a Swift Package, with Compose Multiplatform, SwiftUI and native Android sample apps.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>KMP / CMP</li><li>Coroutines</li><li>Ktor Sockets</li><li>Bluetooth LE</li><li>ESC/POS</li><li>Swift Package</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Designed, built and released solo; free to use, including commercially</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
-                <a href="https://kotimadduluri.github.io/printbeam-sdk/" target="_blank" rel="noopener noreferrer">Docs &#8599;</a>
-                <a href="https://github.com/kotimadduluri/printbeam-sdk" target="_blank" rel="noopener noreferrer">GitHub &#8599;</a>
-                <a href="https://github.com/kotimadduluri/printbeam-samples" target="_blank" rel="noopener noreferrer">Samples &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <div class="receipt" role="img" aria-label="PrintBeam fact sheet printed as a receipt: Android, iOS and Kotlin Multiplatform supported; transport over TCP and Bluetooth LE; ESC/POS protocol; free to use including commercially; Maven artifact dev.printbeam:printbeam:0.1.0-alpha04">
-              <div class="receipt-row"><span>PrintBeam</span><span>0.1.0-alpha04</span></div>
-              <hr class="receipt-rule" />
-              <div class="receipt-row"><span>Android</span><span class="receipt-status">OK</span></div>
-              <div class="receipt-row"><span>iOS</span><span class="receipt-status">OK</span></div>
-              <div class="receipt-row"><span>KMP / CMP</span><span class="receipt-status">OK</span></div>
-              <hr class="receipt-rule" />
-              <div class="receipt-row"><span>Transport</span><span>TCP · BLE</span></div>
-              <div class="receipt-row"><span>Protocol</span><span>ESC/POS</span></div>
-              <div class="receipt-row"><span>License</span><span>Free + commercial</span></div>
-              <hr class="receipt-rule" />
-              <p class="pbr-code">implementation("dev.printbeam:printbeam:0.1.0-alpha04")</p>
-              <hr class="receipt-rule" />
-              <p class="receipt-center">*** one API, every printer ***</p>
-            </div>
-          </figure>
-        </article>
-
-        <article class="proj-band reveal" id="p-locodrop" data-track="personal">
-          <p class="proj-idx">2026</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/locodrop.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>LocoDrop</h3>
-                <p class="proj-org">Own product, early access</p>
-              </div>
-            </div>
-            <p class="proj-desc">Private file transfer between your own devices: files move over the local network, encrypted end to end, with no cloud and no account. One app across Android, iPhone, Windows, Mac and Linux.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>KMP / CMP</li><li>Koin</li><li>SQLDelight</li><li>Ktor</li><li>Mutual TLS</li><li>mDNS Discovery</li><li>CameraX + ZXing</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">v0.1 working build; early access opening soon</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
-                <a href="https://kotimadduluri.github.io/locodrop-web/" target="_blank" rel="noopener noreferrer">Website &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <img class="shot-plate" src="assets/shots/locodrop-mesh.webp" alt="LocoDrop device mesh: iPhone, Android, Windows, Mac and Linux linked directly over the local network, files encrypted in transit" loading="lazy" width="1120" height="643" />
-          </figure>
-        </article>
-
-        <article class="proj-band reveal" data-track="company">
-          <p class="proj-idx">2023</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/payment-loyalty.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Payment Loyalty</h3>
-                <p class="proj-org">Payment Loyalty</p>
-              </div>
-            </div>
-            <p class="proj-desc">Loyalty that's built-in, not bolted on: a loyalty engine that runs inside live card transactions on Verifone, Ingenico, PAX and Castles terminals. Rebuilt from a faulty legacy system with a custom design system.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Kotlin</li><li>Jetpack Compose</li><li>Multi-Module</li><li>Custom Design System</li><li>Node.js</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Zero downtime since relaunch; build times down around 30%</dd>
-              <dt>Links</dt>
-              <dd><p class="proj-links">
-                <a href="https://paymentloyalty.co" target="_blank" rel="noopener noreferrer">paymentloyalty.co &#8599;</a>
-              </p></dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <img src="assets/shots/payment-loyalty-terminals.webp" alt="Payment Loyalty offers running on Verifone, Castles and PAX payment terminals" loading="lazy" width="819" height="900" />
-          </figure>
-        </article>
-
-        <article class="proj-band reveal" id="p-banking" data-track="company">
-          <p class="proj-idx">2021</p>
-          <div class="proj-spec">
-            <div class="proj-head">
-              <img class="proj-app-ic" src="assets/apps/backbase.png" alt="" width="44" height="44" loading="lazy" />
-              <div>
-                <h3>Digital Banking</h3>
-                <p class="proj-org">Sandy Spring Bank &amp; CNB Bank · Backbase</p>
-              </div>
-            </div>
-            <p class="proj-desc">Android banking apps on the Backbase platform: accounts, loans, payments and remote deposit capture, with Zelle, Glia, Payveris and ThreatMetrix integrations.</p>
-            <dl class="spec">
-              <dt>Stack</dt>
-              <dd><ul class="speclist"><li>Kotlin</li><li>Backbase SDK</li><li>Coroutines &amp; Flow</li><li>ThreatMetrix</li><li>SSL Pinning</li><li>CI/CD</li></ul></dd>
-              <dt>Outcome</dt>
-              <dd class="outcome">Shipped to production for two US banks at banking-grade security</dd>
-            </dl>
-          </div>
-          <figure class="proj-media">
-            <img src="assets/shots/backbase-journeys.webp" alt="Backbase platform banking journeys: family banking, spending dashboard, savings plans and a loan offer" loading="lazy" width="1064" height="1080" />
-            <figcaption class="proj-media-cap">Backbase platform journeys</figcaption>
-          </figure>
-        </article>
-
-        <div class="proj-earlier" data-group>
-          <h3 class="proj-earlier-title">Earlier work</h3>
-          <div class="proj-cards">
-            <article class="proj-card reveal" data-track="company">
-              <figure class="proj-card-media">
-                <svg class="ill-anpr" viewBox="0 0 400 300" role="img" aria-label="Illustration: an on-device camera view locks onto a vehicle number plate and reads it" xmlns="http://www.w3.org/2000/svg">
-                  <style>
-                    .ill-anpr .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
-                    .ill-anpr .mt { fill: none; stroke: var(--muted); stroke-width: 1; }
-                    .ill-anpr .zn { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
-                    .ill-anpr .sg { fill: none; stroke: var(--signal); stroke-width: 2; }
-                    .ill-anpr .sq { fill: var(--signal-quiet); }
-                    .ill-anpr .tx { font-family: var(--mono); fill: var(--muted); font-size: 9px; letter-spacing: .08em; }
-                    .ill-anpr .tl { font-family: var(--mono); fill: var(--signal); font-size: 9px; letter-spacing: .08em; }
-                    .ill-anpr .pl { font-family: var(--mono); fill: var(--ink); font-size: 11px; font-weight: 600; letter-spacing: .12em; }
-                    .ill-anpr .pp { fill: var(--paper); stroke: var(--paper-rule); stroke-width: 1; }
-                    .ill-anpr .pk { font-family: var(--mono); fill: var(--paper-ink); font-size: 9px; letter-spacing: .06em; }
-                    .ill-anpr .pr { stroke: var(--paper-rule); stroke-width: 1; stroke-dasharray: 2 2; }
-                  </style>
-                
-                  <!-- viewfinder corners -->
-                  <path class="mt" d="M16 40V16h24M360 16h24v24M384 260v24h-24M40 284H16v-24"/>
-                  <text class="tx" x="28" y="34">CAM 01</text>
-                  <circle cx="352" cy="31" r="3" fill="var(--signal)"/>
-                  <text class="tx" x="304" y="34">LIVE</text>
-                
-                  <!-- ground line -->
-                  <path class="mt" d="M40 248h320"/>
-                
-                  <!-- car, rear view -->
-                  <path class="ln" d="M112 236V170c0-10 6-16 14-20l22-46c4-8 10-12 20-12h64c10 0 16 4 20 12l22 46c8 4 14 10 14 20v66"/>
-                  <path class="ln" d="M150 150l16-36c2-4 5-6 10-6h48c5 0 8 2 10 6l16 36z"/>
-                  <path class="ln" d="M112 236h176M112 236v12h28v-12M260 236v12h28v-12"/>
-                  <path class="ln" d="M122 176h30v14h-30zM248 176h30v14h-30z"/>
-                  <path class="mt" d="M112 166h176"/>
-                
-                  <!-- detection zone -->
-                  <rect class="zn" x="92" y="78" width="216" height="182"/>
-                  <text class="tx" x="92" y="70">ZONE A</text>
-                
-                  <!-- plate + lock box -->
-                  <rect class="ln" x="170" y="198" width="60" height="18"/>
-                  <text class="pl" x="200" y="211" text-anchor="middle">1ABC234</text>
-                  <rect class="sq" x="162" y="190" width="76" height="34"/>
-                  <path class="sg" d="M162 200v-10h10M228 190h10v10M238 214v10h-10M172 224h-10v-10"/>
-                  <text class="tl" x="162" y="184">PLATE</text>
-                
-                  <!-- leader to readout -->
-                  <path class="sg" d="M238 207h44v-74h20" stroke-width="1"/>
-                
-                  <!-- readout slip (receipt motif) -->
-                  <g transform="translate(302 104)">
-                    <path class="pp" d="M0 0h78v86l-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4L0 86z"/>
-                    <text class="pk" x="8" y="16">READ</text>
-                    <path class="pr" d="M8 23h62"/>
-                    <text class="pk" x="8" y="38" font-weight="600">1ABC234</text>
-                    <path class="pr" d="M8 47h62"/>
-                    <text class="pk" x="8" y="62">TFLITE</text>
-                    <text class="pk" x="8" y="75">ON DEVICE</text>
-                  </g>
-                </svg>
-              </figure>
-              <div class="proj-head">
-                <img class="proj-app-ic" src="assets/apps/sensen.png" alt="" width="44" height="44" loading="lazy" />
-                <div>
-                  <h4>Gemineye</h4>
-                  <p class="proj-org">Sensen Networks · <span class="proj-year">2020</span></p>
-                </div>
-              </div>
-              <p class="proj-card-outcome">Significantly improved recognition accuracy; ANRs dropped noticeably</p>
-            </article>
-
-            <article class="proj-card reveal" id="p-tsavaari" data-track="company" style="--d:80ms">
-              <figure class="proj-card-media">
-                <img src="assets/shots/tsavaari-home.webp" alt="TSavaari home screen with metro services: ticket booking, card recharge, fare calculator and metro map" loading="lazy" width="560" height="1244" />
-              </figure>
-              <div class="proj-head">
-                <img class="proj-app-ic" src="assets/apps/tsavaari.png" alt="" width="44" height="44" loading="lazy" />
-                <div>
-                  <h4>TSavaari</h4>
-                  <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies · <span class="proj-year">2017</span></p>
-                </div>
-              </div>
-              <p class="proj-card-outcome">1,000,000+ downloads on Google Play</p>
-              <p class="proj-links">
-                <a href="https://play.google.com/store/apps/details?id=com.minfy.tsavaari" target="_blank" rel="noopener noreferrer">Google Play &#8599;</a>
-              </p>
-            </article>
-
-            <article class="proj-card reveal" id="p-troop" data-track="company" style="--d:160ms">
-              <figure class="proj-card-media">
-                <img src="assets/shots/troop-chats.webp" alt="Troop Messenger conversation list" loading="lazy" width="560" height="971" />
-              </figure>
-              <div class="proj-head">
-                <img class="proj-app-ic" src="assets/apps/troop-messenger.png" alt="" width="44" height="44" loading="lazy" />
-                <div>
-                  <h4>Troop Messenger</h4>
-                  <p class="proj-org"><img class="proj-org-ic" src="assets/apps/tvisha.png" alt="" width="15" height="15" loading="lazy" />Tvisha Technologies · <span class="proj-year">2017</span></p>
-                </div>
-              </div>
-              <p class="proj-card-outcome">Shipped 2017; still live on Google Play and the App Store</p>
-              <p class="proj-links">
-                <a href="https://www.troopmessenger.com" target="_blank" rel="noopener noreferrer">troopmessenger.com &#8599;</a>
-              </p>
-            </article>
-          </div>
+      <!-- Composed from real app screens: travel, messaging, banking, payments, games -->
+      <div class="iso" aria-hidden="true">
+        <div class="iso-plane" id="iso-plane">
+          <div class="slot" style="--x:4;--y:34;--w:24;--z:2;--i:0"><img src="assets/shots/tsavaari-home.webp" alt="" width="560" height="1244" /></div>
+          <div class="slot" style="--x:31;--y:20;--w:24;--z:2;--i:1"><img src="assets/shots/screen-troop.webp" alt="" width="478" height="750" /></div>
+          <div class="slot" style="--x:58;--y:6;--w:26;--z:2;--i:2"><img src="assets/shots/screen-banking.webp" alt="" width="388" height="508" /></div>
+          <div class="slot" style="--x:36;--y:60;--w:22;--z:2;--i:3"><img src="assets/shots/pocketfun-home.webp" alt="" width="386" height="836" /></div>
+          <div class="slot" style="--x:62;--y:46;--w:22;--z:6;--i:4"><img src="assets/shots/screen-terminalpay.webp" alt="" width="364" height="788" /></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ CAREER ============ -->
-  <section class="section" id="career">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="section-n reveal">Career</span>
-          <h2 class="reveal">A decade on the books</h2>
-        </div>
-        <p class="section-sub reveal">Six companies, one through-line: payments, since 2015.</p>
+  <!-- WORK -->
+  <section class="sec" id="work">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 class="h2" data-lines><span class="ml"><span>Selected work</span></span></h2>
+        <p class="sec-intro" data-reveal>Products I built at work and on my own time.</p>
+      </header>
+
+      <div class="filters" role="group" aria-label="Filter work by domain" data-reveal>
+        <button class="chip-btn" type="button" aria-pressed="true" data-f="all">All</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="payments">Payments &amp; POS</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="banking">Banking</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="iot">Smart city &amp; ML</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="messaging">Messaging</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="travel">Travel</button>
+        <button class="chip-btn" type="button" aria-pressed="false" data-f="hobby">Hobby</button>
       </div>
 
-      <blockquote class="pull-quote reveal">
+      <div class="tiles" id="tiles">
+
+        <article class="tile" id="p-lopay-pos" data-tags="payments">
+          <div class="tile-media tm-dark" data-reveal><img class="cover" src="assets/shots/lopay-terminal-hw.webp" alt="Lopay point of sale product grid running on a Stripe S700 payment terminal" width="640" height="661" loading="lazy" /></div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/lopay.png" alt="" width="28" height="28" /><h3>Lopay</h3><span class="when">Now</span></div>
+            <p class="tile-desc">Point of sale inside the Lopay platform used by thousands of UK small businesses, on dual-screen payment devices.</p>
+            <p class="tile-out">EPOS modules and Stripe payment flows on dual-screen devices</p>
+            <ul class="tags"><li>Company</li><li>Payments &amp; POS</li></ul>
+            <p class="links"><a href="https://apps.apple.com/us/app/lopay-payments-pos/id1565369434" target="_blank" rel="noopener noreferrer">App Store <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a><a href="https://lopay.com/en-gb/point-of-sale" target="_blank" rel="noopener noreferrer">lopay.com <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-banking" data-tags="banking">
+          <div class="tile-media" data-reveal><img class="contain" src="assets/shots/backbase-journeys.webp" alt="Backbase platform banking journeys: family banking, spending dashboard, savings plans and a loan offer" width="1064" height="1080" loading="lazy" /></div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/backbase.png" alt="" width="28" height="28" /><h3>Digital Banking</h3><span class="when">2021</span></div>
+            <p class="tile-desc">Delivered Android banking apps for Sandy Spring Bank and CNB Bank on the Backbase platform: accounts, loans, payments and remote deposit capture.</p>
+            <p class="tile-out">Delivered features for two US banks to banking-grade security standards</p>
+            <ul class="tags"><li>Company</li><li>Banking</li></ul>
+            <p class="links links-none">Private client work</p>
+          </div>
+        </article>
+
+        <article class="tile" data-tags="iot">
+          <div class="tile-media" data-reveal>
+            <svg class="ill-anpr" viewBox="0 0 400 300" role="img" aria-label="Illustration: an on-device camera view locks onto a vehicle number plate and reads it" xmlns="http://www.w3.org/2000/svg">
+              <path class="mt" d="M16 40V16h24M360 16h24v24M384 260v24h-24M40 284H16v-24"/>
+              <text class="tx" x="28" y="34">CAM 01</text>
+              <path class="mt" d="M40 248h320"/>
+              <path class="ln" d="M112 236V170c0-10 6-16 14-20l22-46c4-8 10-12 20-12h64c10 0 16 4 20 12l22 46c8 4 14 10 14 20v66"/>
+              <path class="ln" d="M150 150l16-36c2-4 5-6 10-6h48c5 0 8 2 10 6l16 36z"/>
+              <path class="ln" d="M112 236h176M112 236v12h28v-12M260 236v12h28v-12"/>
+              <path class="ln" d="M122 176h30v14h-30zM248 176h30v14h-30z"/>
+              <path class="mt" d="M112 166h176"/>
+              <rect class="zn" x="92" y="78" width="216" height="182"/>
+              <rect class="ln" x="160" y="196" width="80" height="22"/>
+              <text class="pl" x="200" y="212" text-anchor="middle">1ABC234</text>
+              <path class="sg" d="M152 198v-10h10M238 188h10v10M248 216v10h-10M162 226h-10v-10"/>
+              <path class="sg" d="M248 207h24v-70h18" stroke-width="1"/>
+              <g transform="translate(290 100)">
+                <rect class="pp" width="106" height="86" rx="6"/>
+                <text class="tx" x="10" y="22">READ</text>
+                <text class="pl" x="10" y="46">1ABC234</text>
+                <text class="tx" x="10" y="70">ON DEVICE</text>
+              </g>
+            </svg>
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/sensen.png" alt="" width="28" height="28" /><h3>Gemineye</h3><span class="when">2020</span></div>
+            <p class="tile-desc">Vehicle number-plate detection and recognition for a smart city IoT platform, on device with TensorFlow Lite and ML Kit.</p>
+            <p class="tile-out">On-device plate recognition that cut manual processing</p>
+            <ul class="tags"><li>Company</li><li>Smart city IoT</li></ul>
+            <p class="links links-none">Private client work</p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-tsavaari" data-tags="travel">
+          <div class="tile-media tm-phones" data-reveal>
+            <img class="phone" src="assets/shots/tsavaari-home.webp" alt="TSavaari home screen with metro services: ticket booking, card recharge, fare calculator and metro map" width="560" height="1244" loading="lazy" />
+            <img class="phone" src="assets/shots/tsavaari-journey.webp" alt="TSavaari journey planner with origin, destination and recent tickets" width="560" height="1244" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/tsavaari.png" alt="" width="28" height="28" /><h3>TSavaari</h3><span class="when">2017</span></div>
+            <p class="tile-desc">Metro services in one app: ticket booking, card recharge, fare calculator and metro map. Built for a client while at Tvisha Technologies.</p>
+            <p class="tile-out">Android app for a metro network; 1,000,000+ downloads on Google Play</p>
+            <ul class="tags"><li>Company</li><li>Travel</li></ul>
+            <p class="links"><a href="https://play.google.com/store/apps/details?id=com.minfy.tsavaari" target="_blank" rel="noopener noreferrer">Google Play <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-troop" data-tags="messaging">
+          <div class="tile-media tm-phones" data-reveal>
+            <img class="phone" src="assets/shots/troop-chats.webp" alt="Troop Messenger conversation list" width="498" height="819" loading="lazy" />
+            <img class="phone" src="assets/shots/troop-map.webp" alt="Troop Messenger chat sharing a location on a map" width="498" height="819" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/troop-messenger.png" alt="" width="28" height="28" /><h3>Troop Messenger</h3><span class="when">2017</span></div>
+            <p class="tile-desc">Real-time team messaging, built at Tvisha Technologies.</p>
+            <p class="tile-out">Real-time team messaging app for Android, live on Google Play</p>
+            <ul class="tags"><li>Company</li><li>Real-time messaging</li></ul>
+            <p class="links"><a href="https://play.google.com/store/apps/details?id=com.tvisha.troopmessenger" target="_blank" rel="noopener noreferrer">Google Play <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a> <a href="https://www.troopmessenger.com" target="_blank" rel="noopener noreferrer">troopmessenger.com <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-terminal-pay" data-tags="payments">
+          <div class="tile-media tm-phones" data-reveal>
+            <img class="phone" src="assets/shots/terminal-pay-2.webp" alt="Terminal Pay charge screen taking a 10 pound card payment" width="412" height="836" loading="lazy" />
+            <img class="phone" src="assets/shots/terminal-pay-1.webp" alt="Terminal Pay pairing screen connecting a Stripe account" width="411" height="836" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/terminal-pay.png" alt="" width="28" height="28" /><h3>Terminal Pay</h3><span class="when">Now</span></div>
+            <p class="tile-desc">For merchants already on Stripe who want card-present payments without switching provider: terminals and Tap to Pay.</p>
+            <p class="tile-out">Sole owner of Android, iOS and backend; live on both stores</p>
+            <ul class="tags"><li>Company</li><li>Payments &amp; POS</li></ul>
+            <p class="links"><a href="https://play.google.com/store/apps/details?id=com.terminalpay" target="_blank" rel="noopener noreferrer">Google Play <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a><a href="https://apps.apple.com/us/app/terminal-pay/id6743445028" target="_blank" rel="noopener noreferrer">App Store <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-locodrop" data-tags="hobby">
+          <div class="tile-media tm-dark" data-reveal><img class="cover cover-loco" src="assets/shots/locodrop-mesh.webp" alt="LocoDrop device mesh: iPhone, Android, Windows, Mac and Linux linked directly over the local network, files encrypted in transit" width="1120" height="643" loading="lazy" /></div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/locodrop.png" alt="" width="28" height="28" /><h3>LocoDrop</h3><span class="when">2026</span></div>
+            <p class="tile-desc">Private file transfer between your own devices over the local network, encrypted end to end, with no cloud and no account.</p>
+            <p class="tile-out">Built solo in KMP; v0.1 working build, early access soon</p>
+            <ul class="tags"><li>Hobby</li><li>KMP / CMP</li></ul>
+            <p class="links"><a href="https://kotimadduluri.github.io/locodrop-web/" target="_blank" rel="noopener noreferrer">Website <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-pocketfun" data-tags="hobby">
+          <div class="tile-media tm-phones" data-reveal>
+            <img class="phone" src="assets/shots/pocketfun-home.webp" alt="Pocket Fun home screen with a Ludo game in progress, this week's play stats and favourites" width="386" height="836" loading="lazy" />
+            <img class="phone" src="assets/shots/pocketfun-ludo.webp" alt="Pocket Fun Ludo board mid-game with four players" width="386" height="836" loading="lazy" />
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/pocketfun.png" alt="" width="28" height="28" /><h3>Pocket Fun</h3><span class="when">2026</span></div>
+            <p class="tile-desc">Five classic solo games in one small app: 2048, Sudoku, Snake, Minesweeper and Ludo. Plays offline, saves after every move.</p>
+            <p class="tile-out">Built solo in KMP; in closed testing on Google Play</p>
+            <ul class="tags"><li>Hobby</li><li>Games</li></ul>
+          </div>
+        </article>
+
+        <article class="tile" data-tags="payments">
+          <div class="tile-media tm-dark" data-reveal><img class="cover" src="assets/shots/payment-loyalty-terminals.webp" alt="Payment Loyalty offers running on Verifone, Castles and PAX payment terminals" width="819" height="900" loading="lazy" /></div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/payment-loyalty.png" alt="" width="28" height="28" /><h3>Payment Loyalty</h3><span class="when">2023</span></div>
+            <p class="tile-desc">A loyalty engine that runs inside live card transactions on Verifone, Ingenico, PAX and Castles terminals.</p>
+            <p class="tile-out">Restructured the legacy system from the ground up; zero downtime since</p>
+            <ul class="tags"><li>Company</li><li>Loyalty &amp; fintech</li></ul>
+            <p class="links"><a href="https://paymentloyalty.co" target="_blank" rel="noopener noreferrer">paymentloyalty.co <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+        <article class="tile" id="p-printbeam" data-tags="hobby">
+          <div class="tile-media tm-sdk" data-reveal>
+            <img class="sdk-ic" src="assets/apps/printbeam.svg" alt="" width="96" height="96" />
+            <code class="sdk-line">implementation("dev.printbeam:printbeam:0.1.0-alpha04")</code>
+            <p class="sdk-plat">Android · iOS · Kotlin Multiplatform</p>
+          </div>
+          <div class="tile-body">
+            <div class="tile-title"><img class="app-ic" src="assets/apps/printbeam.svg" alt="" width="28" height="28" /><h3>PrintBeam</h3><span class="when">2026</span></div>
+            <p class="tile-desc">One API for ESC/POS receipt printers over network and Bluetooth LE, on Android, iOS and Kotlin Multiplatform.</p>
+            <p class="tile-out">Built and released solo; drives receipts in two POS products</p>
+            <ul class="tags"><li>Hobby</li><li>KMP / CMP</li></ul>
+            <p class="links"><a href="https://kotimadduluri.github.io/printbeam-sdk/" target="_blank" rel="noopener noreferrer">Docs <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a><a href="https://github.com/kotimadduluri/printbeam-sdk" target="_blank" rel="noopener noreferrer">GitHub <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a><a href="https://github.com/kotimadduluri/printbeam-samples" target="_blank" rel="noopener noreferrer">Samples <svg class="ic" aria-hidden="true"><use href="#i-arrow-ne"/></svg></a></p>
+          </div>
+        </article>
+
+      </div>
+      <p class="tiles-empty" id="tiles-status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement" aria-label="Approach">
+    <div class="wrap">
+      <blockquote class="quote" data-reveal>
         <p>I care about code that survives the real world, on real hardware, in front of real customers.</p>
       </blockquote>
+    </div>
+  </section>
 
-      <div class="tl reveal" role="img" aria-label="Career timeline, most recent first: Lopay 2026 to present, payments and EPOS. Payment Loyalty 2023 to 2026, loyalty. Mobiquity 2021 to 2023, digital banking. Sensen Networks 2020 to 2021, smart city IoT. Iconma 2017 to 2020, EdTech and enterprise. Tvisha Technologies 2015 to 2017, travel and real-time communication.">
-        <div class="tl-lane" aria-hidden="true">
-          <span class="tl-span tl-now" style="--s:1;--e:2"><em><i class="tl-live"></i>Lopay</em><span>Payments</span></span>
-          <span class="tl-span" style="--s:2;--e:5"><em>Payment Loyalty</em><span>Loyalty</span></span>
-          <span class="tl-span" style="--s:5;--e:7"><em>Mobiquity</em><span>Digital Banking</span></span>
-          <span class="tl-span" style="--s:7;--e:8"><em>Sensen</em><span>IoT</span></span>
-          <span class="tl-span" style="--s:8;--e:11"><em>Iconma</em><span>EdTech &amp; Enterprise</span></span>
-          <span class="tl-span" style="--s:11;--e:13"><em>Tvisha</em><span>Travel &amp; RTC</span></span>
-        </div>
-        <div class="tl-years" aria-hidden="true">
-          <span>2026</span><span>2025</span><span>2024</span><span>2023</span><span>2022</span><span>2021</span><span>2020</span><span>2019</span><span>2018</span><span>2017</span><span>2016</span><span>2015</span>
-        </div>
-      </div>
-
-      <div class="roles">
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Lopay</span>
-            <span class="role-period">Feb 2026 · Present</span>
-          </div>
-          <div class="role-main">
-            <h3>Senior Android &amp; Full Stack Engineer</h3>
-            <p class="role-meta">Terminal Pay &amp; Lopay (EPOS) · UK fintech serving 50,000+ businesses · London</p>
-            <ul class="role-bullets">
-              <li>Building EPOS modules across two POS products running on dual-screen devices, keeping the customer display and operator interface in sync.</li>
-              <li>Own Terminal Pay end to end, solo: Android, iOS and the backend.</li>
-              <li>Migrating both apps from XML to pure Jetpack Compose across hundreds of screens, and restructuring monolithic codebases into multi-module MVVM.</li>
-              <li>Built and released PrintBeam, a Kotlin Multiplatform print library that drives receipt printing across both POS products: one API for ESC/POS printers over network and Bluetooth LE on Android and iOS.</li>
-              <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Payment Loyalty</span>
-            <span class="role-period">Nov 2023 · Jan 2026</span>
-          </div>
-          <div class="role-main">
-            <h3>Senior Android &amp; Full Stack Engineer</h3>
-            <p class="role-meta">Payment Loyalty · Lopay (May 2025 - Jan 2026)</p>
-            <ul class="role-bullets">
-              <li>Owned the complete Payment Loyalty solution end to end; rebuilt a faulty legacy system from the ground up. Stable ever since with zero downtime.</li>
-              <li>Ran loyalty flows inside live transactions on Verifone, Ingenico, PAX and Castles terminals across real retail environments.</li>
-              <li>Migrated 40-60 screens to Jetpack Compose, built a custom design system from scratch, and split the app into feature/core modules. Build times dropped around 30%.</li>
-              <li>Led an offshore team of 4-5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Mobiquity</span>
-            <span class="role-period">Aug 2021 · Nov 2023</span>
-          </div>
-          <div class="role-main">
-            <h3>Senior Software Engineer</h3>
-            <p class="role-meta">Mobiquity (Hexaware) · Sandy Spring Bank &amp; CNB Bank, Backbase digital banking</p>
-            <ul class="role-bullets">
-              <li>Lead engineer and main point of contact for the delivery team on two US digital banking apps: Accounts, Loans, Payments, Profile and Remote Deposit Capture.</li>
-              <li>Integrated ThreatMetrix, Glia, Zelle and Payveris SDKs into the Backbase product without breaking the existing architecture.</li>
-              <li>Implemented SSL certificate pinning and banking-grade security; kept CI/CD running on GitHub Actions and App Center; managed Play Store releases across environments.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Sensen Networks</span>
-            <span class="role-period">Oct 2020 · Aug 2021</span>
-          </div>
-          <div class="role-main">
-            <h3>Senior Software Engineer</h3>
-            <p class="role-meta">Gemineye, Smart City IoT Platform</p>
-            <ul class="role-bullets">
-              <li>Built vehicle number-plate detection and recognition with TensorFlow, TensorFlow Lite and ML Kit. Cut manual processing and significantly improved accuracy.</li>
-              <li>Rewrote the client-admin communication layer with NanoHTTP and Content Providers; migrated networking from Volley to Retrofit.</li>
-              <li>Adopted Coroutines and LiveData throughout, and ANRs dropped noticeably.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Iconma</span>
-            <span class="role-period">Oct 2017 · Oct 2020</span>
-          </div>
-          <div class="role-main">
-            <h3>Software Engineer</h3>
-            <p class="role-meta">Enterprise Collaboration &amp; EdTech</p>
-            <ul class="role-bullets">
-              <li>Built and maintained enterprise collaboration and EdTech apps across the full Android lifecycle, from requirements to release.</li>
-              <li>Led Java to Kotlin migrations of several core apps; built real-time chat with XMPP and Socket.IO plus the backend APIs behind it.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="role reveal">
-          <div class="role-side">
-            <span class="role-org">Tvisha</span>
-            <span class="role-period">Jul 2015 · Sep 2017</span>
-          </div>
-          <div class="role-main">
-            <h3>Software Engineer</h3>
-            <p class="role-meta">Tvisha Technologies · Travel, Real-Time Communication &amp; Payments</p>
-            <ul class="role-bullets">
-              <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways. Solid grounding in REST integration and Material Design.</li>
-            </ul>
-          </div>
-        </article>
-      </div>
-
-      <div class="about-row reveal">
-        <p>Right now I'm deep in point of sale: <a class="copy-link" href="#p-terminal-pay">Terminal Pay</a> and <a class="copy-link" href="#p-lopay-pos">Lopay</a> by day, <a class="copy-link" href="#p-printbeam">PrintBeam</a> and <a class="copy-link" href="#p-locodrop">LocoDrop</a> on my own time. The decade before this taught me the rest: leading teams of 4-5 engineers, migrating hundreds of screens to Compose, and turning vague requirements into shipped product.</p>
-        <ul class="credentials">
+  <!-- CAREER -->
+  <section class="sec" id="career">
+    <div class="wrap career-grid">
+      <header class="career-head">
+        <h2 class="h2" data-lines><span class="ml"><span>Career</span></span></h2>
+        <p class="sec-intro" data-reveal>Six roles since 2015, shipping production apps across these domains.</p>
+        <ul class="tags dom-row" data-reveal aria-label="Domains">
+          <li>Digital banking</li><li>Payments &amp; POS</li><li>Loyalty &amp; fintech</li><li>Smart city IoT</li><li>EdTech &amp; enterprise</li><li>Real-time communication</li><li>Travel</li>
+        </ul>
+        <ul class="creds" data-reveal>
           <li><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg><span><strong>Backbase Certified Android Engineer</strong>, 2023</span></li>
           <li><svg class="ic" aria-hidden="true"><use href="#i-grad"/></svg><span><strong>B.Tech, Computer Science</strong>, JNTU, 2015</span></li>
         </ul>
-      </div>
+      </header>
+
+      <ol class="roles">
+        <li class="role" data-reveal>
+          <details open>
+            <summary>
+              <span class="role-org">Lopay</span>
+              <span class="role-when">Feb 2026 to present</span>
+              <span class="role-sub"><span class="role-title">Senior Android &amp; Full Stack Engineer</span><span class="role-dom">Payments &amp; POS</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Terminal Pay &amp; Lopay (EPOS), UK fintech serving thousands of small businesses</p>
+              <ul>
+                <li>Building EPOS modules across two POS products running on dual-screen devices, keeping the customer display and operator interface in sync.</li>
+                <li>Own Terminal Pay end to end, solo: Android, iOS and the backend.</li>
+                <li>Migrating both apps from XML to pure Jetpack Compose across hundreds of screens, and restructuring monolithic codebases into multi-module MVVM.</li>
+                <li>Built and released PrintBeam, a Kotlin Multiplatform print library that drives receipt printing across both POS products.</li>
+                <li>Building NestJS backend APIs, contributing to the React web app, and working with Stripe SDKs across the payment flows; built KMP/CMP proof-of-concepts for future products.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="role" data-reveal>
+          <details>
+            <summary>
+              <span class="role-org">Payment Loyalty</span>
+              <span class="role-when">Nov 2023 to Jan 2026</span>
+              <span class="role-sub"><span class="role-title">Senior Android &amp; Full Stack Engineer</span><span class="role-dom">Loyalty &amp; fintech</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Payment Loyalty, then Lopay (May 2025 to Jan 2026)</p>
+              <ul>
+                <li>Owned the complete Payment Loyalty solution end to end; restructured a faulty legacy system from the ground up. Stable ever since with zero downtime.</li>
+                <li>Ran loyalty flows inside live transactions on Verifone, Ingenico, PAX and Castles terminals across real retail environments.</li>
+                <li>Migrated 40-60 screens to Jetpack Compose, built a custom design system from scratch, and split the app into feature/core modules. Build times dropped around 30%.</li>
+                <li>Led an offshore team of 4-5 engineers; built Node.js/NestJS APIs; wired up Crashlytics and Sentry; profiled with LeakCanary and Android Studio Profiler.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="role" data-reveal>
+          <details>
+            <summary>
+              <span class="role-org">Mobiquity</span>
+              <span class="role-when">Aug 2021 to Nov 2023</span>
+              <span class="role-sub"><span class="role-title">Senior Software Engineer</span><span class="role-dom">Digital banking</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Mobiquity (Hexaware), Sandy Spring Bank &amp; CNB Bank, Backbase digital banking</p>
+              <ul>
+                <li>Lead engineer and main point of contact for the delivery team on two US digital banking apps: Accounts, Loans, Payments, Profile and Remote Deposit Capture.</li>
+                <li>Integrated ThreatMetrix, Glia, Zelle and Payveris SDKs into the Backbase product without breaking the existing architecture.</li>
+                <li>Implemented SSL certificate pinning and banking-grade security; kept CI/CD running on GitHub Actions and App Center; managed Play Store releases across environments.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="role" data-reveal>
+          <details>
+            <summary>
+              <span class="role-org">Sensen Networks</span>
+              <span class="role-when">Oct 2020 to Aug 2021</span>
+              <span class="role-sub"><span class="role-title">Senior Software Engineer</span><span class="role-dom">Smart city IoT</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Gemineye, Smart City IoT Platform</p>
+              <ul>
+                <li>Built vehicle number-plate detection and recognition with TensorFlow, TensorFlow Lite and ML Kit. Cut manual processing and significantly improved accuracy.</li>
+                <li>Rewrote the client-admin communication layer with NanoHTTP and Content Providers; migrated networking from Volley to Retrofit.</li>
+                <li>Adopted Coroutines and LiveData throughout, and ANRs dropped noticeably.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="role" data-reveal>
+          <details>
+            <summary>
+              <span class="role-org">Iconma</span>
+              <span class="role-when">Oct 2017 to Oct 2020</span>
+              <span class="role-sub"><span class="role-title">Software Engineer</span><span class="role-dom">EdTech &amp; enterprise</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Enterprise Collaboration &amp; EdTech</p>
+              <ul>
+                <li>Built and maintained enterprise collaboration and EdTech apps across the full Android lifecycle, from requirements to release.</li>
+                <li>Led Java to Kotlin migrations of several core apps; built real-time chat with XMPP and Socket.IO plus the backend APIs behind it.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+        <li class="role" data-reveal>
+          <details>
+            <summary>
+              <span class="role-org">Tvisha Technologies</span>
+              <span class="role-when">Jul 2015 to Sep 2017</span>
+              <span class="role-sub"><span class="role-title">Software Engineer</span><span class="role-dom">Travel &amp; real-time comms</span></span>
+            </summary>
+            <div class="role-body">
+              <p class="role-meta">Travel, Real-Time Communication &amp; Payments</p>
+              <ul>
+                <li>Started my career building mobile and web apps across travel, real-time communication and payment gateways. Solid grounding in REST integration and Material Design.</li>
+              </ul>
+            </div>
+          </details>
+        </li>
+      </ol>
     </div>
   </section>
 
-  <!-- ============ DOMAIN EXPERTISE ============ -->
-  <section class="section" id="expertise">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="section-n reveal">Domain</span>
-          <h2 class="reveal">Payments, end to end</h2>
-        </div>
-        <p class="section-sub reveal">From terminal hardware to bank rails: the layers I've shipped against.</p>
-      </div>
-      <dl class="domain-table">
-        <div class="domain-row reveal">
-          <dt>Payment terminals</dt>
-          <dd>Verifone, Ingenico, PAX and Castles hardware in live retail environments; loyalty flows running inside the transaction.</dd>
-          <dd class="domain-where">Payment Loyalty</dd>
-        </div>
-        <div class="domain-row reveal">
-          <dt>PSP &amp; payment flows</dt>
-          <dd>Stripe SDKs and APIs across in-person payment flows; payment gateway integrations since 2015.</dd>
-          <dd class="domain-where">Lopay · Terminal Pay</dd>
-        </div>
-        <div class="domain-row reveal">
-          <dt>Digital banking</dt>
-          <dd>Backbase platform delivery for two US banks; Zelle, Glia, Payveris and ThreatMetrix integrations.</dd>
-          <dd class="domain-where">Mobiquity</dd>
-        </div>
-        <div class="domain-row reveal">
-          <dt>Security &amp; compliance</dt>
-          <dd>SSL certificate pinning, R8/ProGuard hardening, Play Integrity API, banking-grade release processes across dev, staging and production.</dd>
-          <dd class="domain-where">Mobiquity · Lopay</dd>
-        </div>
-        <div class="domain-row reveal">
-          <dt>EPOS hardware</dt>
-          <dd>Dual-screen customer and operator devices kept in sync; offline-first sync with WorkManager and background services for all-day retail use.</dd>
-          <dd class="domain-where">Lopay</dd>
-        </div>
+  <!-- STACK -->
+  <section class="sec" id="skills">
+    <div class="wrap">
+      <header class="sec-head">
+        <h2 class="h2" data-lines><span class="ml"><span>Stack</span></span></h2>
+        <p class="sec-intro" data-reveal>Core tools first, the full inventory on request.</p>
+      </header>
+      <p class="stack-daily" data-reveal><strong>Core tools:</strong> Kotlin, Jetpack Compose, KMP, Coroutines and Flow, NestJS, TypeScript, React, PostgreSQL, GitHub Actions.</p>
+      <dl class="stack" id="stack">
+        <div class="grp" data-reveal><dt>Mobile</dt><dd><ul class="tags"><li>Kotlin</li><li>Java</li><li>Jetpack Compose</li><li>XML Layouts</li><li>KMP</li><li>CMP</li><li>Stripe SDKs</li><li>Coroutines</li><li>Flow</li><li>StateFlow</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>Architecture</dt><dd><ul class="tags"><li>MVVM</li><li>MVI</li><li>Clean Architecture</li><li>Multi-Module</li><li>Modular Design</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>Backend &amp; databases</dt><dd><ul class="tags"><li>Node.js</li><li>NestJS</li><li>Express</li><li>REST APIs</li><li>Stripe API</li><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>SQLite</li><li>Firebase RTDB</li><li>DataStore</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>Frontend</dt><dd><ul class="tags"><li>React</li><li>Next.js</li><li>TypeScript</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SCSS</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>Realtime &amp; IoT</dt><dd><ul class="tags"><li>MQTT</li><li>XMPP</li><li>WebRTC</li><li>Socket.IO</li><li>BLE</li><li>NFC</li><li>NanoHTTP</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>Integrations</dt><dd><ul class="tags"><li>Verifone</li><li>PAX</li><li>Castles</li><li>Ingenico</li><li>Stripe</li><li>Glia</li><li>Zelle</li><li>ShuftiPro</li><li>Payveris</li><li>ThreatMetrix</li></ul></dd></div>
+        <div class="grp" data-reveal><dt>AI / ML</dt><dd><ul class="tags"><li>TensorFlow</li><li>TensorFlow Lite</li><li>ML Kit</li><li>Claude Code</li><li>Cursor</li><li>ChatGPT (Codex)</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Android libraries</dt><dd><ul class="tags"><li>Retrofit</li><li>Ktor</li><li>Volley</li><li>Koin</li><li>Hilt</li><li>Dagger</li><li>Room</li><li>WorkManager</li><li>Navigation</li><li>ExoPlayer</li><li>CameraX</li><li>Coil</li><li>Glide</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Firebase</dt><dd><ul class="tags"><li>Auth</li><li>Firestore</li><li>FCM</li><li>Crashlytics</li><li>Remote Config</li><li>App Distribution</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Testing &amp; quality</dt><dd><ul class="tags"><li>JUnit</li><li>Espresso</li><li>Robolectric</li><li>MockK</li><li>LeakCanary</li><li>Sentry</li><li>Android Studio Profiler</li></ul></dd></div>
+        <div class="grp grp-more"><dt>DevOps &amp; security</dt><dd><ul class="tags"><li>GitHub Actions</li><li>Bitrise</li><li>Play Console</li><li>R8 / ProGuard</li><li>SSL Pinning</li><li>Play Integrity API</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Tools</dt><dd><ul class="tags"><li>Gradle (Kotlin DSL)</li><li>Postman</li><li>Swagger</li><li>pgAdmin</li><li>VS Code</li><li>IntelliJ</li><li>Linear</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Version control</dt><dd><ul class="tags"><li>GitHub</li><li>GitLab</li><li>SVN</li></ul></dd></div>
+        <div class="grp grp-more"><dt>Practices</dt><dd><ul class="tags"><li>Agile</li><li>Scrum</li><li>Sprint Planning</li><li>Code Review</li><li>Mentoring</li></ul></dd></div>
       </dl>
+      <button class="btn btn-line stack-more" type="button" aria-expanded="false" aria-controls="stack" hidden>Show the full stack</button>
     </div>
   </section>
 
-  <!-- ============ SKILLS ============ -->
-  <section class="section" id="skills">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="section-n reveal">Stack</span>
-          <h2 class="reveal">The stack</h2>
-        </div>
-        <p class="section-sub reveal">Daily tools up front, the full inventory on request.</p>
+  <!-- CONTACT -->
+  <section class="sec contact" id="contact">
+    <div class="wrap">
+      <div class="contact-hero">
+      <h2 class="contact-h" data-lines>
+        <span class="ml"><span style="--i:0">Let's talk about</span></span>
+        <span class="ml"><span style="--i:1">your next <span class="cycle" id="cycle" aria-hidden="true">hire</span><span class="sr-only">hire</span></span></span>
+      </h2>
+
+      <div class="contact-actions" data-reveal>
+        <a class="btn btn-ink" href="mailto:kotimn@gmail.com"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg>kotimn@gmail.com</a>
+        <button class="btn btn-line copy-btn" type="button" hidden>Copy email</button>
+        <a class="btn btn-line" href="assets/Koti_Madduluri_Senior_Android_Engineer_CV.pdf" download>Download CV <svg class="ic" aria-hidden="true"><use href="#i-download"/></svg></a>
+      </div>
+      <p class="copy-note" id="copy-note" aria-live="polite"></p>
       </div>
 
-      <dl class="skills-table">
-        <div class="skills-row reveal"><dt>Mobile</dt><dd><ul class="speclist"><li>Kotlin</li><li>Java</li><li>Jetpack Compose</li><li>XML Layouts</li><li>KMP</li><li>CMP</li><li>Stripe Terminal</li><li>Coroutines</li><li>Flow</li><li>StateFlow</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Architecture</dt><dd><ul class="speclist"><li>MVVM</li><li>MVI</li><li>Clean Architecture</li><li>Multi-Module</li><li>Modular Design</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Android Libraries</dt><dd><ul class="speclist"><li>Retrofit</li><li>Ktor</li><li>Volley</li><li>Koin</li><li>Hilt</li><li>Dagger</li><li>Room</li><li>WorkManager</li><li>Navigation</li><li>ExoPlayer</li><li>CameraX</li><li>Coil</li><li>Glide</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Backend &amp; Databases</dt><dd><ul class="speclist"><li>Node.js</li><li>NestJS</li><li>Express</li><li>REST APIs</li><li>Stripe API</li><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li><li>SQLite</li><li>Firebase RTDB</li><li>DataStore</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Frontend</dt><dd><ul class="speclist"><li>React</li><li>Next.js</li><li>TypeScript</li><li>Stripe.js</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>SCSS</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Realtime &amp; IoT</dt><dd><ul class="speclist"><li>MQTT</li><li>XMPP</li><li>WebRTC</li><li>Socket.IO</li><li>BLE</li><li>NFC</li><li>NanoHTTP</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Firebase</dt><dd><ul class="speclist"><li>Auth</li><li>Firestore</li><li>FCM</li><li>Crashlytics</li><li>Remote Config</li><li>App Distribution</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>AI / ML</dt><dd><ul class="speclist"><li>TensorFlow</li><li>TensorFlow Lite</li><li>ML Kit</li><li>Claude Code</li><li>Cursor</li><li>ChatGPT (Codex)</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Testing &amp; Quality</dt><dd><ul class="speclist"><li>JUnit</li><li>Espresso</li><li>Robolectric</li><li>MockK</li><li>LeakCanary</li><li>Sentry</li><li>Android Studio Profiler</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>DevOps &amp; Security</dt><dd><ul class="speclist"><li>GitHub Actions</li><li>Bitrise</li><li>Play Console</li><li>R8 / ProGuard</li><li>SSL Pinning</li><li>Play Integrity API</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Tools</dt><dd><ul class="speclist"><li>Gradle (Kotlin DSL)</li><li>Postman</li><li>Swagger</li><li>pgAdmin</li><li>VS Code</li><li>IntelliJ</li><li>Linear</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Version Control</dt><dd><ul class="speclist"><li>GitHub</li><li>GitLab</li><li>SVN</li></ul></dd></div>
-        <div class="skills-row reveal"><dt>Practices</dt><dd><ul class="speclist"><li>Agile</li><li>Scrum</li><li>Sprint Planning</li><li>Code Review</li><li>Mentoring</li></ul></dd></div>
-      </dl>
-      <button class="skills-more" type="button" aria-expanded="false" hidden>Show the full stack <span class="skills-more-n">+ 7 more categories</span></button>
-    </div>
-  </section>
-
-  <!-- ============ CONTACT ============ -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <span class="section-n reveal">Contact</span>
-          <h2 class="reveal">Open a tab</h2>
-        </div>
-        <p class="section-sub reveal">One email away. The form prints you a receipt.</p>
-      </div>
       <div class="contact-grid">
-        <div class="contact-info reveal">
-          <p class="contact-lead">Open to interesting problems in fintech, payments and beyond.</p>
+        <div data-reveal>
+          <p class="contact-lead">Open to new roles and conversations. One email away.</p>
           <ul class="contact-links">
-            <li><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg><a href="mailto:kotimn@gmail.com">kotimn@gmail.com</a></li>
-            <li><svg class="ic icon-fill" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer">linkedin.com/in/koti-madduluri</a></li>
-            <li><svg class="ic icon-fill" aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/kotimadduluri" target="_blank" rel="noopener noreferrer">github.com/kotimadduluri</a></li>
-            <li><svg class="ic" aria-hidden="true"><use href="#i-pin"/></svg><span>Crawley / London, UK</span></li>
+            <li><svg class="ic ic-fill" aria-hidden="true"><use href="#i-linkedin"/></svg><a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer">linkedin.com/in/koti-madduluri</a></li>
+            <li><svg class="ic ic-fill" aria-hidden="true"><use href="#i-github"/></svg><a href="https://github.com/kotimadduluri" target="_blank" rel="noopener noreferrer">github.com/kotimadduluri</a></li>
           </ul>
+          <p class="contact-place">London, UK</p>
         </div>
 
-        <form class="contact-form reveal" id="contact-form" style="--d:80ms" aria-label="Contact form">
-          <div class="form-field">
-            <label for="cf-name">Name</label>
-            <input type="text" id="cf-name" name="name" required autocomplete="name" />
-          </div>
-          <div class="form-field">
-            <label for="cf-subject">Subject</label>
-            <input type="text" id="cf-subject" name="subject" required />
-          </div>
-          <div class="form-field">
-            <label for="cf-message">Message</label>
-            <textarea id="cf-message" name="message" rows="5" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Send message</button>
-          <p class="form-note">Opens your email app. Nothing is stored or sent anywhere else.</p>
-          <div class="receipt-slot" aria-live="polite"><div class="receipt-clip"><div class="receipt" id="receipt"></div></div></div>
-        </form>
+        <details class="write" data-reveal style="--d:80ms">
+          <summary>Or write here</summary>
+          <form class="form" id="contact-form" aria-label="Contact form">
+            <div class="field">
+              <label for="cf-name">Name</label>
+              <input type="text" id="cf-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="cf-subject">Subject</label>
+              <input type="text" id="cf-subject" name="subject" required />
+            </div>
+            <div class="field field-full">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" required></textarea>
+            </div>
+            <div class="form-end">
+              <button type="submit" class="btn btn-ink">Send message <svg class="ic" aria-hidden="true"><use href="#i-arrow-r"/></svg></button>
+              <p class="form-note" id="form-note" aria-live="polite">Opens your email app. Nothing is stored or sent anywhere else.</p>
+            </div>
+          </form>
+        </details>
       </div>
     </div>
   </section>
 </main>
 
-<footer class="site-footer">
-  <div class="container footer-inner">
+<footer class="ftr">
+  <div class="wrap ftr-in">
     <p>© <span id="year">2026</span> Koteswara Rao "Koti" Madduluri</p>
-    <div class="footer-links">
-      <a href="mailto:kotimn@gmail.com" aria-label="Email"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></a>
-      <a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="ic icon-fill" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
-      <a href="https://github.com/kotimadduluri" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="ic icon-fill" aria-hidden="true"><use href="#i-github"/></svg></a>
+    <p class="ftr-meta"><span>UK time <time id="clock">--:--</time></span><span>Updated November 2026</span></p>
+    <div class="ftr-links">
+      <a href="https://linkedin.com/in/koti-madduluri" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="ic ic-fill" aria-hidden="true"><use href="#i-linkedin"/></svg></a>
+      <a href="https://github.com/kotimadduluri" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg class="ic ic-fill" aria-hidden="true"><use href="#i-github"/></svg></a>
     </div>
   </div>
 </footer>
-
-<div class="cmdk" id="cmdk" hidden>
-  <div class="cmdk-backdrop" data-cmdk-close></div>
-  <div class="cmdk-panel" role="dialog" aria-modal="true" aria-label="Command menu">
-    <input class="cmdk-input" type="text" placeholder="Type a command" aria-label="Filter commands" autocomplete="off" spellcheck="false" />
-    <ul class="cmdk-list" role="listbox" aria-label="Commands">
-      <li role="option" data-action="goto" data-target="#work"><span class="cmdk-kind">go</span>Products</li>
-      <li role="option" data-action="goto" data-target="#career"><span class="cmdk-kind">go</span>Career</li>
-      <li role="option" data-action="goto" data-target="#expertise"><span class="cmdk-kind">go</span>Payments domain</li>
-      <li role="option" data-action="goto" data-target="#skills"><span class="cmdk-kind">go</span>Skills</li>
-      <li role="option" data-action="goto" data-target="#contact"><span class="cmdk-kind">go</span>Contact</li>
-      <li role="option" data-action="cv"><span class="cmdk-kind">run</span>Download CV</li>
-      <li role="option" data-action="cvpage"><span class="cmdk-kind">run</span>View CV online</li>
-      <li role="option" data-action="email"><span class="cmdk-kind">run</span>Copy email address</li>
-      <li role="option" data-action="linkedin"><span class="cmdk-kind">run</span>Open LinkedIn</li>
-      <li role="option" data-action="github"><span class="cmdk-kind">run</span>Open GitHub</li>
-      <li role="option" data-action="theme"><span class="cmdk-kind">run</span>Toggle theme</li>
-      <li role="option" data-action="goto" data-target="#top"><span class="cmdk-kind">go</span>Back to top</li>
-    </ul>
-    <p class="cmdk-foot"><kbd>&#8593;&#8595;</kbd> navigate <kbd>&#8629;</kbd> run <kbd>esc</kbd> close</p>
-  </div>
-</div>
 
 <script src="js/main.js" defer></script>
 </body>
