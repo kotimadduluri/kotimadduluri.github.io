@@ -375,7 +375,62 @@
           <div class="proj-cards">
             <article class="proj-card reveal" data-track="company">
               <figure class="proj-card-media">
-                <img class="shot-plate" src="assets/shots/gemineye-zone.webp" alt="Gemineye detection zone marked out over the live camera view on an Android device" loading="lazy" width="485" height="230" />
+                <svg class="ill-anpr" viewBox="0 0 400 300" role="img" aria-label="Illustration: an on-device camera view locks onto a vehicle number plate and reads it" xmlns="http://www.w3.org/2000/svg">
+                  <style>
+                    .ill-anpr .ln { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; }
+                    .ill-anpr .mt { fill: none; stroke: var(--muted); stroke-width: 1; }
+                    .ill-anpr .zn { fill: none; stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+                    .ill-anpr .sg { fill: none; stroke: var(--signal); stroke-width: 2; }
+                    .ill-anpr .sq { fill: var(--signal-quiet); }
+                    .ill-anpr .tx { font-family: var(--mono); fill: var(--muted); font-size: 9px; letter-spacing: .08em; }
+                    .ill-anpr .tl { font-family: var(--mono); fill: var(--signal); font-size: 9px; letter-spacing: .08em; }
+                    .ill-anpr .pl { font-family: var(--mono); fill: var(--ink); font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+                    .ill-anpr .pp { fill: var(--paper); stroke: var(--paper-rule); stroke-width: 1; }
+                    .ill-anpr .pk { font-family: var(--mono); fill: var(--paper-ink); font-size: 9px; letter-spacing: .06em; }
+                    .ill-anpr .pr { stroke: var(--paper-rule); stroke-width: 1; stroke-dasharray: 2 2; }
+                  </style>
+                
+                  <!-- viewfinder corners -->
+                  <path class="mt" d="M16 40V16h24M360 16h24v24M384 260v24h-24M40 284H16v-24"/>
+                  <text class="tx" x="28" y="34">CAM 01</text>
+                  <circle cx="352" cy="31" r="3" fill="var(--signal)"/>
+                  <text class="tx" x="304" y="34">LIVE</text>
+                
+                  <!-- ground line -->
+                  <path class="mt" d="M40 248h320"/>
+                
+                  <!-- car, rear view -->
+                  <path class="ln" d="M112 236V170c0-10 6-16 14-20l22-46c4-8 10-12 20-12h64c10 0 16 4 20 12l22 46c8 4 14 10 14 20v66"/>
+                  <path class="ln" d="M150 150l16-36c2-4 5-6 10-6h48c5 0 8 2 10 6l16 36z"/>
+                  <path class="ln" d="M112 236h176M112 236v12h28v-12M260 236v12h28v-12"/>
+                  <path class="ln" d="M122 176h30v14h-30zM248 176h30v14h-30z"/>
+                  <path class="mt" d="M112 166h176"/>
+                
+                  <!-- detection zone -->
+                  <rect class="zn" x="92" y="78" width="216" height="182"/>
+                  <text class="tx" x="92" y="70">ZONE A</text>
+                
+                  <!-- plate + lock box -->
+                  <rect class="ln" x="170" y="198" width="60" height="18"/>
+                  <text class="pl" x="200" y="211" text-anchor="middle">1ABC234</text>
+                  <rect class="sq" x="162" y="190" width="76" height="34"/>
+                  <path class="sg" d="M162 200v-10h10M228 190h10v10M238 214v10h-10M172 224h-10v-10"/>
+                  <text class="tl" x="162" y="184">PLATE</text>
+                
+                  <!-- leader to readout -->
+                  <path class="sg" d="M238 207h44v-74h20" stroke-width="1"/>
+                
+                  <!-- readout slip (receipt motif) -->
+                  <g transform="translate(302 104)">
+                    <path class="pp" d="M0 0h78v86l-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4-6.5-4-6.5 4L0 86z"/>
+                    <text class="pk" x="8" y="16">READ</text>
+                    <path class="pr" d="M8 23h62"/>
+                    <text class="pk" x="8" y="38" font-weight="600">1ABC234</text>
+                    <path class="pr" d="M8 47h62"/>
+                    <text class="pk" x="8" y="62">TFLITE</text>
+                    <text class="pk" x="8" y="75">ON DEVICE</text>
+                  </g>
+                </svg>
               </figure>
               <div class="proj-head">
                 <img class="proj-app-ic" src="assets/apps/sensen.png" alt="" width="44" height="44" loading="lazy" />

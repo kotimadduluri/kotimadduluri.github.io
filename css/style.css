@@ -755,7 +755,7 @@ p { margin: 0; }
   overflow: hidden;
   padding: 18px;
 }
-.proj-card-media img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.proj-card-media img, .proj-card-media svg { display: block; width: 100%; height: 100%; object-fit: contain; }
 .proj-year { font-family: var(--mono); font-size: 0.78rem; }
 .proj-card-outcome { font-size: 0.92rem; line-height: 1.55; }
 .proj-card .proj-links { margin-top: auto; }
